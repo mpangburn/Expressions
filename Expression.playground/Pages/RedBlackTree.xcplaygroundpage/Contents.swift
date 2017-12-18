@@ -14,4 +14,3 @@ tree2.height
 tree2.count
 tree2.min()
 tree2.max()
-

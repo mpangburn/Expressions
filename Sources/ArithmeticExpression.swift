@@ -12,6 +12,7 @@ import Foundation
 public typealias ArithmeticExpression<T: FixedWidthIntegerOperandProtocol> = _ArithmeticExpression<FixedWidthIntegerOperator<T>>
 
 public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: ArithmeticExpressionProtocol {
+
     public typealias Operand = Operator.Operand
 
     case operand(Operand)

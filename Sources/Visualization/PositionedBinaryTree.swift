@@ -9,18 +9,30 @@
 import Foundation
 
 
+/// A wrapper around a binary tree to store its logical x- and y-coordinates for positioning in space.
 class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
+
+    /// The tree to position.
     let tree: T
+
+    /// The logical x-coordinate of the tree in space once positioned.
     var x: Int
+
+    /// The logical y-coordinate of the tree in space once positioned.
     var y: Int
+
+    /// The positioned children of the wrapped tree.
     var children: [PositionedBinaryTree<T>]
 
-    init(tree: T, depth: Int) {
+    private init(tree: T, depth: Int) {
         self.tree = tree
         self.x = -1
         self.y = depth
         self.children = []
     }
+}
+
+extension PositionedBinaryTree {
 
     /// Positions the tree using a naive O(_n^2_) implementation of Reingold and Tilford's algorithm.
     /// c.f. https://llimllib.github.io/pymag-trees/
@@ -45,6 +57,7 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
         return positionedTree
     }
 
+    /// Computes the position for a node based on its left and right subtrees.
     static func computeNodePosition<T>(fromLeft left: PositionedBinaryTree<T>, right: PositionedBinaryTree<T>) -> Int {
         let leftContour = left.computeContour(.left)    // An array containing the leftmost coordinate at each level.
         let rightContour = right.computeContour(.right) // An array containing the rightmost coordinate at each level.
@@ -93,7 +106,7 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
         return contour
     }
 
-    /// Shifts each x-coordinate in the tree by the value.
+    /// Shifts the x-coordinate of each node in the tree by the value.
     func shiftXCoordinates(by value: Int) {
         x += value
         for child in children {
@@ -104,6 +117,7 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
 
 extension PositionedBinaryTree {
 
+    /// The visual attributes of the positioned tree, taken from the tree model it wraps.
     var visualAttributes: NodeVisualAttributes? {
         return tree.visualAttributes
     }
@@ -147,16 +161,16 @@ extension PositionedBinaryTree: CustomStringConvertible, CustomDebugStringConver
         return debugDescription()
     }
 
-    /// Generates the debug description using the tree's depth as a guide for indentation.
+    /// Generates the debug description, using the tree's depth as a guide for indentation.
     private func debugDescription(depth: Int = 0) -> String {
-        var debugDesc = description
+        var debugDescription = description
         if !children.isEmpty {
             let tabs = String(repeating: "\t", count: depth)
-            debugDesc += "\n\(tabs)children:\n"
+            debugDescription += "\n\(tabs)children:\n"
             for child in children {
-                debugDesc += "\(tabs)\t\(child.debugDescription(depth: depth + 1))\n"
+                debugDescription += "\(tabs)\t\(child.debugDescription(depth: depth + 1))\n"
             }
         }
-        return debugDesc
+        return debugDescription
     }
 }

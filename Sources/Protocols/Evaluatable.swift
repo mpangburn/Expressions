@@ -18,3 +18,9 @@ public protocol Evaluatable {
     /// Evaluates the instance and returns the result.
     func evaluate() -> Result
 }
+
+extension Evaluatable where Self: Numeric {
+    public func evaluate() -> Magnitude {
+        return magnitude
+    }
+}

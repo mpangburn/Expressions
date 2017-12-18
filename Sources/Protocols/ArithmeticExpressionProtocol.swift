@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A type representing an arithmetic expression.
-public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, Numeric, CustomStringConvertible where Node: NumericBinaryOperatorProtocol, Leaf == Node.Operand {
+public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, Numeric, CustomStringConvertible where Node: NumericBinaryOperatorProtocol, Leaf == Node.Operand, Result == Leaf {
 
     /// The type of the operands used in the expression.
     typealias Operand = Leaf
@@ -33,10 +33,14 @@ public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinar
 }
 
 extension ArithmeticExpressionProtocol {
+    public init?<T>(exactly source: T) where T: BinaryInteger {
+        guard let operand = Operand(exactly: source) else { return nil }
+        self = Self.makeExpression(operand: operand)
+    }
 
     /// Evaluates the expression by applying the operators to their operands.
     /// - Returns: The value of the expression.
-    public func evaluate() -> Operand {
+    public var magnitude: Operand {
         switch safeKind {
         case let .leaf(operand):
             return operand
@@ -44,45 +48,6 @@ extension ArithmeticExpressionProtocol {
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
             return `operator`.apply(left.evaluate(), right.evaluate())
         }
-    }
-}
-
-extension ArithmeticExpressionProtocol {
-    public init(integerLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
-    }
-}
-
-extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
-    public init(floatLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
-    }
-}
-
-extension ArithmeticExpressionProtocol {
-
-    /// Tests the expressions for effective equality.
-    /// To test equality of underlying tree structures, use the instance method `deepEquals(_:)`.
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.description == rhs.description
-    }
-
-    /// Tests the underlying tree structures of the two expressions for equality.
-    /// - Parameter other: The expression with which to test for equality.
-    /// - Returns: A boolean value representing whether the two expressions are deeply equal.
-    public func deepEquals(_ other: Self) -> Bool {
-        return safeKind == other.safeKind && children == other.children
-    }
-}
-
-extension ArithmeticExpressionProtocol {
-    public init?<T>(exactly source: T) where T: BinaryInteger {
-        guard let operand = Operand(exactly: source) else { return nil }
-        self = Self.makeExpression(operand: operand)
-    }
-
-    public var magnitude: Operand {
-        return evaluate()
     }
 
     public static func + (lhs: Self, rhs: Self) -> Self {
@@ -149,6 +114,34 @@ extension ArithmeticExpressionProtocol where Node: FixedWidthIntegerBinaryOperat
 
     public static func &>> (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .bitwiseRightMaskingShift, right: rhs)
+    }
+}
+
+extension ArithmeticExpressionProtocol {
+    public init(integerLiteral operand: Operand) {
+        self = Self.makeExpression(operand: operand)
+    }
+}
+
+extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
+    public init(floatLiteral operand: Operand) {
+        self = Self.makeExpression(operand: operand)
+    }
+}
+
+extension ArithmeticExpressionProtocol {
+
+    /// Tests the expressions for effective equality.
+    /// To test equality of underlying tree structures, use the instance method `deepEquals(_:)`.
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.description == rhs.description
+    }
+
+    /// Tests the underlying tree structures of the two expressions for equality.
+    /// - Parameter other: The expression with which to test for equality.
+    /// - Returns: A boolean value representing whether the two expressions are deeply equal.
+    public func deepEquals(_ other: Self) -> Bool {
+        return safeKind == other.safeKind && children == other.children
     }
 }
 
