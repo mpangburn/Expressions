@@ -15,6 +15,7 @@ public protocol SingleTypeBinaryTreeProtocol: SingleTypeTreeProtocol, BinaryTree
 
 extension SingleTypeBinaryTreeProtocol {
     public func traverseInOrder(process: (Element) -> Void) {
+        guard let value = value else { return }
         left.map { $0.traverseInOrder(process: process) }
         process(value)
         right.map { $0.traverseInOrder(process: process) }
@@ -25,7 +26,7 @@ public enum SingleTypeBinaryTree<T: Equatable>: SingleTypeCustomPlaygroundQuickL
     case leaf(T)
     indirect case node(left: SingleTypeBinaryTree<T>, value: T, right: SingleTypeBinaryTree<T>?)
 
-    public var kind: Either<T, T> {
+    public var kind: Either<T, T>? {
         switch self {
         case let .leaf(v): return .leaf(v)
         case let .node(_, v, _): return .node(v)

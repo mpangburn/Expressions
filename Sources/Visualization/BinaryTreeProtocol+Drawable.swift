@@ -11,7 +11,7 @@ import Foundation
 
 extension PositionedBinaryTree: Drawable {
     func draw(into renderer: Renderer) {
-        let attributes = visualAttributes
+        guard let attributes = visualAttributes else { return }
         let color = attributes.color
         let text = attributes.text
         let textAttributes = attributes.textAttributes
@@ -138,7 +138,7 @@ func lineViews<T>(of positionedTree: PositionedBinaryTree<T>, connectingTo paren
     let actualY = cgPtPosition.y + NodeVisualAttributes.nodeSize.height / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
     let actualPos = CGPoint(x: actualX, y: actualY)
     if let parent = parentPosition {
-        let lview = lineView(from: actualPos, to: parent, withColor: positionedTree.visualAttributes.connectingLineColor)
+        let lview = lineView(from: actualPos, to: parent, withColor: positionedTree.visualAttributes!.connectingLineColor)
         lview.backgroundColor = .clear
         views.append(lview)
     }

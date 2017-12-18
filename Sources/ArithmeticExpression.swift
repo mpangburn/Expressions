@@ -18,9 +18,9 @@ public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: Arit
     indirect case expression(left: _ArithmeticExpression<Operator>, operator: Operator, right: _ArithmeticExpression<Operator>)
 }
 
-// MARK: - Boilerplate conformance
+// MARK: - Boilerplate conformance to tree protocols
 extension _ArithmeticExpression {
-    public var kind: Either<Operand, Operator> {
+    public var kind: Either<Operand, Operator>? {
         switch self {
         case let .operand(operand):
             return .leaf(operand)

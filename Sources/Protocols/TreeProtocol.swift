@@ -16,7 +16,7 @@ public protocol TreeProtocol: Equatable {
 
     typealias Kind = Either<Leaf, Node>
 
-    var kind: Kind { get }
+    var kind: Kind? { get }
     var children: [Self] { get }
 }
 
@@ -27,11 +27,16 @@ extension TreeProtocol {
 }
 
 extension TreeProtocol {
+    public var isEmpty: Bool {
+        return kind == nil
+    }
+
     public var count: Int {
         return 1 + children.map({ $0.count }).reduce(0, +)
     }
 
     public var height: Int {
+        guard let kind = kind else { return 0 }
         switch kind {
         case .leaf:
             return 0
@@ -43,11 +48,13 @@ extension TreeProtocol {
 
 extension TreeProtocol {
     public func traversePreOrder(process: (Kind) -> Void) {
+        guard let kind = kind else { return }
         process(kind)
         children.forEach { $0.traversePreOrder(process: process) }
     }
 
     public func traversePostOrder(process: (Kind) -> Void) {
+        guard let kind = kind else { return }
         children.forEach { $0.traversePostOrder(process: process) }
         process(kind)
     }
@@ -56,7 +63,8 @@ extension TreeProtocol {
         var queue = [self]
         while !queue.isEmpty {
             let nextNode = queue.removeFirst()
-            process(nextNode.kind)
+            guard let kind = nextNode.kind else { return }
+            process(kind)
             queue += nextNode.children
         }
     }

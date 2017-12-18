@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, Evaluatable, Numeric, CustomStringConvertible where Node: NumericBinaryOperatorProtocol, Leaf == Node.Operand {
+public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, Numeric, CustomStringConvertible where Node: NumericBinaryOperatorProtocol, Leaf == Node.Operand {
     typealias Operand = Leaf
     typealias Operator = Node
     static func makeOperand(_ operand: Operand) -> Self
@@ -18,7 +18,7 @@ public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinar
 
 extension ArithmeticExpressionProtocol {
     public func evaluate() -> Operand {
-        switch kind {
+        switch safeKind {
         case let .leaf(operand):
             return operand
         case let .node(`operator`):
@@ -60,7 +60,7 @@ extension ArithmeticExpressionProtocol {
     }
 
     public func deepEquals(_ other: Self) -> Bool {
-        return kind == other.kind && children == other.children
+        return safeKind == other.safeKind && children == other.children
     }
 }
 
@@ -134,20 +134,20 @@ extension ArithmeticExpressionProtocol where Node: FixedWidthIntegerBinaryOperat
 
 extension ArithmeticExpressionProtocol {
     public var description: String {
-        switch kind {
+        switch safeKind {
         case let .leaf(operand):
             return String(describing: operand)
         case let .node(`operator`):
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
             let leftString: String
-            if case let .node(leftOperator) = left.kind, leftOperator.precedence < `operator`.precedence {
+            if case let .node(leftOperator) = left.safeKind, leftOperator.precedence < `operator`.precedence {
                 leftString = "(\(left.description))"
             } else {
                 leftString = left.description
             }
 
             let rightString: String
-            if case let .node(rightOperator) = right.kind, rightOperator.precedence < `operator`.precedence {
+            if case let .node(rightOperator) = right.safeKind, rightOperator.precedence < `operator`.precedence {
                 rightString = "(\(right.description))"
             } else {
                 rightString = right.description

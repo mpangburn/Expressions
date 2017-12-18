@@ -3,5 +3,6 @@
     <pages>
         <page name='SingleType'/>
         <page name='ArithmeticExpression'/>
+        <page name='RedBlackTree'/>
     </pages>
 </playground>

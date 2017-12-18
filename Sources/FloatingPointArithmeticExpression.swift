@@ -18,9 +18,9 @@ public enum _FloatingPointArithmeticExpression<Operator: FloatingPointBinaryOper
     indirect case expression(left: _FloatingPointArithmeticExpression<Operator>, operator: Operator, right: _FloatingPointArithmeticExpression<Operator>)
 }
 
-// MARK: - Boilerplate conformance
+// MARK: - Boilerplate conformance to tree protocols
 extension _FloatingPointArithmeticExpression {
-    public var kind: Either<Operand, Operator> {
+    public var kind: Either<Operand, Operator>? {
         switch self {
         case let .operand(operand):
             return .leaf(operand)

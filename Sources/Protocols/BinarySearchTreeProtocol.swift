@@ -16,6 +16,7 @@ public protocol BinarySearchTreeProtocol: SingleTypeBinaryTreeProtocol where Nod
 
 extension BinarySearchTreeProtocol {
     public func contains(_ element: Element) -> Bool {
+        guard let value = value else { return false }
         if element < value {
             return left?.contains(element) ?? false
         } else if element > value {

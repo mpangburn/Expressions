@@ -10,11 +10,13 @@ import Foundation
 
 
 public protocol CustomPlaygroundQuickLookableBinaryTreeProtocol: BinaryTreeProtocol, CustomPlaygroundQuickLookable {
-    var visualAttributes: NodeVisualAttributes { get }
+    var visualAttributes: NodeVisualAttributes? { get }
 }
 
 extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
-    public var visualAttributes: NodeVisualAttributes {
+    public var visualAttributes: NodeVisualAttributes? {
+        guard let kind = kind else { return nil }
+
         let color: UIColor
         let text: String
         let textAttributes: [NSAttributedStringKey: Any]

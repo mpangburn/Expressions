@@ -14,7 +14,8 @@ public protocol SingleTypeTreeProtocol: TreeProtocol where Leaf == Node {
 }
 
 extension SingleTypeTreeProtocol {
-    public var value: Element {
+    public var value: Element? {
+        guard let kind = kind else { return nil }
         switch kind {
         case let .leaf(val):
             return val
@@ -26,11 +27,13 @@ extension SingleTypeTreeProtocol {
 
 extension SingleTypeTreeProtocol {
     public func traversePreOrder(process: (Element) -> Void) {
+        guard let value = value else { return }
         process(value)
         children.forEach { $0.traversePreOrder(process: process) }
     }
 
     public func traversePostOrder(process: (Element) -> Void) {
+        guard let value = value else { return }
         children.forEach { $0.traversePostOrder(process: process) }
         process(value)
     }
@@ -39,7 +42,8 @@ extension SingleTypeTreeProtocol {
         var queue = [self]
         while !queue.isEmpty {
             let nextNode = queue.removeFirst()
-            process(nextNode.value)
+            guard let value = nextNode.value else { return }
+            process(value)
             queue += nextNode.children
         }
     }

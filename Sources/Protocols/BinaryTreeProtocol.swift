@@ -22,6 +22,7 @@ extension BinaryTreeProtocol {
 
 extension BinaryTreeProtocol {
     public func traverseInOrder(process: (Kind) -> Void) {
+        guard let kind = kind else { return }
         left.map { $0.traverseInOrder(process: process) }
         process(kind)
         right.map { $0.traverseInOrder(process: process) }

@@ -104,7 +104,7 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
 
 extension PositionedBinaryTree {
 
-    var visualAttributes: NodeVisualAttributes {
+    var visualAttributes: NodeVisualAttributes? {
         return tree.visualAttributes
     }
 

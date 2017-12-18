@@ -41,6 +41,7 @@
 		896801A31FE726E300BAAC2C /* BinarySearchTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */; };
 		896801A51FE72C1A00BAAC2C /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */; };
 		8971D0DB1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */; };
+		89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */; };
 		89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */; };
 		89F7D2621FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2611FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift */; };
 		89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2671FE5D1F300160A4B /* UIColor.swift */; };
@@ -99,6 +100,7 @@
 		896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchTreeProtocol.swift; sourceTree = "<group>"; };
 		896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
 		8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointArithmeticExpression.swift; sourceTree = "<group>"; };
+		89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverEmptyTreeProtocol.swift; sourceTree = "<group>"; };
 		89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedBinaryTree.swift; sourceTree = "<group>"; };
 		89F7D2611FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift"; sourceTree = "<group>"; };
 		89F7D2671FE5D1F300160A4B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -196,15 +198,16 @@
 			children = (
 				893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */,
 				893133F61FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift */,
+				896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */,
 				893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */,
 				893133F81FE5BF3700FE926E /* Divisible.swift */,
 				893133F31FE5BF3700FE926E /* Evaluatable.swift */,
+				89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */,
 				893133F91FE5BF3700FE926E /* OperandProtocol.swift */,
-				893133F71FE5BF3700FE926E /* TreeProtocol.swift */,
-				896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */,
 				8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */,
+				896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */,
+				893133F71FE5BF3700FE926E /* TreeProtocol.swift */,
 				893133EB1FE5BF3700FE926E /* Operator Protocols */,
-				896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				8968019B1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift in Sources */,
 				8931340D1FE5BF3700FE926E /* Divisible.swift in Sources */,
 				893134031FE5BF3700FE926E /* BinaryOperatorProtocol.swift in Sources */,
+				89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */,
 				89F7D2791FE60B4C00160A4B /* Renderer.swift in Sources */,
 				89F7D26C1FE5D1F300160A4B /* String.swift in Sources */,
 				8931340E1FE5BF3700FE926E /* OperandProtocol.swift in Sources */,

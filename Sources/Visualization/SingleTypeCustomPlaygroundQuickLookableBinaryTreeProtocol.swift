@@ -12,7 +12,9 @@ import Foundation
 public protocol SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol: SingleTypeBinaryTreeProtocol, CustomPlaygroundQuickLookableBinaryTreeProtocol { }
 
 extension SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol {
-    public var visualAttributes: NodeVisualAttributes {
+    public var visualAttributes: NodeVisualAttributes? {
+        guard let value = value else { return nil }
+
         let color = NodeVisualAttributes.SingleTypeTree.nodeColor
         let text = String(describing: value)
         let textAttributes = NodeVisualAttributes.SingleTypeTree.nodeTextAttributes
