@@ -5,12 +5,7 @@ import Expression
 
 let integerExpression: ArithmeticExpression<Int> = 3*(1+2)-8
 let view = binaryTreeView(of: integerExpression)
-integerExpression.traverseInOrder { kind in
-    switch kind {
-    case let .leaf(operand): print(operand)
-    case let .node(`operator`): print(`operator`)
-    }
-}
+integerExpression.height
 //view.setNeedsDisplay()
 //PlaygroundPage.current.liveView = view
 

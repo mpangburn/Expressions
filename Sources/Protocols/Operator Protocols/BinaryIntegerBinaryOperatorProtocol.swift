@@ -9,14 +9,27 @@
 import Foundation
 
 
+/// A binary operator that operates on binary integer types.
 public protocol BinaryIntegerBinaryOperatorProtocol: DivisibleBinaryOperatorProtocol where Operand: BinaryInteger {
     init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: NumericBinaryOperatorPrecedence,
          associativity: BinaryOperatorAssociativity, isCommutative: Bool)
+
+    /// The remainder operator (%).
     static var remainder: Self { get }
+
+    // The bitwise AND operator (&).
     static var bitwiseAND: Self { get }
+
+    /// The bitwise OR operator (|).
     static var bitwiseOR: Self { get }
+
+    /// The bitwise XOR operator (^).
     static var bitwiseXOR: Self { get }
+
+    /// The bitwise left shift operator (<<).
     static var bitwiseLeftShift: Self { get }
+
+    /// The bitwise right shift operator (>>).
     static var bitwiseRightShift: Self { get }
 }
 

@@ -6,10 +6,10 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import CoreGraphics
+import Foundation
 
 
-// These typealiases parallel the Operand constraints for the Operator protocols
+// These typealiases parallel the Operand constraints for the Operator protocols.
 public typealias NumericOperandProtocol = Numeric & Comparable & _ExpressibleByBuiltinIntegerLiteral
 public typealias DivisibleOperandProtocol = NumericOperandProtocol & Divisible
 public typealias BinaryIntegerOperandProtocol = DivisibleOperandProtocol & BinaryInteger

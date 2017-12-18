@@ -9,4 +9,5 @@
 import Foundation
 
 
+/// A binary operator that operates on floating point numbers.
 public protocol FloatingPointBinaryOperatorProtocol: DivisibleBinaryOperatorProtocol where Operand: FloatingPoint & _ExpressibleByBuiltinFloatLiteral { }

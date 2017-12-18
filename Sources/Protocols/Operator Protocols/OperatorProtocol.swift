@@ -9,9 +9,16 @@
 import Foundation
 
 
+/// A type that can perform an operation on another.
 public protocol OperatorProtocol: Equatable, CustomStringConvertible {
+
+    /// The type on which the operation is performed.
     associatedtype Operand
+
+    /// The type returned by the operation.
     associatedtype Result
+
+    /// The string identifying the operator.
     var identifier: String { get }
 }
 

@@ -9,6 +9,7 @@
 import CoreGraphics
 
 
+/// Declares the division operator and its mutating counterpart.
 public protocol Divisible: Numeric {
     static func / (lhs: Self, rhs: Self) -> Self
     static func /= (lhs: inout Self, rhs: Self)

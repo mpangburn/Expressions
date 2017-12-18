@@ -86,6 +86,8 @@ extension RedBlackTree {
     }
 }
 
+// MARK: - ExpressibleByArrayLiteral
+
 extension RedBlackTree: ExpressibleByArrayLiteral {
     public init<S: Sequence>(_ source: S) where S.Element == Element {
         self = source.reduce(RedBlackTree()) { $0.withInserted($1) }
@@ -96,11 +98,16 @@ extension RedBlackTree: ExpressibleByArrayLiteral {
     }
 }
 
-// MARK: - Boilerplate conformance to tree protocols
+// MARK: - Required conformance to tree protocols
+
 extension RedBlackTree {
     public var kind: Either<Element, Element>? {
-        guard case let .node(_, _, value, _) = self else { return nil }
-        return .node(value)
+        guard case let .node(_, left, value, right) = self else { return nil }
+        if left == .empty && right == .empty {
+            return .leaf(value)
+        } else {
+            return .node(value)
+        }
     }
 
     public var left: RedBlackTree<Element>? {

@@ -15,10 +15,3 @@ let tree: SingleTypeBinaryTree<Int> =
             ),
             value: 3,
             right: nil
-        )
-    )
-
-tree.traverseInOrder {
-    print($0)
-}
-

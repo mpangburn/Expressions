@@ -9,13 +9,24 @@
 import Foundation
 
 
+/// A binary operator that operates on fixed width integers.
 public protocol FixedWidthIntegerBinaryOperatorProtocol: BinaryIntegerBinaryOperatorProtocol where Operand: FixedWidthInteger {
     init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: NumericBinaryOperatorPrecedence,
          associativity: BinaryOperatorAssociativity, isCommutative: Bool)
+
+    /// The addition operation, ignoring overflow (&+).
     static var addIgnoringOverflow: Self { get }
+
+    /// The subtraction operation, ignoring overflow (&-).
     static var subtractIgnoringOverflow: Self { get }
+
+    /// The multiplication operation, ignoring overflow (&*).
     static var multiplyIgnoringOverflow: Self { get }
+
+    /// The bitwise left masking shift operator (&<<).
     static var bitwiseLeftMaskingShift: Self { get }
+
+    /// The bitwise right masking shift operator (&>>).
     static var bitwiseRightMaskingShift: Self { get }
 }
 

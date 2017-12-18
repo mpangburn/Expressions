@@ -25,4 +25,20 @@ extension BinarySearchTreeProtocol {
             return true
         }
     }
+
+    public func min() -> Element? {
+        if let left = left {
+            return left.min()
+        } else {
+            return value
+        }
+    }
+
+    public func max() -> Element? {
+        if let right = right {
+            return right.max()
+        } else {
+            return value
+        }
+    }
 }

@@ -18,7 +18,8 @@ public enum _FloatingPointArithmeticExpression<Operator: FloatingPointBinaryOper
     indirect case expression(left: _FloatingPointArithmeticExpression<Operator>, operator: Operator, right: _FloatingPointArithmeticExpression<Operator>)
 }
 
-// MARK: - Boilerplate conformance to tree protocols
+// MARK: - Required conformance to tree protocols
+
 extension _FloatingPointArithmeticExpression {
     public var kind: Either<Operand, Operator>? {
         switch self {
@@ -39,7 +40,7 @@ extension _FloatingPointArithmeticExpression {
         return right
     }
 
-    public static func makeOperand(_ operand: Operand) -> _FloatingPointArithmeticExpression<Operator> {
+    public static func makeExpression(operand: Operand) -> _FloatingPointArithmeticExpression<Operator> {
         return .operand(operand)
     }
 

@@ -27,7 +27,6 @@
 		893134081FE5BF3700FE926E /* Evaluatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F31FE5BF3700FE926E /* Evaluatable.swift */; };
 		893134091FE5BF3700FE926E /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */; };
 		8931340A1FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */; };
-		8931340B1FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F61FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift */; };
 		8931340C1FE5BF3700FE926E /* TreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F71FE5BF3700FE926E /* TreeProtocol.swift */; };
 		8931340D1FE5BF3700FE926E /* Divisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F81FE5BF3700FE926E /* Divisible.swift */; };
 		8931340E1FE5BF3700FE926E /* OperandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F91FE5BF3700FE926E /* OperandProtocol.swift */; };
@@ -86,7 +85,6 @@
 		893133F31FE5BF3700FE926E /* Evaluatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evaluatable.swift; sourceTree = "<group>"; };
 		893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArithmeticExpressionProtocol.swift; sourceTree = "<group>"; };
-		893133F61FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryOperatorPrecedenceProtocol.swift; sourceTree = "<group>"; };
 		893133F71FE5BF3700FE926E /* TreeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeProtocol.swift; sourceTree = "<group>"; };
 		893133F81FE5BF3700FE926E /* Divisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Divisible.swift; sourceTree = "<group>"; };
 		893133F91FE5BF3700FE926E /* OperandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperandProtocol.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */,
-				893133F61FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift */,
 				896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */,
 				893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */,
 				893133F81FE5BF3700FE926E /* Divisible.swift */,
@@ -388,7 +385,6 @@
 				8931341A1FE5C08F00FE926E /* FixedWidthIntegerOperator.swift in Sources */,
 				89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */,
 				89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */,
-				8931340B1FE5BF3700FE926E /* BinaryOperatorPrecedenceProtocol.swift in Sources */,
 				893133FC1FE5BF3700FE926E /* ArithmeticExpression.swift in Sources */,
 				8931340C1FE5BF3700FE926E /* TreeProtocol.swift in Sources */,
 				896801A51FE72C1A00BAAC2C /* RedBlackTree.swift in Sources */,

@@ -9,14 +9,33 @@
 import Foundation
 
 
+/// A type representing an arithmetic expression.
 public protocol ArithmeticExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, Numeric, CustomStringConvertible where Node: NumericBinaryOperatorProtocol, Leaf == Node.Operand {
+
+    /// The type of the operands used in the expression.
     typealias Operand = Leaf
+
+    /// The type of the operators used in the expression.
     typealias Operator = Node
-    static func makeOperand(_ operand: Operand) -> Self
+
+    /// Returns an expression consisting of the single operand.
+    /// - Parameter operand: The operand used to create the expression.
+    /// - Returns: An expression consisting of the single operand.
+    static func makeExpression(operand: Operand) -> Self
+
+    /// Returns an expression consisting of the left expression and the right expression combined by the operator.
+    /// - Parameters:
+    ///     - left: The left side of the expression.
+    ///     - operator: The operator combining the two sides of the expression.
+    ///     - right: The right side of the expression.
+    /// - Returns: An expression consisting of the left expression and the right expression combined by the operator.
     static func makeExpression(left: Self, operator: Operator, right: Self) -> Self
 }
 
 extension ArithmeticExpressionProtocol {
+
+    /// Evaluates the expression by applying the operators to their operands.
+    /// - Returns: The value of the expression.
     public func evaluate() -> Operand {
         switch safeKind {
         case let .leaf(operand):
@@ -30,41 +49,42 @@ extension ArithmeticExpressionProtocol {
 
 extension ArithmeticExpressionProtocol {
     public init(integerLiteral operand: Operand) {
-        self = Self.makeOperand(operand)
+        self = Self.makeExpression(operand: operand)
     }
 }
 
 extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
     public init(floatLiteral operand: Operand) {
-        self = Self.makeOperand(operand)
-    }
-}
-
-extension ArithmeticExpressionProtocol {
-    public init?<T>(exactly source: T) where T: BinaryInteger {
-        guard let operand = Operand(exactly: source) else { return nil }
-        self = Self.makeOperand(operand)
-    }
-
-    public var magnitude: Operand {
-        return evaluate()
+        self = Self.makeExpression(operand: operand)
     }
 }
 
 extension ArithmeticExpressionProtocol {
 
-    /// Compares the expressions for effective equality.
+    /// Tests the expressions for effective equality.
     /// To test equality of underlying tree structures, use the instance method `deepEquals(_:)`.
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.description == rhs.description
     }
 
+    /// Tests the underlying tree structures of the two expressions for equality.
+    /// - Parameter other: The expression with which to test for equality.
+    /// - Returns: A boolean value representing whether the two expressions are deeply equal.
     public func deepEquals(_ other: Self) -> Bool {
         return safeKind == other.safeKind && children == other.children
     }
 }
 
 extension ArithmeticExpressionProtocol {
+    public init?<T>(exactly source: T) where T: BinaryInteger {
+        guard let operand = Operand(exactly: source) else { return nil }
+        self = Self.makeExpression(operand: operand)
+    }
+
+    public var magnitude: Operand {
+        return evaluate()
+    }
+
     public static func + (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .add, right: rhs)
     }
@@ -139,6 +159,7 @@ extension ArithmeticExpressionProtocol {
             return String(describing: operand)
         case let .node(`operator`):
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
+
             let leftString: String
             if case let .node(leftOperator) = left.safeKind, leftOperator.precedence < `operator`.precedence {
                 leftString = "(\(left.description))"

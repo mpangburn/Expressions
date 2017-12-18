@@ -9,10 +9,22 @@
 import Foundation
 
 
+/// An operator that performs an operation on two operands.
 public protocol BinaryOperatorProtocol: OperatorProtocol {
-    associatedtype Precedence: BinaryOperatorPrecedenceProtocol
+
+    /// The operator's precedence, which is used to determine the order of operations when combined with other operators.
+    associatedtype Precedence: Comparable
+
+    /// The operator's precedence, which is used to determine the order of operations when combined with other operators.
     var precedence: Precedence { get }
+
+    /// A property that determines how operators of the same precedence are grouped in the absence of parentheses.
     var associativity: BinaryOperatorAssociativity { get }
+
+    /// The function to apply to two operands to produce the result.
     var apply: (Operand, Operand) -> Result { get }
+
+    /// A boolean value representing whether the operator is commutative,
+    /// i.e. whether the order of the operands affects the result of the operation.
     var isCommutative: Bool { get }
 }

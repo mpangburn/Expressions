@@ -18,7 +18,8 @@ public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: Arit
     indirect case expression(left: _ArithmeticExpression<Operator>, operator: Operator, right: _ArithmeticExpression<Operator>)
 }
 
-// MARK: - Boilerplate conformance to tree protocols
+// MARK: - Required conformance to tree protocols
+
 extension _ArithmeticExpression {
     public var kind: Either<Operand, Operator>? {
         switch self {
@@ -39,7 +40,7 @@ extension _ArithmeticExpression {
         return right
     }
 
-    public static func makeOperand(_ operand: Operand) -> _ArithmeticExpression<Operator> {
+    public static func makeExpression(operand: Operand) -> _ArithmeticExpression<Operator> {
         return .operand(operand)
     }
 

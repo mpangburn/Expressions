@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum NumericBinaryOperatorPrecedence: Int, BinaryOperatorPrecedenceProtocol {
+public enum NumericBinaryOperatorPrecedence: Int, Comparable {
     case addition
     case multiplication
     case bitwiseShift
