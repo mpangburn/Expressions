@@ -9,9 +9,8 @@
 import Foundation
 
 
-/// A binary operator that operators on comparable types.
+/// A binary operator that operates on comparable types.
 protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable {
-
     /// The 'less than' testing operator (<).
     static var lessThan: Self { get }
 

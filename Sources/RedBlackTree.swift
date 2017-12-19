@@ -11,9 +11,8 @@ import UIKit
 
 // c.f. https://airspeedvelocity.net/2015/07/22/a-persistent-tree-using-indirect-enums-in-swift/
 public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol {
-
     public enum Color { case red, black }
-
+    
     case empty
     indirect case node(color: Color, left: RedBlackTree<Element>, value: Element, right: RedBlackTree<Element>)
 

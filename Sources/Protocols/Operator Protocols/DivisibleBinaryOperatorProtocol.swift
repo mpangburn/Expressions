@@ -11,9 +11,6 @@ import Foundation
 
 /// A binary operator that operates on divisible types.
 public protocol DivisibleBinaryOperatorProtocol: NumericBinaryOperatorProtocol where Operand: Divisible {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
-         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
     /// The division operator (/).
     static var divide: Self { get }
 }

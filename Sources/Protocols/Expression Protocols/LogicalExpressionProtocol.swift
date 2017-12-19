@@ -9,8 +9,8 @@
 import Foundation
 
 
+/// A type representing a logical expression.
 public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where Node: LogicalBinaryOperatorProtocol {
-
     /// The type of the operators used in the expression.
     typealias Operator = Node
 }
@@ -24,6 +24,12 @@ extension LogicalExpressionProtocol {
 }
 
 extension LogicalExpressionProtocol {
+    public var shouldSpaceDescription: Bool { return true }
+}
+
+// MARK: - Operators
+
+extension LogicalExpressionProtocol {
     public static func && (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .logicalAND, right: rhs)
     }
@@ -31,8 +37,4 @@ extension LogicalExpressionProtocol {
     public static func || (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .logicalOR, right: rhs)
     }
-}
-
-extension LogicalExpressionProtocol {
-    public var shouldSpaceDescription: Bool { return true }
 }

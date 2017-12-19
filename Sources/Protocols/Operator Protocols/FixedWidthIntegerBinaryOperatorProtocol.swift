@@ -11,9 +11,6 @@ import Foundation
 
 /// A binary operator that operates on fixed width integers.
 public protocol FixedWidthIntegerBinaryOperatorProtocol: BinaryIntegerBinaryOperatorProtocol where Operand: FixedWidthInteger {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
-         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
     /// The addition operation, ignoring overflow (&+).
     static var addIgnoringOverflow: Self { get }
 

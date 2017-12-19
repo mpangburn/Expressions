@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct FixedWidthIntegerOperator<T: FixedWidthIntegerOperandProtocol>: FixedWidthIntegerBinaryOperatorProtocol {
+public struct FixedWidthIntegerBinaryOperator<T: FixedWidthIntegerOperandProtocol>: FixedWidthIntegerBinaryOperatorProtocol {
     public typealias Operand = T
     public typealias Result = T
 

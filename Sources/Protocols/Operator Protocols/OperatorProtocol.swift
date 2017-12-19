@@ -11,7 +11,6 @@ import Foundation
 
 /// A type that can perform an operation on another.
 public protocol OperatorProtocol: Equatable, CustomStringConvertible {
-
     /// The type on which the operation is performed.
     associatedtype Operand
 

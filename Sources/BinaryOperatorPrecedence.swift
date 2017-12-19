@@ -9,7 +9,9 @@
 import Foundation
 
 
-// c.f. https://developer.apple.com/documentation/swift/operator_declarations
+/// Contains the possible values for a binary operator's precedence,
+/// which is used to determine the order of operations when combined with other operators.
+/// c.f. https://developer.apple.com/documentation/swift/operator_declarations
 public enum BinaryOperatorPrecedence: Int, Comparable {
     case assignment
     case ternary

@@ -11,9 +11,6 @@ import Foundation
 
 /// A binary operator that operates on binary integer types.
 public protocol BinaryIntegerBinaryOperatorProtocol: DivisibleBinaryOperatorProtocol where Operand: BinaryInteger {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
-         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
     /// The remainder operator (%).
     static var remainder: Self { get }
 

@@ -11,9 +11,6 @@ import Foundation
 
 /// A binary operator that operates on reference equatable types.
 protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operand: AnyObject, Result == Bool {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Bool, precedence: BinaryOperatorPrecedence,
-         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
     /// The identity-testing equality operator (===).
     static var identical: Self { get }
 

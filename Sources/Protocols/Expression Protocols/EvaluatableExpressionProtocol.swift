@@ -9,8 +9,8 @@
 import Foundation
 
 
+/// A type representing an evaluatable expression, e.g. arithmetic or logical.
 public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, CustomStringConvertible where Node: BinaryOperatorProtocol, Leaf == Node.Operand, Result == Node.Result, Result == Leaf {
-
     /// The type of the operands used in the expression.
     typealias Operand = Leaf
 
@@ -31,6 +31,7 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
     static func makeExpression(left: Self, operator: Operator, right: Self) -> Self
 
     /// Determines whether operands should be spaced from their operators in the expression's description.
+    /// Defaults to false.
     var shouldSpaceDescription: Bool { get }
 }
 
@@ -45,6 +46,10 @@ extension EvaluatableExpressionProtocol {
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
             return `operator`.apply(left.evaluate(), right.evaluate())
         }
+    }
+
+    public var shouldSpaceDescription: Bool {
+        return false
     }
 }
 

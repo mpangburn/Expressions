@@ -9,8 +9,10 @@
 import Foundation
 
 
-/// An operator that performs an operation on two operands.
+/// An operator that performs an operation on exactly two operands.
 public protocol BinaryOperatorProtocol: OperatorProtocol {
+    init(identifier: String, apply: @escaping (Operand, Operand) -> Result, precedence: BinaryOperatorPrecedence,
+         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
 
     /// The function to apply to two operands to produce the result.
     var apply: (Operand, Operand) -> Result { get }

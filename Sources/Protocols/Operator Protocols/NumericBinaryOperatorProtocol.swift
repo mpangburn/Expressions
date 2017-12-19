@@ -11,9 +11,6 @@ import Foundation
 
 /// A binary operator that operates on numeric types.
 public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Operand: Numeric & Comparable & _ExpressibleByBuiltinIntegerLiteral, Result == Operand {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
-         associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
     /// The addition operator (+).
     static var add: Self { get }
 

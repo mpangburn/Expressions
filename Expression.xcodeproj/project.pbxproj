@@ -30,7 +30,7 @@
 		8931340C1FE5BF3700FE926E /* TreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F71FE5BF3700FE926E /* TreeProtocol.swift */; };
 		8931340D1FE5BF3700FE926E /* Divisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F81FE5BF3700FE926E /* Divisible.swift */; };
 		8931340E1FE5BF3700FE926E /* OperandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F91FE5BF3700FE926E /* OperandProtocol.swift */; };
-		8931341A1FE5C08F00FE926E /* FixedWidthIntegerOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893134191FE5C08F00FE926E /* FixedWidthIntegerOperator.swift */; };
+		8931341A1FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */; };
 		8931341C1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */; };
 		896801991FE7172200BAAC2C /* SingleTypeTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */; };
 		8968019B1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */; };
@@ -95,7 +95,7 @@
 		893133F71FE5BF3700FE926E /* TreeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeProtocol.swift; sourceTree = "<group>"; };
 		893133F81FE5BF3700FE926E /* Divisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Divisible.swift; sourceTree = "<group>"; };
 		893133F91FE5BF3700FE926E /* OperandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperandProtocol.swift; sourceTree = "<group>"; };
-		893134191FE5C08F00FE926E /* FixedWidthIntegerOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthIntegerOperator.swift; sourceTree = "<group>"; };
+		893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthIntegerBinaryOperator.swift; sourceTree = "<group>"; };
 		8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointBinaryOperator.swift; sourceTree = "<group>"; };
 		896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTypeTreeProtocol.swift; sourceTree = "<group>"; };
 		8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTypeBinaryTreeProtocol.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				893133E41FE5BF3700FE926E /* ArithmeticExpression.swift */,
 				893133E91FE5BF3700FE926E /* BinaryOperatorAssociativity.swift */,
 				893133E81FE5BF3700FE926E /* BinaryOperatorPrecedence.swift */,
-				893134191FE5C08F00FE926E /* FixedWidthIntegerOperator.swift */,
+				893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */,
 				8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */,
 				8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */,
 				898A988B1FE8977800594C49 /* LogicalExpression.swift */,
@@ -210,19 +210,11 @@
 		893133EA1FE5BF3700FE926E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */,
-				896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */,
-				893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */,
 				893133F81FE5BF3700FE926E /* Divisible.swift */,
 				893133F31FE5BF3700FE926E /* Evaluatable.swift */,
-				89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */,
-				893133F91FE5BF3700FE926E /* OperandProtocol.swift */,
-				8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */,
-				896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */,
-				893133F71FE5BF3700FE926E /* TreeProtocol.swift */,
-				898A98891FE8956200594C49 /* EvaluatableExpressionProtocol.swift */,
+				896D89331FE8EE4800801D73 /* Expression Protocols */,
 				893133EB1FE5BF3700FE926E /* Operator Protocols */,
-				898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */,
+				896D89341FE8EE6800801D73 /* Tree Protocols */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -239,6 +231,7 @@
 				893133F11FE5BF3700FE926E /* FloatingPointBinaryOperatorProtocol.swift */,
 				898A98811FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift */,
 				893133F01FE5BF3700FE926E /* NumericBinaryOperatorProtocol.swift */,
+				893133F91FE5BF3700FE926E /* OperandProtocol.swift */,
 				893133ED1FE5BF3700FE926E /* OperatorProtocol.swift */,
 				898A98851FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift */,
 			);
@@ -251,6 +244,29 @@
 				893133E21FE5BF3700FE926E /* Either.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		896D89331FE8EE4800801D73 /* Expression Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				893133F51FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift */,
+				898A98891FE8956200594C49 /* EvaluatableExpressionProtocol.swift */,
+				898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */,
+			);
+			path = "Expression Protocols";
+			sourceTree = "<group>";
+		};
+		896D89341FE8EE6800801D73 /* Tree Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */,
+				893133F41FE5BF3700FE926E /* BinaryTreeProtocol.swift */,
+				89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */,
+				8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */,
+				896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */,
+				893133F71FE5BF3700FE926E /* TreeProtocol.swift */,
+			);
+			path = "Tree Protocols";
 			sourceTree = "<group>";
 		};
 		89F7D25E1FE5CA5700160A4B /* Visualization */ = {
@@ -405,7 +421,7 @@
 				893134021FE5BF3700FE926E /* OperatorProtocol.swift in Sources */,
 				893134041FE5BF3700FE926E /* FixedWidthIntegerBinaryOperatorProtocol.swift in Sources */,
 				89F7D26D1FE5D1F300160A4B /* CGRect.swift in Sources */,
-				8931341A1FE5C08F00FE926E /* FixedWidthIntegerOperator.swift in Sources */,
+				8931341A1FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift in Sources */,
 				89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */,
 				89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */,
 				893133FC1FE5BF3700FE926E /* ArithmeticExpression.swift in Sources */,

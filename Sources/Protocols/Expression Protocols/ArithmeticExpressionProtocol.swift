@@ -11,7 +11,6 @@ import Foundation
 
 /// A type representing an arithmetic expression.
 public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where Node: NumericBinaryOperatorProtocol {
-
     /// The type of the operands used in the expression.
     typealias Operand = Leaf
 
@@ -20,6 +19,18 @@ public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Num
 }
 
 // MARK: - Default implementations
+
+extension ArithmeticExpressionProtocol {
+    public init(integerLiteral operand: Operand) {
+        self = Self.makeExpression(operand: operand)
+    }
+}
+
+extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
+    public init(floatLiteral operand: Operand) {
+        self = Self.makeExpression(operand: operand)
+    }
+}
 
 extension ArithmeticExpressionProtocol {
     public init?<T>(exactly source: T) where T: BinaryInteger {
@@ -32,7 +43,11 @@ extension ArithmeticExpressionProtocol {
     public var magnitude: Operand {
         return evaluate()
     }
+}
 
+// MARK: - Operators
+
+extension ArithmeticExpressionProtocol {
     public static func + (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .add, right: rhs)
     }
@@ -126,20 +141,4 @@ extension ArithmeticExpressionProtocol where Node: FixedWidthIntegerBinaryOperat
     public static func &>> (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, operator: .bitwiseRightMaskingShift, right: rhs)
     }
-}
-
-extension ArithmeticExpressionProtocol {
-    public init(integerLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
-    }
-}
-
-extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
-    public init(floatLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
-    }
-}
-
-extension ArithmeticExpressionProtocol {
-    public var shouldSpaceDescription: Bool { return false }
 }

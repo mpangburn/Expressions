@@ -11,16 +11,13 @@ import Foundation
 
 /// A binary operator that operates on equatable types.
 protocol EquatableOperatorProtocol: BinaryOperatorProtocol where Operand: Equatable, Result == Bool {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Bool, precedence: BinaryOperatorPrecedence,
-    associativity: BinaryOperatorAssociativity, isCommutative: Bool)
-
-    /// The equality-testing operator (==).
+    /// The equality testing operator (==).
     static var equal: Self { get }
 
-    /// The inequality-testing operator (!==).
+    /// The inequality testing operator (!==).
     static var notEqual: Self { get }
 
-    /// The value equality-testing operator (~=).
+    /// The value equality testing operator (~=).
     static var valueEquals: Self { get }
 }
 
