@@ -10,10 +10,7 @@ import Foundation
 
 
 /// A type representing a logical expression.
-public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where Node: LogicalBinaryOperatorProtocol {
-    /// The type of the operators used in the expression.
-    typealias Operator = Node
-}
+public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where Node: LogicalBinaryOperatorProtocol { }
 
 // MARK: - Default implementations
 

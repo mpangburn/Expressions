@@ -1,17 +1,15 @@
 //
-//  SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol.swift
+//  SingleTypeBinaryTreeProtocol+VisualAttributes.swift
 //  Expression
 //
-//  Created by Michael Pangburn on 12/17/17.
+//  Created by Michael Pangburn on 12/19/17.
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
 import Foundation
 
 
-public protocol SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol: SingleTypeBinaryTreeProtocol, CustomPlaygroundQuickLookableBinaryTreeProtocol { }
-
-extension SingleTypeCustomPlaygroundQuickLookableBinaryTreeProtocol {
+extension SingleTypeBinaryTreeProtocol where Self: CustomPlaygroundQuickLookableBinaryTreeProtocol {
     public var visualAttributes: NodeVisualAttributes? {
         guard let value = value else { return nil }
 

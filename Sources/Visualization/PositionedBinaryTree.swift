@@ -11,7 +11,6 @@ import Foundation
 
 /// A wrapper around a binary tree to store its logical x- and y-coordinates for positioning in space.
 class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
-
     /// The tree to position.
     let tree: T
 
@@ -33,7 +32,6 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
 }
 
 extension PositionedBinaryTree {
-
     /// Positions the tree using a naive O(_n^2_) implementation of Reingold and Tilford's algorithm.
     /// c.f. https://llimllib.github.io/pymag-trees/
     static func reingoldTilford(tree: T, depth: Int = 0) -> PositionedBinaryTree<T> {
@@ -44,7 +42,7 @@ extension PositionedBinaryTree {
         case let (.some(singleChild), nil):
             positionedTree.children = [reingoldTilford(tree: singleChild, depth: depth + 1)]
             positionedTree.x = positionedTree.children.first!.x
-        case let (nil, .some(singleChild)):
+        case let (nil, .some(singleChild)): // Swift does not yet support combining this with the above case.
             positionedTree.children = [reingoldTilford(tree: singleChild, depth: depth + 1)]
             positionedTree.x = positionedTree.children.first!.x
         case let (.some(leftChild), .some(rightChild)):
@@ -99,7 +97,7 @@ extension PositionedBinaryTree {
             contour[level] = x
         }
 
-        for child in children {
+        children.forEach { child in
             contour = child.computeContour(contourDirection, level: level + 1, contour: contour)
         }
 
@@ -109,14 +107,11 @@ extension PositionedBinaryTree {
     /// Shifts the x-coordinate of each node in the tree by the value.
     func shiftXCoordinates(by value: Int) {
         x += value
-        for child in children {
-            child.shiftXCoordinates(by: value)
-        }
+        children.forEach { $0.shiftXCoordinates(by: value) }
     }
 }
 
 extension PositionedBinaryTree {
-
     /// The visual attributes of the positioned tree, taken from the tree model it wraps.
     var visualAttributes: NodeVisualAttributes? {
         return tree.visualAttributes
@@ -136,12 +131,7 @@ extension PositionedBinaryTree {
 
     /// Returns a list of the CGPoints representing the centers of all the nodes in the tree.
     func cgPointPositions() -> [CGPoint] {
-        var points = [cgPointPosition]
-        for child in children {
-            points.append(contentsOf: child.cgPointPositions())
-        }
-
-        return points
+        return [cgPointPosition] + children.flatMap { $0.cgPointPositions() }
     }
 
     /// Translates the logical position of the tree into a CGPoint representing the center of the node.
@@ -153,11 +143,11 @@ extension PositionedBinaryTree {
 }
 
 extension PositionedBinaryTree: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String {
+    var description: String {
         return "\(tree) at (\(x), \(y))"
     }
 
-    public var debugDescription: String {
+    var debugDescription: String {
         return debugDescription()
     }
 

@@ -10,13 +10,7 @@ import Foundation
 
 
 /// A type representing an arithmetic expression.
-public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where Node: NumericBinaryOperatorProtocol {
-    /// The type of the operands used in the expression.
-    typealias Operand = Leaf
-
-    /// The type of the operators used in the expression.
-    typealias Operator = Node
-}
+public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where Node: NumericBinaryOperatorProtocol { }
 
 // MARK: - Default implementations
 

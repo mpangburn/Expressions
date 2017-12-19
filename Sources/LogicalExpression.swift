@@ -38,7 +38,11 @@ extension LogicalExpression {
         guard case let .expression(_, _, right) = self else { return nil }
         return right
     }
+}
 
+// MARK: - Required conformance to expression protocols
+
+extension LogicalExpression {
     public static func makeExpression(operand: Operand) -> LogicalExpression {
         return .operand(operand)
     }

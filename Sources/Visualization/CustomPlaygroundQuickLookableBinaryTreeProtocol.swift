@@ -53,7 +53,7 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
         let positionedTree = positioned()
         let imageBounds = positionedTree.bounds()
         return UIGraphicsImageRenderer(bounds: imageBounds).image() { context in
-            render(positionedTree: positionedTree, into: context.cgContext)
+            render(positionedTree, into: context.cgContext)
         }
     }
 
@@ -63,12 +63,12 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
     }
 
     /// Recursively renders the tree into the context.
-    private func render(positionedTree: PositionedBinaryTree<Self>, into context: CGContext, connectingTo parentPosition: CGPoint? = nil) {
+    private func render(_ positionedTree: PositionedBinaryTree<Self>, into context: CGContext, connectingTo parentPosition: CGPoint? = nil) {
         guard let attributes = positionedTree.visualAttributes else { return }
         let nodePosition = positionedTree.cgPointPosition
 
         positionedTree.children.forEach { child in
-            render(positionedTree: child, into: context, connectingTo: nodePosition)
+            render(child, into: context, connectingTo: nodePosition)
         }
 
         if let parentPosition = parentPosition {

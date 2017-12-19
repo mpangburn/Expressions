@@ -14,12 +14,12 @@ public struct LogicalBinaryOperator: LogicalBinaryOperatorProtocol {
     public typealias Result = Bool
 
     public let identifier: String
-    public let apply: (Bool, Bool) -> Bool
+    public let apply: (Operand, Operand) -> Result
     public let precedence: BinaryOperatorPrecedence
     public let associativity: BinaryOperatorAssociativity
     public let isCommutative: Bool
 
-    public init(identifier: String, apply: @escaping (Bool, Bool) -> Bool, precedence: BinaryOperatorPrecedence, associativity: BinaryOperatorAssociativity, isCommutative: Bool) {
+    public init(identifier: String, apply: @escaping (Operand, Operand) -> Result, precedence: BinaryOperatorPrecedence, associativity: BinaryOperatorAssociativity, isCommutative: Bool) {
         self.identifier = identifier
         self.apply = apply
         self.precedence = precedence

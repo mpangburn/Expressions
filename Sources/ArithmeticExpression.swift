@@ -18,6 +18,9 @@ public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: Arit
     indirect case expression(left: _ArithmeticExpression<Operator>, operator: Operator, right: _ArithmeticExpression<Operator>)
 }
 
+// Once we have conditional conformance, FloatingPointArithmeticExpression can become restricted typealias for _ArithmeticExpression.
+/* extension _ArithmeticExpression: ExpressibleByFloatingPointLiteral where Operand: FloatingPointOperandProtocol { } */
+
 // MARK: - Required conformance to tree protocols
 
 extension _ArithmeticExpression {
@@ -39,7 +42,11 @@ extension _ArithmeticExpression {
         guard case let .expression(_, _, right) = self else { return nil }
         return right
     }
+}
 
+// MARK: - Required conformance to expression protocols
+
+extension _ArithmeticExpression {
     public static func makeExpression(operand: Operand) -> _ArithmeticExpression<Operator> {
         return .operand(operand)
     }

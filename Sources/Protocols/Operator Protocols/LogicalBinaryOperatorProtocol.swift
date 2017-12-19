@@ -23,6 +23,6 @@ protocol LogicalBinaryOperatorProtocol: BinaryOperatorProtocol where Operand == 
 extension LogicalBinaryOperatorProtocol {
     // Since the type of && and || as operators in Swift is actually `(Bool, @autoclosure () throws -> Bool) throws -> Bool`
     // (presumably for short-circuiting purposes), we must wrap these operators in closures.
-    static var logicalAND: Self { return Self.init(identifier: "&&", apply: { $0 && $1 }, precedence: .logicalConjunction, associativity: .left, isCommutative: true) }
-    static var logicalOR: Self { return Self.init(identifier: "||", apply: { $0 || $1 }, precedence: .logicalDisjunction, associativity: .left, isCommutative: true) }
+    static var logicalAND: Self { return Self(identifier: "&&", apply: { $0 && $1 }, precedence: .logicalConjunction, associativity: .left, isCommutative: true) }
+    static var logicalOR: Self { return Self(identifier: "||", apply: { $0 || $1 }, precedence: .logicalDisjunction, associativity: .left, isCommutative: true) }
 }

@@ -39,7 +39,11 @@ extension _FloatingPointArithmeticExpression {
         guard case let .expression(_, _, right) = self else { return nil }
         return right
     }
+}
 
+// MARK: Required conformance to expression protocols
+
+extension _FloatingPointArithmeticExpression {
     public static func makeExpression(operand: Operand) -> _FloatingPointArithmeticExpression<Operator> {
         return .operand(operand)
     }

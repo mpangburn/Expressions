@@ -27,8 +27,8 @@ protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: C
 // MARK: - Default implementations
 
 extension ComparativeOperatorProtocol {
-    static var lessThan: Self { return Self.init(identifier: "<", apply: <, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var lessThanOrEqual: Self { return Self.init(identifier: "<=", apply: <=, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var greaterThan: Self { return Self.init(identifier: ">", apply: >, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var greaterThanOrEqual: Self { return Self.init(identifier: ">=", apply: >=, precedence: .comparison, associativity: .none, isCommutative: false) }
+    static var lessThan: Self { return Self(identifier: "<", apply: <, precedence: .comparison, associativity: .none, isCommutative: false) }
+    static var lessThanOrEqual: Self { return Self(identifier: "<=", apply: <=, precedence: .comparison, associativity: .none, isCommutative: false) }
+    static var greaterThan: Self { return Self(identifier: ">", apply: >, precedence: .comparison, associativity: .none, isCommutative: false) }
+    static var greaterThanOrEqual: Self { return Self(identifier: ">=", apply: >=, precedence: .comparison, associativity: .none, isCommutative: false) }
 }

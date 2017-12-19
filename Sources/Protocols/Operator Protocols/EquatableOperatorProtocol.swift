@@ -24,7 +24,7 @@ protocol EquatableOperatorProtocol: BinaryOperatorProtocol where Operand: Equata
 // MARK: - Default implementations
 
 extension EquatableOperatorProtocol {
-    static var equal: Self { return Self.init(identifier: "==", apply: ==, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var notEqual: Self { return Self.init(identifier: "!=", apply: !=, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var valueEquals: Self { return Self.init(identifier: "~=", apply: ~=, precedence: .comparison, associativity: .none, isCommutative: true) }
+    static var equal: Self { return Self(identifier: "==", apply: ==, precedence: .comparison, associativity: .none, isCommutative: true) }
+    static var notEqual: Self { return Self(identifier: "!=", apply: !=, precedence: .comparison, associativity: .none, isCommutative: true) }
+    static var valueEquals: Self { return Self(identifier: "~=", apply: ~=, precedence: .comparison, associativity: .none, isCommutative: true) }
 }

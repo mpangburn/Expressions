@@ -21,6 +21,6 @@ protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operan
 // MARK: - Default implementations
 
 extension ReferenceEquatableOperatorProtocol {
-    static var identical: Self { return Self.init(identifier: "===", apply: ===, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var notIdentical: Self { return Self.init(identifier: "!==", apply: !==, precedence: .comparison, associativity: .none, isCommutative: true) }
+    static var identical: Self { return Self(identifier: "===", apply: ===, precedence: .comparison, associativity: .none, isCommutative: true) }
+    static var notIdentical: Self { return Self(identifier: "!==", apply: !==, precedence: .comparison, associativity: .none, isCommutative: true) }
 }

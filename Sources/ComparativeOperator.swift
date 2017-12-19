@@ -1,17 +1,17 @@
 //
-//  FloatingPointBinaryOperator.swift
+//  ComparativeOperator.swift
 //  Expression
 //
-//  Created by Michael Pangburn on 12/16/17.
+//  Created by Michael Pangburn on 12/18/17.
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
 import Foundation
 
 
-public struct FloatingPointBinaryOperator<T: FloatingPointOperandProtocol>: FloatingPointBinaryOperatorProtocol {
+public struct ComparativeOperator<T: Comparable>: ComparativeOperatorProtocol {
     public typealias Operand = T
-    public typealias Result = T
+    public typealias Result = Bool
 
     public let identifier: String
     public let apply: (Operand, Operand) -> Result
