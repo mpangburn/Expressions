@@ -10,8 +10,8 @@ import Foundation
 
 
 /// A binary operator that operates on numeric types.
-public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Operand: Numeric & Comparable & _ExpressibleByBuiltinIntegerLiteral, Result == Operand, Precedence == NumericBinaryOperatorPrecedence {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: NumericBinaryOperatorPrecedence,
+public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Operand: Numeric & Comparable & _ExpressibleByBuiltinIntegerLiteral, Result == Operand {
+    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
          associativity: BinaryOperatorAssociativity, isCommutative: Bool)
 
     /// The addition operator (+).
@@ -23,6 +23,8 @@ public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Oper
     /// The multiplication operator (*).
     static var multiply: Self { get }
 }
+
+// MARK: - Default implementations
 
 extension NumericBinaryOperatorProtocol {
     public static var add: Self { return Self.init(identifier: "+", apply: +, precedence: .addition, associativity: .left, isCommutative: true) }

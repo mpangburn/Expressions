@@ -15,7 +15,7 @@
 		893133FA1FE5BF3700FE926E /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E21FE5BF3700FE926E /* Either.swift */; };
 		893133FC1FE5BF3700FE926E /* ArithmeticExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E41FE5BF3700FE926E /* ArithmeticExpression.swift */; };
 		893133FD1FE5BF3700FE926E /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E61FE5BF3700FE926E /* Numeric.swift */; };
-		893133FF1FE5BF3700FE926E /* NumericBinaryOperatorPrecedence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E81FE5BF3700FE926E /* NumericBinaryOperatorPrecedence.swift */; };
+		893133FF1FE5BF3700FE926E /* BinaryOperatorPrecedence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E81FE5BF3700FE926E /* BinaryOperatorPrecedence.swift */; };
 		893134001FE5BF3700FE926E /* BinaryOperatorAssociativity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133E91FE5BF3700FE926E /* BinaryOperatorAssociativity.swift */; };
 		893134011FE5BF3700FE926E /* BinaryIntegerBinaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133EC1FE5BF3700FE926E /* BinaryIntegerBinaryOperatorProtocol.swift */; };
 		893134021FE5BF3700FE926E /* OperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133ED1FE5BF3700FE926E /* OperatorProtocol.swift */; };
@@ -40,9 +40,16 @@
 		896801A31FE726E300BAAC2C /* BinarySearchTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */; };
 		896801A51FE72C1A00BAAC2C /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */; };
 		8971D0DB1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */; };
+		898A98821FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98811FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift */; };
+		898A98841FE8877E00594C49 /* EquatableOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98831FE8877E00594C49 /* EquatableOperatorProtocol.swift */; };
+		898A98861FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98851FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift */; };
+		898A98881FE890EE00594C49 /* ComparativeOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98871FE890EE00594C49 /* ComparativeOperatorProtocol.swift */; };
+		898A988A1FE8956200594C49 /* EvaluatableExpressionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98891FE8956200594C49 /* EvaluatableExpressionProtocol.swift */; };
+		898A988C1FE8977800594C49 /* LogicalExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A988B1FE8977800594C49 /* LogicalExpression.swift */; };
+		898A988E1FE897BF00594C49 /* LogicalBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */; };
+		898A98921FE89E4300594C49 /* LogicalExpressionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */; };
 		89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */; };
 		89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */; };
-		89F7D2621FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2611FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift */; };
 		89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2671FE5D1F300160A4B /* UIColor.swift */; };
 		89F7D26C1FE5D1F300160A4B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2681FE5D1F300160A4B /* String.swift */; };
 		89F7D26D1FE5D1F300160A4B /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2691FE5D1F300160A4B /* CGRect.swift */; };
@@ -73,7 +80,7 @@
 		893133E21FE5BF3700FE926E /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		893133E41FE5BF3700FE926E /* ArithmeticExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArithmeticExpression.swift; sourceTree = "<group>"; };
 		893133E61FE5BF3700FE926E /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
-		893133E81FE5BF3700FE926E /* NumericBinaryOperatorPrecedence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericBinaryOperatorPrecedence.swift; sourceTree = "<group>"; };
+		893133E81FE5BF3700FE926E /* BinaryOperatorPrecedence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryOperatorPrecedence.swift; sourceTree = "<group>"; };
 		893133E91FE5BF3700FE926E /* BinaryOperatorAssociativity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryOperatorAssociativity.swift; sourceTree = "<group>"; };
 		893133EC1FE5BF3700FE926E /* BinaryIntegerBinaryOperatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryIntegerBinaryOperatorProtocol.swift; sourceTree = "<group>"; };
 		893133ED1FE5BF3700FE926E /* OperatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorProtocol.swift; sourceTree = "<group>"; };
@@ -98,9 +105,16 @@
 		896801A21FE726E300BAAC2C /* BinarySearchTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchTreeProtocol.swift; sourceTree = "<group>"; };
 		896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
 		8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointArithmeticExpression.swift; sourceTree = "<group>"; };
+		898A98811FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalBinaryOperatorProtocol.swift; sourceTree = "<group>"; };
+		898A98831FE8877E00594C49 /* EquatableOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableOperatorProtocol.swift; sourceTree = "<group>"; };
+		898A98851FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceEquatableOperatorProtocol.swift; sourceTree = "<group>"; };
+		898A98871FE890EE00594C49 /* ComparativeOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparativeOperatorProtocol.swift; sourceTree = "<group>"; };
+		898A98891FE8956200594C49 /* EvaluatableExpressionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluatableExpressionProtocol.swift; sourceTree = "<group>"; };
+		898A988B1FE8977800594C49 /* LogicalExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExpression.swift; sourceTree = "<group>"; };
+		898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalBinaryOperator.swift; sourceTree = "<group>"; };
+		898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExpressionProtocol.swift; sourceTree = "<group>"; };
 		89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverEmptyTreeProtocol.swift; sourceTree = "<group>"; };
 		89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedBinaryTree.swift; sourceTree = "<group>"; };
-		89F7D2611FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift"; sourceTree = "<group>"; };
 		89F7D2671FE5D1F300160A4B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		89F7D2681FE5D1F300160A4B /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		89F7D2691FE5D1F300160A4B /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
@@ -170,11 +184,13 @@
 			children = (
 				893133E41FE5BF3700FE926E /* ArithmeticExpression.swift */,
 				893133E91FE5BF3700FE926E /* BinaryOperatorAssociativity.swift */,
+				893133E81FE5BF3700FE926E /* BinaryOperatorPrecedence.swift */,
 				893134191FE5C08F00FE926E /* FixedWidthIntegerOperator.swift */,
 				8971D0DA1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift */,
 				8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */,
-				893133E81FE5BF3700FE926E /* NumericBinaryOperatorPrecedence.swift */,
+				898A988B1FE8977800594C49 /* LogicalExpression.swift */,
 				896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */,
+				898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */,
 				893133E51FE5BF3700FE926E /* Extensions */,
 				893133EA1FE5BF3700FE926E /* Protocols */,
 				8931340F1FE5BFF600FE926E /* Utilities */,
@@ -204,7 +220,9 @@
 				8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */,
 				896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */,
 				893133F71FE5BF3700FE926E /* TreeProtocol.swift */,
+				898A98891FE8956200594C49 /* EvaluatableExpressionProtocol.swift */,
 				893133EB1FE5BF3700FE926E /* Operator Protocols */,
+				898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -214,11 +232,15 @@
 			children = (
 				893133EC1FE5BF3700FE926E /* BinaryIntegerBinaryOperatorProtocol.swift */,
 				893133EE1FE5BF3700FE926E /* BinaryOperatorProtocol.swift */,
+				898A98871FE890EE00594C49 /* ComparativeOperatorProtocol.swift */,
 				893133F21FE5BF3700FE926E /* DivisibleBinaryOperatorProtocol.swift */,
+				898A98831FE8877E00594C49 /* EquatableOperatorProtocol.swift */,
 				893133EF1FE5BF3700FE926E /* FixedWidthIntegerBinaryOperatorProtocol.swift */,
 				893133F11FE5BF3700FE926E /* FloatingPointBinaryOperatorProtocol.swift */,
+				898A98811FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift */,
 				893133F01FE5BF3700FE926E /* NumericBinaryOperatorProtocol.swift */,
 				893133ED1FE5BF3700FE926E /* OperatorProtocol.swift */,
+				898A98851FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift */,
 			);
 			path = "Operator Protocols";
 			sourceTree = "<group>";
@@ -234,7 +256,6 @@
 		89F7D25E1FE5CA5700160A4B /* Visualization */ = {
 			isa = PBXGroup;
 			children = (
-				89F7D2611FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift */,
 				892B82B11FE61F5700C33CC8 /* BinaryTreeProtocol+Drawable.swift */,
 				8968019E1FE71C5500BAAC2C /* CustomPlaygroundQuickLookableBinaryTreeProtocol.swift */,
 				89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */,
@@ -377,7 +398,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898A98841FE8877E00594C49 /* EquatableOperatorProtocol.swift in Sources */,
 				896801A31FE726E300BAAC2C /* BinarySearchTreeProtocol.swift in Sources */,
+				898A988C1FE8977800594C49 /* LogicalExpression.swift in Sources */,
 				892B82B21FE61F5700C33CC8 /* BinaryTreeProtocol+Drawable.swift in Sources */,
 				893134021FE5BF3700FE926E /* OperatorProtocol.swift in Sources */,
 				893134041FE5BF3700FE926E /* FixedWidthIntegerBinaryOperatorProtocol.swift in Sources */,
@@ -387,19 +410,23 @@
 				89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */,
 				893133FC1FE5BF3700FE926E /* ArithmeticExpression.swift in Sources */,
 				8931340C1FE5BF3700FE926E /* TreeProtocol.swift in Sources */,
+				898A98881FE890EE00594C49 /* ComparativeOperatorProtocol.swift in Sources */,
+				898A98861FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift in Sources */,
 				896801A51FE72C1A00BAAC2C /* RedBlackTree.swift in Sources */,
 				8971D0DB1FE6ECD900F14793 /* FloatingPointArithmeticExpression.swift in Sources */,
 				8968019B1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift in Sources */,
 				8931340D1FE5BF3700FE926E /* Divisible.swift in Sources */,
+				898A98921FE89E4300594C49 /* LogicalExpressionProtocol.swift in Sources */,
 				893134031FE5BF3700FE926E /* BinaryOperatorProtocol.swift in Sources */,
 				89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */,
 				89F7D2791FE60B4C00160A4B /* Renderer.swift in Sources */,
 				89F7D26C1FE5D1F300160A4B /* String.swift in Sources */,
 				8931340E1FE5BF3700FE926E /* OperandProtocol.swift in Sources */,
 				893134071FE5BF3700FE926E /* DivisibleBinaryOperatorProtocol.swift in Sources */,
+				898A98821FE8863100594C49 /* LogicalBinaryOperatorProtocol.swift in Sources */,
 				893134011FE5BF3700FE926E /* BinaryIntegerBinaryOperatorProtocol.swift in Sources */,
 				8968019D1FE71C0300BAAC2C /* NodeVisualAttributes.swift in Sources */,
-				893133FF1FE5BF3700FE926E /* NumericBinaryOperatorPrecedence.swift in Sources */,
+				893133FF1FE5BF3700FE926E /* BinaryOperatorPrecedence.swift in Sources */,
 				8931340A1FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift in Sources */,
 				896801991FE7172200BAAC2C /* SingleTypeTreeProtocol.swift in Sources */,
 				8931341C1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift in Sources */,
@@ -407,7 +434,6 @@
 				89F7D27B1FE60BC100160A4B /* Drawable.swift in Sources */,
 				893133FA1FE5BF3700FE926E /* Either.swift in Sources */,
 				893134051FE5BF3700FE926E /* NumericBinaryOperatorProtocol.swift in Sources */,
-				89F7D2621FE5D18F00160A4B /* BinaryTreeProtocol+CustomPlaygroundQuickLookable.swift in Sources */,
 				8968019F1FE71C5500BAAC2C /* CustomPlaygroundQuickLookableBinaryTreeProtocol.swift in Sources */,
 				89F7D26E1FE5D1F300160A4B /* CGContext.swift in Sources */,
 				893134091FE5BF3700FE926E /* BinaryTreeProtocol.swift in Sources */,
@@ -415,6 +441,8 @@
 				893133FD1FE5BF3700FE926E /* Numeric.swift in Sources */,
 				893134061FE5BF3700FE926E /* FloatingPointBinaryOperatorProtocol.swift in Sources */,
 				893134001FE5BF3700FE926E /* BinaryOperatorAssociativity.swift in Sources */,
+				898A988A1FE8956200594C49 /* EvaluatableExpressionProtocol.swift in Sources */,
+				898A988E1FE897BF00594C49 /* LogicalBinaryOperator.swift in Sources */,
 				893134081FE5BF3700FE926E /* Evaluatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

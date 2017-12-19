@@ -21,6 +21,8 @@ public protocol BinaryTreeProtocol: TreeProtocol {
     var right: Self? { get }
 }
 
+// MARK: - Default implementations
+
 extension BinaryTreeProtocol {
 
     /// A list containing the tree's left and right children, if present.

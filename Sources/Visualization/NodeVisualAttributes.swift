@@ -15,7 +15,7 @@ public struct NodeVisualAttributes {
     let textAttributes: [NSAttributedStringKey: Any]
     let connectingLineColor: UIColor
 
-    static let nodeSize = CGSize(width: 24, height: 24)
+    static let nodeSize = CGSize(width: 32, height: 32)
     static let nodeSpacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)
 
     static let leafNodeColor = UIColor.flatBlue

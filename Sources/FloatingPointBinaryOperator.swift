@@ -13,13 +13,13 @@ public struct FloatingPointBinaryOperator<T: FloatingPointOperandProtocol>: Floa
     public typealias Operand = T
     public typealias Result = T
 
-    public var identifier: String
-    public var apply: (Operand, Operand) -> Operand
-    public var precedence: NumericBinaryOperatorPrecedence
-    public var associativity: BinaryOperatorAssociativity
-    public var isCommutative: Bool
+    public let identifier: String
+    public let apply: (Operand, Operand) -> Operand
+    public let precedence: BinaryOperatorPrecedence
+    public let associativity: BinaryOperatorAssociativity
+    public let isCommutative: Bool
 
-    public init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: NumericBinaryOperatorPrecedence, associativity: BinaryOperatorAssociativity, isCommutative: Bool) {
+    public init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence, associativity: BinaryOperatorAssociativity, isCommutative: Bool) {
         self.identifier = identifier
         self.apply = apply
         self.precedence = precedence

@@ -102,7 +102,7 @@ extension RedBlackTree: ExpressibleByArrayLiteral {
 extension RedBlackTree {
     public var kind: Either<Element, Element>? {
         guard case let .node(_, left, value, right) = self else { return nil }
-        if left == .empty && right == .empty {
+        if left.isEmpty && right.isEmpty {
             return .leaf(value)
         } else {
             return .node(value)
@@ -111,13 +111,13 @@ extension RedBlackTree {
 
     public var left: RedBlackTree<Element>? {
         guard case let .node(_, left, _, _) = self else { return nil }
-        guard left != .empty else { return nil }
+        guard !left.isEmpty else { return nil }
         return left
     }
 
     public var right: RedBlackTree<Element>? {
         guard case let .node(_, _, _, right) = self else { return nil }
-        guard right != .empty else { return nil }
+        guard !right.isEmpty else { return nil }
         return right
     }
 }

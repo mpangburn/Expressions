@@ -22,6 +22,8 @@ public protocol OperatorProtocol: Equatable, CustomStringConvertible {
     var identifier: String { get }
 }
 
+// MARK: - Default implementations
+
 extension OperatorProtocol {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.identifier == rhs.identifier

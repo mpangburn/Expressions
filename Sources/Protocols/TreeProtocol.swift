@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A tree whose leaf nodes and non-leaf nodes can hold values of different types.
-public protocol TreeProtocol: Equatable {
+public protocol TreeProtocol {
 
     /// The type contained by the tree's leaf nodes.
     associatedtype Leaf: Equatable
@@ -25,7 +25,7 @@ public protocol TreeProtocol: Equatable {
     /// The kind of the tree--either a leaf or a non-leaf node.
     /// The enum case's associated value contains the node's data.
     /// This property is nil if the tree is empty.
-    var kind: Kind? { get }
+    var kind: Either<Leaf, Node>? { get }
 
     /// A list containing the tree's children in the order of leftmost to rightmost.
     /// If the list is empty, the node is either a leaf or the tree is empty.
@@ -49,7 +49,7 @@ extension TreeProtocol {
     /// The zero-based height of the tree, i.e. the length of the longest path from this node to a leaf.
     public var height: Int {
         switch kind {
-        case .some(.leaf), nil:
+        case nil, .some(.leaf):
             return 0
         case .some(.node):
             return 1 + (children.map({ $0.height }).max() ?? 0)
@@ -124,8 +124,9 @@ extension TreeProtocol {
     }
 }
 
-extension TreeProtocol {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.kind == rhs.kind && lhs.children == rhs.children
-    }
-}
+//extension TreeProtocol {
+//    public static func == (lhs: Self, rhs: Self) -> Bool {
+//        return lhs.kind == rhs.kind && lhs.children == rhs.children
+//    }
+//}
+

@@ -11,7 +11,7 @@ import Foundation
 
 /// A binary operator that operates on binary integer types.
 public protocol BinaryIntegerBinaryOperatorProtocol: DivisibleBinaryOperatorProtocol where Operand: BinaryInteger {
-    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: NumericBinaryOperatorPrecedence,
+    init(identifier: String, apply: @escaping (Operand, Operand) -> Operand, precedence: BinaryOperatorPrecedence,
          associativity: BinaryOperatorAssociativity, isCommutative: Bool)
 
     /// The remainder operator (%).
@@ -32,6 +32,8 @@ public protocol BinaryIntegerBinaryOperatorProtocol: DivisibleBinaryOperatorProt
     /// The bitwise right shift operator (>>).
     static var bitwiseRightShift: Self { get }
 }
+
+// MARK: - Default implementations
 
 extension BinaryIntegerBinaryOperatorProtocol {
     public static var remainder: Self { return Self.init(identifier: "%", apply: %, precedence: .multiplication, associativity: .left, isCommutative: false) }
