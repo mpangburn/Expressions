@@ -26,7 +26,15 @@ extension PositionedBinaryTree: Drawable {
     }
 }
 
-public class BinaryTreeView: UIView { }
+public class BinaryTreeView: UIView {
+    public func shrinkSubviews() {
+        for view in subviews {
+            UIView.animate(withDuration: 3) {
+                view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            }
+        }
+    }
+}
 
 public class DrawableView: UIView {
 
@@ -98,34 +106,6 @@ func recursiveChildren<T>(of positionedTree: PositionedBinaryTree<T>) -> [Positi
 //    }
 //}
 
-public class LineView: UIView {
-//    var draw: (UIBezierPath) -> Void = { _ in }
-    var color: UIColor = .black
-
-    enum SlantDirection { case left, right }
-    var direction: SlantDirection = .left
-
-    override public func draw(_ bounds: CGRect) {
-        let path = UIBezierPath()
-//        draw(path)
-
-        let start: CGPoint
-        let end: CGPoint
-        switch direction {
-        case .left:
-            start = .zero
-            end = CGPoint(x: bounds.maxX, y: bounds.maxY)
-        case .right:
-            start = CGPoint(x: 0, y: bounds.maxY)
-            end = CGPoint(x: bounds.maxX, y: 0)
-        }
-
-        path.move(to: start)
-        path.line(to: end)
-        color.setStroke()
-        path.stroke()
-    }
-}
 
 public func lineViewsE(of expression: ArithmeticExpression<Int>) -> [LineView] {
     return lineViews(of: expression.positioned())
@@ -162,7 +142,7 @@ public func lineView(from start: CGPoint, to end: CGPoint, withColor color: UICo
     let frame = CGRect(containing: start, end)
     let view = LineView(frame: frame)
     view.color = color
-    view.direction = direction
+    view.slantDirection = direction
 
     return view
 

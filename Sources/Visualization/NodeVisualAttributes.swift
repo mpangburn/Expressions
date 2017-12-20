@@ -16,13 +16,16 @@ public struct NodeVisualAttributes {
     let textAttributes: [NSAttributedStringKey: Any]
     let connectingLineColor: UIColor
 
+    var childLineWidth: CGFloat {
+        return (1 / Default.size.width) * size.width
+    }
+
     enum Default {
         static let size = CGSize(width: 24, height: 24)
         static let textAttributes: [NSAttributedStringKey: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 12),
             .foregroundColor: UIColor.white
         ]
-        static let childLineWidth: CGFloat = 1
     }
 
     static let spacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)

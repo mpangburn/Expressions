@@ -36,7 +36,7 @@ extension BinaryTreeProtocol {
     /// - Parameters:
     ///     - process: The process to apply to each node.
     ///     - kind: The kind of the node, which contains its data.
-    public func traverseInOrder(process: (_ kind: Kind) -> Void) {
+    public func traverseInOrder(process: (_ kind: TreeNode<Leaf, Node> ) -> Void) {
         guard let kind = kind else { return }
         left.map { $0.traverseInOrder(process: process) }
         process(kind)
@@ -46,8 +46,8 @@ extension BinaryTreeProtocol {
     /// Returns a list containing the tree's nodes as traversed in in-order fashion,
     /// i.e. with the node's left child appended recursively, then itself, then its right child recursively.
     /// - Returns: A list containing the tree's nodes as traversed in in-order fashion.
-    public func traversedInOrder() -> [Kind] {
-        var elements: [Kind] = []
+    public func traversedInOrder() -> [TreeNode<Leaf, Node> ] {
+        var elements: [TreeNode<Leaf, Node> ] = []
         traversePostOrder() { elements.append($0) }
         return elements
     }

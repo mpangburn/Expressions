@@ -10,9 +10,9 @@ import Foundation
 
 
 /// A wrapper around a binary tree to store its logical x- and y-coordinates for positioning in space.
-class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
+class PositionedBinaryTree<Tree: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
     /// The tree to position.
-    let tree: T
+    let tree: Tree
 
     /// The logical x-coordinate of the tree in space once positioned.
     var x: Int
@@ -21,9 +21,9 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
     var y: Int
 
     /// The positioned children of the wrapped tree.
-    var children: [PositionedBinaryTree<T>]
+    var children: [PositionedBinaryTree<Tree>]
 
-    private init(tree: T, depth: Int) {
+    private init(tree: Tree, depth: Int) {
         self.tree = tree
         self.x = -1
         self.y = depth
@@ -34,7 +34,7 @@ class PositionedBinaryTree<T: CustomPlaygroundQuickLookableBinaryTreeProtocol> {
 extension PositionedBinaryTree {
     /// Positions the tree using a naive O(_n^2_) implementation of Reingold and Tilford's algorithm.
     /// c.f. https://llimllib.github.io/pymag-trees/
-    static func reingoldTilford(tree: T, depth: Int = 0) -> PositionedBinaryTree<T> {
+    static func reingoldTilford(tree: Tree, depth: Int = 0) -> PositionedBinaryTree<Tree> {
         let positionedTree = PositionedBinaryTree(tree: tree, depth: depth)
         switch (tree.left, tree.right) {
         case (nil, nil):

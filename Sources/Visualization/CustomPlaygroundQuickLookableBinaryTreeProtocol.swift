@@ -70,7 +70,7 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
         }
 
         if let parentPosition = parentPosition {
-            context.drawLine(from: nodePosition, to: parentPosition, color: attributes.connectingLineColor, width: NodeVisualAttributes.Default.childLineWidth)
+            context.drawLine(from: nodePosition, to: parentPosition, color: attributes.connectingLineColor, width: attributes.childLineWidth)
         }
 
         attributes.color.setFill()
@@ -104,7 +104,7 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
         func recurse(child: Self?, offset: CGFloat) {
             guard let child = child else { return }
             let childCenter = CGPoint(x: center.x + offset, y: center.y + attributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical)
-            context.drawLine(from: center, to: childCenter, color: attributes.connectingLineColor, width: NodeVisualAttributes.Default.childLineWidth)
+            context.drawLine(from: center, to: childCenter, color: attributes.connectingLineColor, width: attributes.childLineWidth)
             child.renderWide(into: context, at: childCenter, currentHeight: currentHeight - 1)
         }
 

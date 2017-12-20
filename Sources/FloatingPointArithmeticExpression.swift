@@ -25,7 +25,7 @@ public enum _FloatingPointArithmeticExpression<Operator: FloatingPointBinaryOper
 // MARK: - Required conformance to tree protocols
 
 extension _FloatingPointArithmeticExpression {
-    public var kind: Either<Operand, Operator>? {
+    public var kind: TreeNode<Operand, Operator>? {
         switch self {
         case let .operand(operand):
             return .leaf(operand)

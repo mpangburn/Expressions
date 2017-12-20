@@ -28,7 +28,7 @@ public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: Arit
 // MARK: - Required conformance to tree protocols
 
 extension _ArithmeticExpression {
-    public var kind: Either<Operand, Operator>? {
+    public var kind: TreeNode<Operand, Operator>? {
         switch self {
         case let .operand(operand):
             return .leaf(operand)

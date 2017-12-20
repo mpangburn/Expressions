@@ -17,14 +17,10 @@ public protocol TreeProtocol {
     /// The type contained by the tree's non-leaf nodes.
     associatedtype Node: Equatable
 
-    /// The kind of the tree--either a leaf or a non-leaf node.
-    /// The enum case's associated value contains the node's data.
-    typealias Kind = Either<Leaf, Node>
-
-    /// The kind of the tree--either a leaf or a non-leaf node.
+    /// The kind of the tree node--either a leaf or a non-leaf node.
     /// The enum case's associated value contains the node's data.
     /// This property is nil if the tree is empty.
-    var kind: Either<Leaf, Node>? { get }
+    var kind: TreeNode<Leaf, Node>? { get }
 
     /// A list containing the tree's children in the order of leftmost to rightmost.
     /// If the list is empty, the node is either a leaf or the tree is empty.
@@ -62,7 +58,7 @@ extension TreeProtocol {
     /// - Parameters:
     ///     - process: The process to apply to each node.
     ///     - kind: The kind of the node, which contains its data.
-    public func traversePreOrder(process: (_ kind: Kind) -> Void) {
+    public func traversePreOrder(process: (_ kind: TreeNode<Leaf, Node>) -> Void) {
         guard let kind = kind else { return }
         process(kind)
         children.forEach { $0.traversePreOrder(process: process) }
@@ -71,8 +67,8 @@ extension TreeProtocol {
     /// Returns a list containing the tree's nodes as traversed in pre-order fashion,
     /// i.e. with the current node appended, then each of its children recursively.
     /// - Returns: A list containing the tree's nodes as traversed in pre-order fashion.
-    public func traversedPreOrder() -> [Kind] {
-        var elements: [Kind] = []
+    public func traversedPreOrder() -> [TreeNode<Leaf, Node>] {
+        var elements: [TreeNode<Leaf, Node>] = []
         traversePreOrder() { elements.append($0) }
         return elements
     }
@@ -81,7 +77,7 @@ extension TreeProtocol {
     /// - Parameters:
     ///     - process: The process to apply to each node.
     ///     - kind: The kind of the node, which contains its data.
-    public func traversePostOrder(process: (_ kind: Kind) -> Void) {
+    public func traversePostOrder(process: (_ kind: TreeNode<Leaf, Node>) -> Void) {
         guard let kind = kind else { return }
         children.forEach { $0.traversePostOrder(process: process) }
         process(kind)
@@ -90,8 +86,8 @@ extension TreeProtocol {
     /// Returns a list containing the tree's nodes as traversed in post-order fashion,
     /// i.e. with each of the node's children appended recursively, then itself.
     /// - Returns: A list containing the tree's nodes as traversed in post-order fashion.
-    public func traversedPostOrder() -> [Kind] {
-        var elements: [Kind] = []
+    public func traversedPostOrder() -> [TreeNode<Leaf, Node>] {
+        var elements: [TreeNode<Leaf, Node>] = []
         traversePostOrder() { elements.append($0) }
         return elements
     }
@@ -101,7 +97,7 @@ extension TreeProtocol {
     /// - Parameters:
     ///     - process: The process to apply to each node.
     ///     - kind: The kind of the node, which contains its data.
-    public func traverseLevelOrder(process: (_ kind: Kind) -> Void) {
+    public func traverseLevelOrder(process: (_ kind: TreeNode<Leaf, Node>) -> Void) {
         var queue = [self]
         while !queue.isEmpty {
             let nextNode = queue.removeFirst()
@@ -114,8 +110,8 @@ extension TreeProtocol {
     /// Returns a list containing the tree's nodes as traversed in level-order fashion,
     /// i.e. with every node on a level appended, left-to-right, before continuing to the next level.
     /// - Returns: A list containing the tree's nodes as traversed in level-order fashion.
-    public func traversedLevelOrder() -> [Kind] {
-        var elements: [Kind] = []
+    public func traversedLevelOrder() -> [TreeNode<Leaf, Node>] {
+        var elements: [TreeNode<Leaf, Node>] = []
         traverseLevelOrder() { elements.append($0) }
         return elements
     }

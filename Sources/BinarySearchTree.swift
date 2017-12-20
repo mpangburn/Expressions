@@ -72,7 +72,7 @@ public enum BinarySearchTree<Element: Comparable>: BinarySearchTreeProtocol {
 // MARK: - Required conformance to tree protocols
 
 extension BinarySearchTree {
-    public var kind: Either<Element, Element>? {
+    public var kind: TreeNode<Element, Element>? {
         guard case let .node(left, value, right) = self else { return nil }
         if left.isEmpty, right.isEmpty {
             return .leaf(value)

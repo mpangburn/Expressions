@@ -74,7 +74,7 @@ public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleT
 // MARK: - Required conformance to tree protocols
 
 extension RedBlackTree {
-    public var kind: Either<Element, Element>? {
+    public var kind: TreeNode<Element, Element>? {
         guard case let .node(_, left, value, right) = self else { return nil }
         if left.isEmpty, right.isEmpty {
             return .leaf(value)
