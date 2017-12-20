@@ -17,8 +17,8 @@ extension PositionedBinaryTree: Drawable {
         let textAttributes = attributes.textAttributes
 
         // consider the node is centered at the origin, so..
-        let actualCenter = CGPoint(x: NodeVisualAttributes.nodeSize.width / 2, y: NodeVisualAttributes.nodeSize.height / 2)
-        renderer.circle(at: actualCenter, radius: NodeVisualAttributes.nodeSize.width / 2)
+        let actualCenter = CGPoint(x: NodeVisualAttributes.Default.size.width / 2, y: NodeVisualAttributes.Default.size.height / 2)
+        renderer.circle(at: actualCenter, radius: NodeVisualAttributes.Default.size.width / 2)
         color.setStroke()
         color.setFill()
         renderer.fill()
@@ -50,8 +50,8 @@ public func binaryTreeView(of tree: ArithmeticExpression<Int>) -> BinaryTreeView
         nodeView.backgroundColor = .clear
 
         let cgPtPosition = node.cgPointPosition
-        let actualX = cgPtPosition.x + NodeVisualAttributes.nodeSize.width / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal
-        let actualY = cgPtPosition.y + NodeVisualAttributes.nodeSize.height / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
+        let actualX = cgPtPosition.x + NodeVisualAttributes.Default.size.width / 2 * NodeVisualAttributes.spacingScaleFactor.horizontal
+        let actualY = cgPtPosition.y + NodeVisualAttributes.Default.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical
         let actualPos = CGPoint(x: actualX, y: actualY)
 
         nodeView.frame = CGRect(center: actualPos, size: nodeView.frame.size)
@@ -72,7 +72,7 @@ public func binaryTreeView(of tree: ArithmeticExpression<Int>) -> BinaryTreeView
 }
 
 func binaryNodeView<T>(of positionedTree: PositionedBinaryTree<T>) -> DrawableView {
-    let treeNodeView = DrawableView(frame: CGRect(origin: .zero, size: NodeVisualAttributes.nodeSize))
+    let treeNodeView = DrawableView(frame: CGRect(origin: .zero, size: NodeVisualAttributes.Default.size))
     treeNodeView.draw = { positionedTree.draw(into: $0) }
     return treeNodeView
 }
@@ -134,8 +134,8 @@ public func lineViewsE(of expression: ArithmeticExpression<Int>) -> [LineView] {
 func lineViews<T>(of positionedTree: PositionedBinaryTree<T>, connectingTo parentPosition: CGPoint? = nil) -> [LineView] {
     var views: [LineView] = []
     let cgPtPosition = positionedTree.cgPointPosition
-    let actualX = cgPtPosition.x + NodeVisualAttributes.nodeSize.width / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal
-    let actualY = cgPtPosition.y + NodeVisualAttributes.nodeSize.height / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
+    let actualX = cgPtPosition.x + NodeVisualAttributes.Default.size.width / 2 * NodeVisualAttributes.spacingScaleFactor.horizontal
+    let actualY = cgPtPosition.y + NodeVisualAttributes.Default.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical
     let actualPos = CGPoint(x: actualX, y: actualY)
     if let parent = parentPosition {
         let lview = lineView(from: actualPos, to: parent, withColor: positionedTree.visualAttributes!.connectingLineColor)

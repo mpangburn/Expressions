@@ -19,25 +19,23 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
     public var visualAttributes: NodeVisualAttributes? {
         guard let kind = kind else { return nil }
 
+        let size = NodeVisualAttributes.Default.size
         let color: UIColor
         let text: String
-        let textAttributes: [NSAttributedStringKey: Any]
-        let connectingLineColor: UIColor
+        let textAttributes = NodeVisualAttributes.Default.textAttributes
 
         switch kind {
         case let .leaf(value):
-            color = NodeVisualAttributes.leafNodeColor
+            color = .flatBlue
             text = String(describing: value)
-            textAttributes = NodeVisualAttributes.leafNodeTextAttributes
-            connectingLineColor = NodeVisualAttributes.leafChildLineColor
         case let .node(value):
-            color = NodeVisualAttributes.nonLeafNodeColor
+            color = .flatRed
             text = String(describing: value)
-            textAttributes = NodeVisualAttributes.nonLeafNodeTextAttributes
-            connectingLineColor = NodeVisualAttributes.nonLeafChildLineColor
         }
 
-        return NodeVisualAttributes(color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
+        let connectingLineColor = color
+
+        return NodeVisualAttributes(size: size, color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
     }
 }
 
@@ -72,11 +70,11 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
         }
 
         if let parentPosition = parentPosition {
-            context.drawLine(from: nodePosition, to: parentPosition, color: attributes.connectingLineColor, width: NodeVisualAttributes.childLineWidth)
+            context.drawLine(from: nodePosition, to: parentPosition, color: attributes.connectingLineColor, width: NodeVisualAttributes.Default.childLineWidth)
         }
 
         attributes.color.setFill()
-        context.fillEllipse(in: CGRect(center: nodePosition, size: NodeVisualAttributes.nodeSize))
+        context.fillEllipse(in: CGRect(center: nodePosition, size: attributes.size))
         attributes.text.draw(centeredAt: nodePosition, attributes: attributes.textAttributes)
     }
 }
@@ -90,9 +88,10 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
     /// but has the advantage of being able to distinguish between a left and a right child
     /// in cases where a node has only a single child.
     public func renderWide() -> UIImage {
+        guard let attributes = visualAttributes else { return UIImage() }
         let treeHeight = height
         let bounds = wideBounds(forHeight: treeHeight)
-        let center = CGPoint(x: bounds.midX, y: NodeVisualAttributes.nodeSize.height / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.vertical)
+        let center = CGPoint(x: bounds.midX, y: attributes.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical)
         return UIGraphicsImageRenderer(bounds: bounds).image() { context in
             renderWide(into: context.cgContext, at: center, currentHeight: treeHeight)
         }
@@ -104,25 +103,26 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
 
         func recurse(child: Self?, offset: CGFloat) {
             guard let child = child else { return }
-            let childCenter = CGPoint(x: center.x + offset, y: center.y + NodeVisualAttributes.nodeSize.height * NodeVisualAttributes.nodeSpacingScaleFactor.vertical)
-            context.drawLine(from: center, to: childCenter, color: attributes.connectingLineColor, width: NodeVisualAttributes.childLineWidth)
+            let childCenter = CGPoint(x: center.x + offset, y: center.y + attributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical)
+            context.drawLine(from: center, to: childCenter, color: attributes.connectingLineColor, width: NodeVisualAttributes.Default.childLineWidth)
             child.renderWide(into: context, at: childCenter, currentHeight: currentHeight - 1)
         }
 
-        let offset = pow(2, CGFloat(currentHeight - 1)) * NodeVisualAttributes.nodeSize.width * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal / 2
+        let offset = pow(2, CGFloat(currentHeight - 1)) * attributes.size.width * NodeVisualAttributes.spacingScaleFactor.horizontal / 2
         recurse(child: left, offset: -offset)
         recurse(child: right, offset: offset)
 
         attributes.color.setFill()
-        context.fillEllipse(in: CGRect(center: center, size: NodeVisualAttributes.nodeSize))
+        context.fillEllipse(in: CGRect(center: center, size: attributes.size))
         attributes.text.draw(centeredAt: center, attributes: attributes.textAttributes)
     }
 
     /// Computes the bounds of the image based on the tree's height.
     /// The tree's height is passed as a parameter to avoid unnecessary recalculation.
     private func wideBounds(forHeight height: Int) -> CGRect {
-        let boundsWidth = pow(2, CGFloat(height)) * NodeVisualAttributes.nodeSize.width * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal
-        let boundsHeight = CGFloat(height + 1) * NodeVisualAttributes.nodeSize.height * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
+        guard let attributes = visualAttributes else { return .zero }
+        let boundsWidth = pow(2, CGFloat(height)) * attributes.size.width * NodeVisualAttributes.spacingScaleFactor.horizontal
+        let boundsHeight = CGFloat(height + 1) * attributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical
         return CGRect(origin: .zero, size: CGSize(width: boundsWidth, height: boundsHeight))
     }
 }

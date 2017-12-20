@@ -107,9 +107,10 @@ extension RedBlackTree: CustomPlaygroundQuickLookableBinaryTreeProtocol {
             uiColor = .black
         }
 
+        let size = NodeVisualAttributes.Default.size
         let text = String(describing: value)
-        let textAttributes = NodeVisualAttributes.SingleTypeTree.nodeTextAttributes
+        let textAttributes = NodeVisualAttributes.Default.textAttributes
 
-        return NodeVisualAttributes(color: uiColor, text: text, textAttributes: textAttributes, connectingLineColor: uiColor)
+        return NodeVisualAttributes(size: size, color: uiColor, text: text, textAttributes: textAttributes, connectingLineColor: uiColor)
     }
 }

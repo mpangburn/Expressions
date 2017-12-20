@@ -10,10 +10,13 @@ import UIKit
 
 
 extension UIColor {
-
-    static let flatBlue = UIColor(hexString: "#44BBFF")
     static let flatRed = UIColor(hexString: "#FC575E")
     static let flatGreen = UIColor(hexString: "#66CC99")
+    static let flatBlue = UIColor(hexString: "#44BBFF")
+
+    static let flatRed2 = UIColor(hexString: "#FF6B6E")
+    static let flatGreen2 = UIColor(hexString: "#2DCC70")
+    static let flatBlue2 = UIColor(hexString: "#4ECDC4")
 
     // source: http://iosapptemplates.com/blog/swift-programming/convert-hex-colors-to-uicolor-swift-4
     convenience init(hexString: String, alpha: CGFloat = 1.0) {

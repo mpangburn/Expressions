@@ -10,36 +10,20 @@ import Foundation
 
 
 public struct NodeVisualAttributes {
+    let size: CGSize
     let color: UIColor
     let text: String
     let textAttributes: [NSAttributedStringKey: Any]
     let connectingLineColor: UIColor
 
-    static let nodeSize = CGSize(width: 32, height: 32)
-    static let nodeSpacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)
-
-    static let leafNodeColor = UIColor.flatBlue
-    static let leafNodeTextAttributes: [NSAttributedStringKey: Any] = [
-        .font: UIFont.boldSystemFont(ofSize: 12),
-        .foregroundColor: UIColor.white
-    ]
-
-    static let nonLeafNodeColor = UIColor.flatRed
-    static let nonLeafNodeTextAttributes: [NSAttributedStringKey: Any] = [
-        .font: UIFont.boldSystemFont(ofSize: 12),
-        .foregroundColor: UIColor.white
-    ]
-
-    static let leafChildLineColor = NodeVisualAttributes.leafNodeColor
-    static let nonLeafChildLineColor = NodeVisualAttributes.nonLeafNodeColor
-    static let childLineWidth: CGFloat = (1/24) * nodeSize.width
-
-    enum SingleTypeTree {
-        static let nodeColor = UIColor.flatGreen
-        static let nodeTextAttributes: [NSAttributedStringKey: Any] = [
+    enum Default {
+        static let size = CGSize(width: 24, height: 24)
+        static let textAttributes: [NSAttributedStringKey: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 12),
             .foregroundColor: UIColor.white
         ]
-        static let childLineColor = SingleTypeTree.nodeColor
+        static let childLineWidth: CGFloat = 1
     }
+
+    static let spacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)
 }

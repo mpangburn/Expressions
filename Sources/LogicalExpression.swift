@@ -52,3 +52,29 @@ extension LogicalExpression {
         return .expression(left: left, operator: `operator`, right: right)
     }
 }
+
+// MARK: - Visual attributes
+
+extension LogicalExpression {
+    public var visualAttributes: NodeVisualAttributes? {
+        guard let kind = kind else { return nil }
+
+        let size = CGSize(width: 36, height: 36)
+        let color: UIColor
+        let text: String
+        let textAttributes = NodeVisualAttributes.Default.textAttributes
+
+        switch kind {
+        case let .leaf(value):
+            color = value ? .flatGreen2 : .flatRed2
+            text = String(describing: value)
+        case let .node(value):
+            color = .flatBlue2
+            text = String(describing: value)
+        }
+
+        let connectingLineColor = color
+
+        return NodeVisualAttributes(size: size, color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
+    }
+}

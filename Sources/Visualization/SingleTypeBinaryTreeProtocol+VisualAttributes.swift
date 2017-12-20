@@ -13,11 +13,12 @@ extension SingleTypeBinaryTreeProtocol where Self: CustomPlaygroundQuickLookable
     public var visualAttributes: NodeVisualAttributes? {
         guard let value = value else { return nil }
 
-        let color = NodeVisualAttributes.SingleTypeTree.nodeColor
+        let size = NodeVisualAttributes.Default.size
+        let color = UIColor.flatGreen
         let text = String(describing: value)
-        let textAttributes = NodeVisualAttributes.SingleTypeTree.nodeTextAttributes
-        let connectingLineColor = NodeVisualAttributes.SingleTypeTree.childLineColor
+        let textAttributes = NodeVisualAttributes.Default.textAttributes
+        let connectingLineColor = color
 
-        return NodeVisualAttributes(color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
+        return NodeVisualAttributes(size: size, color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
     }
 }

@@ -119,11 +119,12 @@ extension PositionedBinaryTree {
 
     /// Compute the bounds for the image of the tree based on the positions of its nodes.
     func bounds() -> CGRect {
+        guard let attributes = visualAttributes else { return .zero }
         let points = cgPointPositions()
         let xCoordinates = points.map { $0.x }
         let yCoordinates = points.map { $0.y }
-        let horizontalOffset = NodeVisualAttributes.nodeSize.width / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal
-        let verticalOffset = NodeVisualAttributes.nodeSize.height / 2 * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
+        let horizontalOffset = attributes.size.width / 2 * NodeVisualAttributes.spacingScaleFactor.horizontal
+        let verticalOffset = attributes.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical
         let topLeft = CGPoint(x: xCoordinates.min()! - horizontalOffset, y: yCoordinates.min()! - verticalOffset)
         let bottomRight = CGPoint(x: xCoordinates.max()! + horizontalOffset, y: yCoordinates.max()! + verticalOffset)
         return CGRect(topLeft: topLeft, bottomRight: bottomRight)
@@ -136,8 +137,9 @@ extension PositionedBinaryTree {
 
     /// Translates the logical position of the tree into a CGPoint representing the center of the node.
     var cgPointPosition: CGPoint {
-        let scaledX = CGFloat(x) * NodeVisualAttributes.nodeSize.width * NodeVisualAttributes.nodeSpacingScaleFactor.horizontal
-        let scaledY = CGFloat(y) * NodeVisualAttributes.nodeSize.height * NodeVisualAttributes.nodeSpacingScaleFactor.vertical
+        guard let attributes = visualAttributes else { return .zero }
+        let scaledX = CGFloat(x) * attributes.size.width * NodeVisualAttributes.spacingScaleFactor.horizontal
+        let scaledY = CGFloat(y) * attributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical
         return CGPoint(x: scaledX, y: scaledY)
     }
 }

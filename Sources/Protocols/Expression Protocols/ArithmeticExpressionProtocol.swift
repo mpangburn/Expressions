@@ -32,7 +32,7 @@ extension ArithmeticExpressionProtocol {
         self = Self.makeExpression(operand: operand)
     }
 
-    /// Evaluates the expression by applying the operators to their operands.
+    /// Evaluates the expression by applying its operators to its operands.
     /// - Returns: The value of the expression.
     public var magnitude: Operand {
         return evaluate()

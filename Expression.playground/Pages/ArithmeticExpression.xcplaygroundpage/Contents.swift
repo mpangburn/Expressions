@@ -13,3 +13,5 @@ integerExpression.description
 
 let fExpression: FloatingPointArithmeticExpression<Double> = 1.3-10.8/3.3*1.5+4
 fExpression.description
+
+let e: ArithmeticExpression<Int> = 1000000
