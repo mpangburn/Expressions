@@ -10,16 +10,11 @@ import Foundation
 
 
 /// A binary tree whose leaf and non-leaf nodes contain values of the same type.
-public protocol SingleTypeBinaryTreeProtocol: SingleTypeTreeProtocol, BinaryTreeProtocol {
-
-    /// The single type of element contained by the tree.
-    typealias Element = Node
-}
+public protocol SingleTypeBinaryTreeProtocol: SingleTypeTreeProtocol, BinaryTreeProtocol { }
 
 // MARK: - Methods
 
 extension SingleTypeBinaryTreeProtocol {
-
     /// Processes the node's left chlid recursively, then itself, then its right child recursively.
     /// - Parameters:
     ///     - process: The process to apply to each node.

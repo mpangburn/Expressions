@@ -11,7 +11,6 @@ import Foundation
 
 /// A tree whose leaf nodes and non-leaf nodes can hold values of different types.
 public protocol TreeProtocol {
-
     /// The type contained by the tree's leaf nodes.
     associatedtype Leaf: Equatable
 
@@ -35,8 +34,7 @@ public protocol TreeProtocol {
 // MARK: - Computed properties
 
 extension TreeProtocol {
-
-    /// A boolean value representing whether the tree is empty.
+    /// A boolean value indicating whether the tree is empty.
     public var isEmpty: Bool {
         return kind == nil
     }
@@ -60,7 +58,6 @@ extension TreeProtocol {
 // MARK: - Methods
 
 extension TreeProtocol {
-
     /// Processes the node, then each of its children recursively.
     /// - Parameters:
     ///     - process: The process to apply to each node.
@@ -124,9 +121,8 @@ extension TreeProtocol {
     }
 }
 
-//extension TreeProtocol {
-//    public static func == (lhs: Self, rhs: Self) -> Bool {
-//        return lhs.kind == rhs.kind && lhs.children == rhs.children
-//    }
-//}
-
+extension TreeProtocol where Self: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.kind == rhs.kind && lhs.children == rhs.children
+    }
+}

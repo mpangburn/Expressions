@@ -9,8 +9,12 @@
 import Foundation
 
 
+/// An arithmetic expression whose operands are of a floating point type.
 public typealias FloatingPointArithmeticExpression<T: FloatingPointOperandProtocol> = _FloatingPointArithmeticExpression<FloatingPointBinaryOperator<T>>
 
+/// An arithmetic expression of floating point numbers modeled as a binary tree.
+/// Use the typealias FloatingPointArithmeticExpression rather than working with this type directly.
+/// For integer operands, see ArithmeticExpression.
 public enum _FloatingPointArithmeticExpression<Operator: FloatingPointBinaryOperatorProtocol>: ArithmeticExpressionProtocol, ExpressibleByFloatLiteral {
     public typealias Operand = Operator.Operand
 

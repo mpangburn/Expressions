@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// An operator for comparing Comparable types.
 public struct ComparativeOperator<T: Comparable>: ComparativeOperatorProtocol {
     public typealias Operand = T
     public typealias Result = Bool

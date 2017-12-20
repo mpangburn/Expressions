@@ -32,7 +32,7 @@ public struct NodeVisualAttributes {
 
     static let leafChildLineColor = NodeVisualAttributes.leafNodeColor
     static let nonLeafChildLineColor = NodeVisualAttributes.nonLeafNodeColor
-    static let childLineWidth: CGFloat = 1
+    static let childLineWidth: CGFloat = (1/24) * nodeSize.width
 
     enum SingleTypeTree {
         static let nodeColor = UIColor.flatGreen

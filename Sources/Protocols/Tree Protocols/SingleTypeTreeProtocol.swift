@@ -11,7 +11,6 @@ import Foundation
 
 /// A tree whose leaf and non-leaf nodes contain values of the same type.
 public protocol SingleTypeTreeProtocol: TreeProtocol where Leaf == Node {
-
     /// The single type of element contained by the tree.
     typealias Element = Node
 }
@@ -19,7 +18,6 @@ public protocol SingleTypeTreeProtocol: TreeProtocol where Leaf == Node {
 // MARK: - Computed properties
 
 extension SingleTypeTreeProtocol {
-
     /// The value of the node.
     /// This property is nil if the tree is empty.
     public var value: Element? {
@@ -36,7 +34,6 @@ extension SingleTypeTreeProtocol {
 // MARK: - Methods
 
 extension SingleTypeTreeProtocol {
-
     /// Processes the node, then each of its children recursively.
     /// - Parameters:
     ///     - process: The process to apply to each node.

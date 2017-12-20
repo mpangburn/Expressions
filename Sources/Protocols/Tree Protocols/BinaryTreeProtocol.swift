@@ -11,7 +11,6 @@ import Foundation
 
 /// A tree with at most two children.
 public protocol BinaryTreeProtocol: TreeProtocol {
-
     /// The node's left child.
     /// This property is nil if the node has no left child.
     var left: Self? { get }
@@ -24,7 +23,6 @@ public protocol BinaryTreeProtocol: TreeProtocol {
 // MARK: - Default implementations
 
 extension BinaryTreeProtocol {
-
     /// A list containing the tree's left and right children, if present.
     public var children: [Self] {
         return [left, right].flatMap { $0 }
@@ -34,7 +32,6 @@ extension BinaryTreeProtocol {
 // MARK: - Methods
 
 extension BinaryTreeProtocol {
-
     /// Processes the node's left chlid recursively, then itself, then its right child recursively.
     /// - Parameters:
     ///     - process: The process to apply to each node.

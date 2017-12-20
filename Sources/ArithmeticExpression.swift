@@ -9,8 +9,12 @@
 import Foundation
 
 
+/// An arithmetic expression whose operands are of an integer type.
 public typealias ArithmeticExpression<T: FixedWidthIntegerOperandProtocol> = _ArithmeticExpression<FixedWidthIntegerBinaryOperator<T>>
 
+/// An arithmetic expression modeled as a binary tree.
+/// Use the typealias ArithmeticExpression rather than working with this type directly.
+/// For floating point operands, see FloatingPointExpression.
 public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: ArithmeticExpressionProtocol {
     public typealias Operand = Operator.Operand
 

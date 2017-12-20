@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// An operator for performing boolean logic.
 public struct LogicalBinaryOperator: LogicalBinaryOperatorProtocol {
     public typealias Operand = Bool
     public typealias Result = Bool

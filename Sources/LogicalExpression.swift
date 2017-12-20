@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// An expression of boolean logic modeled as a binary tree.
 public enum LogicalExpression: LogicalExpressionProtocol {
     public typealias Operand = Bool
     public typealias Operator = LogicalBinaryOperator
