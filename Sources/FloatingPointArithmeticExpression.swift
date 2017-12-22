@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 /// An arithmetic expression whose operands are of a floating point type.
@@ -54,5 +54,30 @@ extension _FloatingPointArithmeticExpression {
 
     public static func makeExpression(left: _FloatingPointArithmeticExpression<Operator>, operator: Operator, right: _FloatingPointArithmeticExpression<Operator>) -> _FloatingPointArithmeticExpression<Operator> {
         return .expression(left: left, operator: `operator`, right: right)
+    }
+}
+
+// MARK: - Visual attributes
+
+extension _FloatingPointArithmeticExpression {
+    public var visualAttributes: NodeVisualAttributes? {
+        let size = CGSize(width: 32, height: 32)
+        let color: UIColor
+        let text: String
+        let textAttributes = NodeVisualAttributes.Default.textAttributes
+
+        switch safeKind {
+        case let .leaf(value):
+            color = .flatBlue
+            let displayValue = (value * 10).rounded() / 10
+            text = String(describing: displayValue)
+        case let .node(value):
+            color = .flatRed
+            text = String(describing: value)
+        }
+
+        let connectingLineColor = color
+
+        return NodeVisualAttributes(size: size, color: color, text: text, textAttributes: textAttributes, connectingLineColor: connectingLineColor)
     }
 }

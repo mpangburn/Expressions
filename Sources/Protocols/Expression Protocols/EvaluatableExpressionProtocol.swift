@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 /// A type representing an evaluatable expression, e.g. arithmetic or logical.
@@ -30,6 +30,11 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
     /// - Returns: An expression consisting of the left expression and the right expression combined by the operator.
     static func makeExpression(left: Self, operator: Operator, right: Self) -> Self
 
+    /// The text and color of an evaluated node, for use in displaying in the animated evaluation of the expression.
+    /// Defaults to the `visualAttributes.text` and `visualAttributes.color` properties of an operand created
+    /// from the evaluation of the expression.
+    var evaluatedNodeAttributes: (text: String, color: UIColor) { get }
+
     /// Determines whether operands should be spaced from their operators in the expression's description.
     /// Defaults to false.
     var shouldSpaceDescription: Bool { get }
@@ -46,6 +51,12 @@ extension EvaluatableExpressionProtocol {
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
             return `operator`.apply(left.evaluate(), right.evaluate())
         }
+    }
+
+    public var evaluatedNodeAttributes: (text: String, color: UIColor) {
+        let result = evaluate()
+        guard let attributes = Self.makeExpression(operand: result).visualAttributes else { fatalError("A single operand must have visual attributes.") }
+        return (attributes.text, attributes.color)
     }
 
     public var shouldSpaceDescription: Bool {

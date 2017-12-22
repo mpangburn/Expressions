@@ -12,9 +12,10 @@ import UIKit
 public class BinaryTreeNodeView: UIView {
 
     public var visualAttributes: NodeVisualAttributes? { didSet { setNeedsDisplay() } }
-
     public var childNodeViews: [BinaryTreeNodeView] = []
     public var childLineViews: [LineView] = []
+    public var nextLabelText = ""
+    public var nextColor: UIColor = .clear
 
     public lazy var label: UILabel = {
         let label = UILabel(frame: bounds)
@@ -35,12 +36,20 @@ public class BinaryTreeNodeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override public func draw(_ rect: CGRect) {
-        guard let attributes = visualAttributes else { return }
-        label.attributedText = NSAttributedString(string: attributes.text, attributes: attributes.textAttributes)
-        backgroundColor = attributes.color
-        backgroundColor?.setFill()
-        UIGraphicsGetCurrentContext()!.fill(rect)
+    public func updateText() {
+        guard let attributes = self.visualAttributes else { return }
+        label.attributedText = NSAttributedString(string: self.nextLabelText, attributes: attributes.textAttributes)
+
+        UIView.animate(withDuration: 0.3, animations: {
+            if let left = self.childNodeViews.first, let right = self.childNodeViews.last {
+                left.alpha = 0
+                right.alpha = 0
+            }
+            UIView.animate(withDuration: 2.0, animations: {
+                self.label.alpha = 1
+                self.backgroundColor = self.nextColor
+            })
+        })
     }
 }
 
@@ -84,15 +93,17 @@ extension PositionedBinaryTree where Tree: EvaluatableExpressionProtocol {
         return children.last
     }
 
-    var view: UIView {
-        let view = UIView(frame: bounds())
-        addNodeViews(to: view)
-        return view
+    func makeView() -> (superview: UIView, rootNodeView: BinaryTreeNodeView) {
+        let superview = UIView(frame: bounds())
+        superview.backgroundColor = .white // Playground live view doesn't support transparency?
+        let rootNodeView = addNodeViews(to: superview)
+        return (superview, rootNodeView)
     }
 
-    private func addNodeViews(to view: UIView) {
+    private func addNodeViews(to view: UIView) -> BinaryTreeNodeView {
+        let rootNodeView = nodeView
         var nodeQueue = [self]
-        var viewQueue = [nodeView]
+        var viewQueue = [rootNodeView]
         while !nodeQueue.isEmpty /*, !viewQueue.isEmpty */ {
             let currentNode = nodeQueue.removeLast()
             let currentNodeView = viewQueue.removeLast()
@@ -128,6 +139,8 @@ extension PositionedBinaryTree where Tree: EvaluatableExpressionProtocol {
 
             view.addSubview(currentNodeView) // needs to happen last so lines go under
         }
+
+        return rootNodeView
     }
 
     var nodeView: BinaryTreeNodeView {
@@ -138,13 +151,18 @@ extension PositionedBinaryTree where Tree: EvaluatableExpressionProtocol {
         let center = CGPoint(x: visualX, y: visualY)
         let treeNodeView = BinaryTreeNodeView(frame: CGRect(center: center, size: attributes.size))
         treeNodeView.visualAttributes = attributes
+        let (evaluatedText, evaluatedColor) = tree.evaluatedNodeAttributes
+        treeNodeView.nextLabelText = evaluatedText
+        treeNodeView.nextColor = evaluatedColor
+        treeNodeView.label.attributedText = NSAttributedString(string: attributes.text, attributes: attributes.textAttributes)
+        treeNodeView.backgroundColor = attributes.color
         return treeNodeView
     }
 }
 
 extension EvaluatableExpressionProtocol {
-    public var view: UIView {
-        return positioned().view
+    public func makeView() -> (superview: UIView, rootNodeView: BinaryTreeNodeView) {
+        return positioned().makeView()
     }
 
     public var nodeView: UIView {
