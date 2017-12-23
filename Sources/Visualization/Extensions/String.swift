@@ -9,7 +9,6 @@
 import CoreGraphics
 
 
-// source: https://github.com/objcio/S01E65-playground-quicklook-for-binary-trees/blob/master/Binary%20Tree%20QuickLook.playground/Sources/Helpers.swift
 extension String {
     func draw(centeredAt center: CGPoint, attributes: [NSAttributedStringKey: Any]) {
         let size = (self as NSString).size(withAttributes: attributes)

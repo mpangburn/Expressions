@@ -22,12 +22,4 @@ extension CGRect {
         let size = CGSize(width: width, height: height)
         self.init(origin: topLeft, size: size)
     }
-
-    init(containing points: CGPoint...) {
-        let xs = points.map { $0.x }
-        let ys = points.map { $0.y }
-        let topLeft = CGPoint(x: xs.min()!, y: ys.min()!)
-        let bottomRight = CGPoint(x: xs.max()!, y: ys.max()!)
-        self.init(topLeft: topLeft, bottomRight: bottomRight)
-    }
 }

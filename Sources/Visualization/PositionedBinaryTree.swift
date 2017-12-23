@@ -144,25 +144,8 @@ extension PositionedBinaryTree {
     }
 }
 
-extension PositionedBinaryTree: CustomStringConvertible, CustomDebugStringConvertible {
+extension PositionedBinaryTree: CustomStringConvertible {
     var description: String {
         return "\(tree) at (\(x), \(y))"
-    }
-
-    var debugDescription: String {
-        return debugDescription()
-    }
-
-    /// Generates the debug description, using the tree's depth as a guide for indentation.
-    private func debugDescription(depth: Int = 0) -> String {
-        var debugDescription = description
-        if !children.isEmpty {
-            let tabs = String(repeating: "\t", count: depth)
-            debugDescription += "\n\(tabs)children:\n"
-            for child in children {
-                debugDescription += "\(tabs)\t\(child.debugDescription(depth: depth + 1))\n"
-            }
-        }
-        return debugDescription
     }
 }
