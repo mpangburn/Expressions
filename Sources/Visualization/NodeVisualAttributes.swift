@@ -10,23 +10,23 @@ import Foundation
 
 
 public struct NodeVisualAttributes {
-    let size: CGSize
-    let color: UIColor
-    let text: String
-    let textAttributes: [NSAttributedStringKey: Any]
-    let connectingLineColor: UIColor
+    public let size: CGSize
+    public let color: UIColor
+    public let text: String
+    public let textAttributes: [NSAttributedStringKey: Any]
+    public let connectingLineColor: UIColor
 
-    var childLineWidth: CGFloat {
+    public var childLineWidth: CGFloat {
         return (1 / Default.size.width) * size.width
     }
 
-    enum Default {
-        static let size = CGSize(width: 24, height: 24)
-        static let textAttributes: [NSAttributedStringKey: Any] = [
+    public enum Default {
+        public static let size = CGSize(width: 24, height: 24)
+        public static let textAttributes: [NSAttributedStringKey: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 12),
             .foregroundColor: UIColor.white
         ]
     }
 
-    static let spacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)
+    public static let spacingScaleFactor: (horizontal: CGFloat, vertical: CGFloat) = (1.5, 1.5)
 }

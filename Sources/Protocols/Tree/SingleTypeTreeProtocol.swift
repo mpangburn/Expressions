@@ -21,8 +21,9 @@ extension SingleTypeTreeProtocol {
     /// The value of the node.
     /// This property is nil if the tree is empty.
     public var value: Element? {
-        guard let kind = kind else { return nil }
-        switch kind {
+        switch nodeKind {
+        case .empty:
+            return nil
         case let .leaf(value):
             return value
         case let .node(value):
@@ -44,15 +45,6 @@ extension SingleTypeTreeProtocol {
         children.forEach { $0.traversePreOrder(process: process) }
     }
 
-    /// Returns a list containing the tree's elements as traversed in pre-order fashion,
-    /// i.e. with the current node appended, then each of its children recursively.
-    /// - Returns: A list containing the tree's elements as traversed in pre-order fashion.
-    public func traversedPreOrder() -> [Element] {
-        var elements: [Element] = []
-        traversePreOrder() { elements.append($0) }
-        return elements
-    }
-
     /// Processes each of the node's children recursively, then itself.
     /// - Parameters:
     ///     - process: The process to apply to each node.
@@ -61,15 +53,6 @@ extension SingleTypeTreeProtocol {
         guard let value = value else { return }
         children.forEach { $0.traversePostOrder(process: process) }
         process(value)
-    }
-
-    /// Returns a list containing the tree's elements as traversed in post-order fashion,
-    /// i.e. with each of the node's children appended recursively, then itself.
-    /// - Returns: A list containing the tree's elements as traversed in post-order fashion.
-    public func traversedPostOrder() -> [Element] {
-        var elements: [Element] = []
-        traversePostOrder() { elements.append($0) }
-        return elements
     }
 
     /// Processes every node on a level, left-to-right, before continuing to the next level.
@@ -85,14 +68,5 @@ extension SingleTypeTreeProtocol {
             process(value)
             queue += nextNode.children
         }
-    }
-
-    /// Returns a list containing the tree's elements as traversed in level-order fashion,
-    /// i.e. with every node on a level appended, left-to-right, before continuing to the next level.
-    /// - Returns: A list containing the tree's elements as traversed in level-order fashion.
-    public func traversedLevelOrder() -> [Element] {
-        var elements: [Element] = []
-        traverseLevelOrder() { elements.append($0) }
-        return elements
     }
 }

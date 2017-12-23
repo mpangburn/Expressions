@@ -10,13 +10,19 @@ import Foundation
 
 
 /// A tree that cannot be empty.
-public protocol NeverEmptyTreeProtocol: TreeProtocol { }
+public protocol NeverEmptyTreeProtocol: TreeProtocol {
+    /// The kind of a tree node--either a leaf node or a non-leaf node.
+    /// The enum case's associated value contains the node's data.
+    var neverEmptyNodeKind: NeverEmptyTreeNode<Leaf, Node> { get }
+}
 
 extension NeverEmptyTreeProtocol {
-    /// The kind of the tree--either a leaf or a non-leaf node--safely unwrapped, as the tree cannot be empty.
-    /// The enum case's associated value contains the node's data.
-    public var safeKind: TreeNode<Leaf, Node> {
-        guard let kind = kind else { fatalError("The tree cannot be empty.") }
-        return kind
+    public var nodeKind: TreeNode<Leaf, Node> {
+        switch neverEmptyNodeKind {
+        case let .leaf(value):
+            return .leaf(value)
+        case let .node(value):
+            return .node(value)
+        }
     }
 }

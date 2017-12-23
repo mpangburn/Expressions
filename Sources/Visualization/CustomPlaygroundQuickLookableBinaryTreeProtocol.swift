@@ -17,14 +17,14 @@ public protocol CustomPlaygroundQuickLookableBinaryTreeProtocol: BinaryTreeProto
 
 extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
     public var visualAttributes: NodeVisualAttributes? {
-        guard let kind = kind else { return nil }
-
         let size = NodeVisualAttributes.Default.size
         let color: UIColor
         let text: String
         let textAttributes = NodeVisualAttributes.Default.textAttributes
 
-        switch kind {
+        switch nodeKind {
+        case .empty:
+            return nil
         case let .leaf(value):
             color = .flatBlue
             text = String(describing: value)

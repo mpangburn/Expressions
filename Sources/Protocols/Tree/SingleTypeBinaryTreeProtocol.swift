@@ -25,13 +25,4 @@ extension SingleTypeBinaryTreeProtocol {
         process(value)
         right.map { $0.traverseInOrder(process: process) }
     }
-
-    /// Returns a list containing the tree's elements as traversed in in-order fashion,
-    /// i.e. with the node's left child appended recursively, then itself, then its right child recursively.
-    /// - Returns: A list containing the tree's elements as traversed in in-order fashion.
-    public func traversedInOrder() -> [Element] {
-        var elements: [Element] = []
-        traversePostOrder() { elements.append($0) }
-        return elements
-    }
 }

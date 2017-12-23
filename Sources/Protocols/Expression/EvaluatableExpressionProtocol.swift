@@ -44,7 +44,7 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
 
 extension EvaluatableExpressionProtocol {
     public func evaluate() -> Operand {
-        switch safeKind {
+        switch neverEmptyNodeKind {
         case let .leaf(operand):
             return operand
         case let .node(`operator`):
@@ -75,28 +75,28 @@ extension EvaluatableExpressionProtocol where Self: Equatable {
     /// - Parameter other: The expression with which to test for equality.
     /// - Returns: A boolean value representing whether the two expressions are deeply equal.
     public func deepEquals(_ other: Self) -> Bool {
-        return safeKind == other.safeKind && children == other.children
+        return neverEmptyNodeKind == other.neverEmptyNodeKind && children == other.children
     }
 }
 
 // TODO: Consider associativity
 extension EvaluatableExpressionProtocol {
     public var description: String {
-        switch safeKind {
+        switch neverEmptyNodeKind {
         case let .leaf(operand):
             return String(describing: operand)
         case let .node(`operator`):
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
 
             let leftString: String
-            if case let .node(leftOperator) = left.safeKind, leftOperator.precedence < `operator`.precedence {
+            if case let .node(leftOperator) = left.neverEmptyNodeKind, leftOperator.precedence < `operator`.precedence {
                 leftString = "(\(left.description))"
             } else {
                 leftString = left.description
             }
 
             let rightString: String
-            if case let .node(rightOperator) = right.safeKind, rightOperator.precedence < `operator`.precedence {
+            if case let .node(rightOperator) = right.neverEmptyNodeKind, rightOperator.precedence < `operator`.precedence {
                 rightString = "(\(right.description))"
             } else {
                 rightString = right.description

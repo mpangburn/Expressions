@@ -25,7 +25,10 @@ public enum _FloatingPointArithmeticExpression<Operator: FloatingPointBinaryOper
 // MARK: - Required conformance to tree protocols
 
 extension _FloatingPointArithmeticExpression {
-    public var kind: TreeNode<Operand, Operator>? {
+    public typealias Leaf = Operand
+    public typealias Node = Operator
+
+    public var neverEmptyNodeKind: NeverEmptyTreeNode<Operand, Operator> {
         switch self {
         case let .operand(operand):
             return .leaf(operand)
@@ -66,7 +69,7 @@ extension _FloatingPointArithmeticExpression {
         let text: String
         let textAttributes = NodeVisualAttributes.Default.textAttributes
 
-        switch safeKind {
+        switch neverEmptyNodeKind {
         case let .leaf(value):
             color = .flatBlue
             let displayValue = (value * 10).rounded() / 10

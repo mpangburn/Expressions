@@ -21,7 +21,10 @@ public enum LogicalExpression: LogicalExpressionProtocol {
 // MARK: - Required conformance to tree protocols
 
 extension LogicalExpression {
-    public var kind: TreeNode<Operand, Operator>? {
+    public typealias Leaf = Operand
+    public typealias Node = Operator
+
+    public var neverEmptyNodeKind: NeverEmptyTreeNode<Operand, Operator> {
         switch self {
         case let .operand(operand):
             return .leaf(operand)
@@ -57,14 +60,12 @@ extension LogicalExpression {
 
 extension LogicalExpression {
     public var visualAttributes: NodeVisualAttributes? {
-        guard let kind = kind else { return nil }
-
         let size = CGSize(width: 36, height: 36)
         let color: UIColor
         let text: String
         let textAttributes = NodeVisualAttributes.Default.textAttributes
 
-        switch kind {
+        switch neverEmptyNodeKind {
         case let .leaf(value):
             color = value ? .flatGreen2 : .flatRed2
             text = String(describing: value)

@@ -31,6 +31,7 @@
 		8931340E1FE5BF3700FE926E /* OperandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893133F91FE5BF3700FE926E /* OperandProtocol.swift */; };
 		8931341A1FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */; };
 		8931341C1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */; };
+		893BF6A61FEDDF7500C626F0 /* NeverEmptyTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BF6A51FEDDF7500C626F0 /* NeverEmptyTreeNode.swift */; };
 		896801991FE7172200BAAC2C /* SingleTypeTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */; };
 		8968019B1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */; };
 		8968019D1FE71C0300BAAC2C /* NodeVisualAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8968019C1FE71C0300BAAC2C /* NodeVisualAttributes.swift */; };
@@ -97,6 +98,7 @@
 		893133F91FE5BF3700FE926E /* OperandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperandProtocol.swift; sourceTree = "<group>"; };
 		893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthIntegerBinaryOperator.swift; sourceTree = "<group>"; };
 		8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointBinaryOperator.swift; sourceTree = "<group>"; };
+		893BF6A51FEDDF7500C626F0 /* NeverEmptyTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverEmptyTreeNode.swift; sourceTree = "<group>"; };
 		896801981FE7172200BAAC2C /* SingleTypeTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTypeTreeProtocol.swift; sourceTree = "<group>"; };
 		8968019A1FE717E300BAAC2C /* SingleTypeBinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTypeBinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		8968019C1FE71C0300BAAC2C /* NodeVisualAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeVisualAttributes.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				898A988B1FE8977800594C49 /* LogicalExpression.swift */,
 				896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */,
 				893133E21FE5BF3700FE926E /* TreeNode.swift */,
+				893BF6A51FEDDF7500C626F0 /* NeverEmptyTreeNode.swift */,
 				893133E51FE5BF3700FE926E /* Extensions */,
 				893133EA1FE5BF3700FE926E /* Protocols */,
 				89F7D25E1FE5CA5700160A4B /* Visualization */,
@@ -409,6 +412,7 @@
 				896D89381FE8F88700801D73 /* ComparativeOperator.swift in Sources */,
 				89F7D26D1FE5D1F300160A4B /* CGRect.swift in Sources */,
 				8931341A1FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift in Sources */,
+				893BF6A61FEDDF7500C626F0 /* NeverEmptyTreeNode.swift in Sources */,
 				89B323C11FEDB93400710AAD /* EvaluatableExpressionViewFactory.swift in Sources */,
 				89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */,
 				89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */,
