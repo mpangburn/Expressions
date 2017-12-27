@@ -1,5 +1,5 @@
 # Expressions
-Arithmetic and logical expressions elegantly modeled and visualized using protocol-oriented binary trees with value semantics.
+Arithmetic and logical expressions elegantly modeled and visualized using protocol-oriented binary trees with value semantics. 🌳
 
 ## Features
 - [x] Model arithmetic and logical expressions using binary trees.
@@ -24,7 +24,7 @@ And, to step it up another notch, we can animate the evaluation of this expressi
 
 ![ArithmeticExpression evaluation animated](https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true)
 
-(Pardon the gif quality--seeing it [in action](#gettingstarted) is definitely better.)
+(Pardon the gif quality--seeing it [in action](#getting-started) is definitely better.)
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
