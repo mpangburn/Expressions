@@ -35,6 +35,8 @@ And, to step it up another notch, we can animate the evaluation of this expressi
 
 ![ArithmeticExpression evaluation animated](https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true)
 
+(Pardon the gif quality--it's much better when seen [in action](#getting-started).)
+
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
 Furthermore, as a simple demonstration of the power of protocol-oriented programming, I've implemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can also be visualized with QuickLook.
