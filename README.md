@@ -1,5 +1,16 @@
-# Expressions
-Arithmetic and logical expressions elegantly modeled and visualized using protocol-oriented binary trees with value semantics. 🌳
+<p align="center">
+    <img src="https://github.com/mpangburn/Expressions/blob/master/Images/Banner.png?raw=true" width="480" max-width="90%" alt="Expressions"/>
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/Swift-4.0-orange.svg"/>
+    <img src="https://img.shields.io/packagist/l/doctrine/orm.svg"/>
+    <a href="https://twitter.com/pangburnout">
+        <img src="https://img.shields.io/badge/contact-@pangburnout-blue.svg?style=flat" alt="Twitter: @pangburnout" />
+    </a>
+</p>
+
+Arithmetic and logical expressions elegantly modeled and visualized using protocol-oriented binary trees with value semantics.
 
 ## Features
 - [x] Model arithmetic and logical expressions using binary trees.
@@ -24,8 +35,6 @@ And, to step it up another notch, we can animate the evaluation of this expressi
 
 ![ArithmeticExpression evaluation animated](https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true)
 
-(Pardon the gif quality--seeing it [in action](#getting-started) is definitely better.)
-
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
 Furthermore, as a simple demonstration of the power of protocol-oriented programming, I've implemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can also be visualized with QuickLook.
@@ -42,5 +51,5 @@ While a brief outline of the project's contents is provided in the section above
 ## License
 Expressions is released under the MIT license. See [LICENSE](https://github.com/mpangburn/Expressions/blob/master/LICENSE) for details.
 
-If you find this project to be a useful tool in learning or teaching expressions or binary trees, please reach out to me [on Twitter](https://twitter.com/michaelpangbu)--I'd love to hear from you.
+If you find this project to be a useful tool in learning or teaching expressions or binary trees, please reach out to me [on Twitter](https://twitter.com/pangburnout)--I'd love to hear from you.
 
