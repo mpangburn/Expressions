@@ -22,6 +22,6 @@ let fancyExpression: ArithmeticExpression<UInt64> = 2<<3|8&*(5&3)
 let floatingPointExpression: FloatingPointArithmeticExpression<Double> = 1.5*2.0-4.5/3.0
 /*:
  Animate the evaluation of an expression using `animateEvaluation(of:)`. The animation will be presented
- in the Playground's live view, which is visible in the Assistant Editor.
+ in the Playground's Live View, which is visible in the Assistant Editor.
 */
 animateEvaluation(of: expression)
