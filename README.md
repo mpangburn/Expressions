@@ -33,9 +33,7 @@ and in doing so create the full tree representing this expression, which in turn
 
 And, to step it up another notch, we can animate the evaluation of this expression by calling `animateEvaluation(of:)` in a Playground page. We can observe this animation in the Playground's Live View:
 
-![ArithmeticExpression evaluation animated](https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true)
-
-(Pardon the gif quality--it's much better when seen [in action](#getting-started).)
+<img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true" width="248">
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
