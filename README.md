@@ -18,11 +18,11 @@ let expression: ArithmeticExpression<Int> = 2*(1+3)-8/4
 
 and in doing so create the full tree representing this expression, which in turn can be visualized in an Xcode Playground via QuickLook:
 
-![ArithmeticExpression visualized](Expressions/Images/ArithmeticExpression.png)
+<img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression.png?raw=true" width="350">
 
 And, to step it up another notch, we can animate the evaluation of this expression by calling `animateEvaluation(of:)` in a Playground page. We can observe this animation in the Playground's Live View:
 
-![ArithmeticExpression evaluation animated]()
+![ArithmeticExpression evaluation animated](https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true)
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
@@ -38,7 +38,7 @@ While a brief outline of the project's contents is provided in the section above
 5. See the magic through Xcode Playground's QuickLook and Live View features. Each Playground Page demonstrates a type of expression or other tree-based structure.
 
 ## License
-Expressions is released under the MIT license. See [LICENSE]() for details.
+Expressions is released under the MIT license. See [LICENSE](https://github.com/mpangburn/Expressions/blob/master/LICENSE) for details.
 
 If you find this project to be a useful tool in learning or teaching expressions or binary trees, please reach out to me [on Twitter](https://twitter.com/michaelpangbu)--I'd love to hear from you.
 
