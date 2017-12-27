@@ -1,5 +1,2 @@
-import Expression
+import UIKit
 
-
-let expression: ArithmeticExpression<Int> = 3*(1+2)*2/6
-animateEvaluation(of: expression)

@@ -18,5 +18,5 @@ public protocol DivisibleBinaryOperatorProtocol: NumericBinaryOperatorProtocol w
 // MARK: - Default implementations
 
 extension DivisibleBinaryOperatorProtocol {
-    public static var divide: Self { return Self(identifier: "/", apply: /, precedence: .multiplication, associativity: .left, isCommutative: false) }
+    public static var divide: Self { return .init(identifier: "/", apply: /, precedence: .multiplication, associativity: .left, isCommutative: false) }
 }

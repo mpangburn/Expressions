@@ -17,26 +17,3 @@ public protocol Evaluatable {
     /// Evaluates the instance and returns the result.
     func evaluate() -> Result
 }
-
-extension Evaluatable where Self: Numeric {
-    public func evaluate() -> Magnitude {
-        return magnitude
-    }
-}
-
-extension Int: Evaluatable { }
-extension Int8: Evaluatable { }
-extension Int16: Evaluatable { }
-extension Int32: Evaluatable { }
-extension Int64: Evaluatable { }
-
-extension UInt: Evaluatable { }
-extension UInt8: Evaluatable { }
-extension UInt16: Evaluatable { }
-extension UInt32: Evaluatable { }
-extension UInt64: Evaluatable { }
-
-extension Double: Evaluatable { }
-extension Float: Evaluatable { }
-extension Float80: Evaluatable { }
-extension CGFloat: Evaluatable { }

@@ -24,7 +24,7 @@ public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Oper
 // MARK: - Default implementations
 
 extension NumericBinaryOperatorProtocol {
-    public static var add: Self { return Self(identifier: "+", apply: +, precedence: .addition, associativity: .left, isCommutative: true) }
-    public static var subtract: Self { return Self(identifier: "-", apply: -, precedence: .addition, associativity: .left, isCommutative: false) }
-    public static var multiply: Self { return Self(identifier: "*", apply: *, precedence: .multiplication, associativity: .left, isCommutative: true) }
+    public static var add: Self { return .init(identifier: "+", apply: +, precedence: .addition, associativity: .left, isCommutative: true) }
+    public static var subtract: Self { return .init(identifier: "-", apply: -, precedence: .addition, associativity: .left, isCommutative: false) }
+    public static var multiply: Self { return .init(identifier: "*", apply: *, precedence: .multiplication, associativity: .left, isCommutative: true) }
 }

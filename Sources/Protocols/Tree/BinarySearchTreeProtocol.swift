@@ -9,8 +9,9 @@
 import Foundation
 
 
-/// A binary tree whose nodes follow the following set of rules:
-/// -
+/// A binary tree that subscribes to the following set of rules:
+/// - Any node to a node's left is "less than" that node.
+/// - Any node to a node's right is "greater than" that node.
 public protocol BinarySearchTreeProtocol: SingleTypeBinaryTreeProtocol where Node: Comparable {
     /// Creates a new, empty tree.
     init()
@@ -53,7 +54,7 @@ extension BinarySearchTreeProtocol {
 
 extension BinarySearchTreeProtocol {
     public init<S: Sequence>(_ source: S) where S.Element == Element {
-        self = source.reduce(into: Self()) { $0.insert($1) }
+        self = source.reduce(into: .init()) { $0.insert($1) }
     }
 }
 

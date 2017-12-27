@@ -16,12 +16,14 @@ public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, Expres
 
 extension LogicalExpressionProtocol {
     public init(booleanLiteral boolean: Bool) {
-        self = Self.makeExpression(operand: boolean)
+        self = .makeExpression(operand: boolean)
     }
 }
 
 extension LogicalExpressionProtocol {
-    public var shouldSpaceDescription: Bool { return true }
+    public var shouldSpaceDescription: Bool {
+        return true
+    }
 }
 
 // MARK: - Operators

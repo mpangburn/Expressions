@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// The visual attributes of a node to be used in rendering the image of a tree.
 public struct NodeVisualAttributes {
     public let size: CGSize
     public let color: UIColor

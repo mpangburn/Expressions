@@ -67,7 +67,6 @@ extension TreeProtocol {
     ///     - process: The process to apply to each node.
     ///     - kind: The kind of the node, which contains its data.
     public func traversePostOrder(process: (_ kind: TreeNode<Leaf, Node>) -> Void) {
-        guard nodeKind != .empty else { return }
         children.forEach { $0.traversePostOrder(process: process) }
         process(nodeKind)
     }

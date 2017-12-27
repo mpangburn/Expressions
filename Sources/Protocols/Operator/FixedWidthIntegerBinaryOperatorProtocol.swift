@@ -30,9 +30,9 @@ public protocol FixedWidthIntegerBinaryOperatorProtocol: BinaryIntegerBinaryOper
 // MARK: - Default implementations
 
 extension FixedWidthIntegerBinaryOperatorProtocol {
-    public static var addIgnoringOverflow: Self { return Self(identifier: "&+", apply: &+, precedence: .addition, associativity: .left, isCommutative: true) }
-    public static var subtractIgnoringOverflow: Self { return Self(identifier: "&-", apply: &-, precedence: .addition, associativity: .left, isCommutative: true) }
-    public static var multiplyIgnoringOverflow: Self { return Self(identifier: "&*", apply: &*, precedence: .multiplication, associativity: .left, isCommutative: true) }
-    public static var bitwiseLeftMaskingShift: Self { return Self(identifier: "&<<", apply: &<<, precedence: .bitwiseShift, associativity: .none, isCommutative: false) }
-    public static var bitwiseRightMaskingShift: Self { return Self(identifier: "&>>", apply: &>>, precedence: .bitwiseShift, associativity: .none, isCommutative: false) }
+    public static var addIgnoringOverflow: Self { return .init(identifier: "&+", apply: &+, precedence: .addition, associativity: .left, isCommutative: true) }
+    public static var subtractIgnoringOverflow: Self { return .init(identifier: "&-", apply: &-, precedence: .addition, associativity: .left, isCommutative: true) }
+    public static var multiplyIgnoringOverflow: Self { return .init(identifier: "&*", apply: &*, precedence: .multiplication, associativity: .left, isCommutative: true) }
+    public static var bitwiseLeftMaskingShift: Self { return .init(identifier: "&<<", apply: &<<, precedence: .bitwiseShift, associativity: .none, isCommutative: false) }
+    public static var bitwiseRightMaskingShift: Self { return .init(identifier: "&>>", apply: &>>, precedence: .bitwiseShift, associativity: .none, isCommutative: false) }
 }

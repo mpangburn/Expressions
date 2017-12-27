@@ -102,9 +102,9 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
         guard let attributes = visualAttributes else { return }
 
         func recurse(child: Self?, offset: CGFloat) {
-            guard let child = child else { return }
-            let childCenter = CGPoint(x: center.x + offset, y: center.y + attributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical)
-            context.drawLine(from: center, to: childCenter, color: attributes.connectingLineColor, width: attributes.childLineWidth)
+            guard let child = child, let childAttributes = child.visualAttributes else { return }
+            let childCenter = CGPoint(x: center.x + offset, y: center.y + childAttributes.size.height * NodeVisualAttributes.spacingScaleFactor.vertical)
+            context.drawLine(from: center, to: childCenter, color: childAttributes.connectingLineColor, width: childAttributes.childLineWidth)
             child.renderWide(into: context, at: childCenter, currentHeight: currentHeight - 1)
         }
 

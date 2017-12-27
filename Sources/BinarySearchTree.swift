@@ -9,50 +9,46 @@
 import Foundation
 
 
-/// A non-self-balancing binary search tree.
+/// A traditional non-self-balancing binary search tree.
 public enum BinarySearchTree<Element: Comparable>: BinarySearchTreeProtocol {
     case empty
     indirect case node(left: BinarySearchTree<Element>, value: Element, right: BinarySearchTree<Element>)
-
-    // MARK: Public
 
     public init() {
         self = .empty
     }
 
     public mutating func insert(_ element: Element) {
-        self = withInserted(element)
+        self = inserting(element)
     }
 
-    public mutating func delete(_ element: Element) {
-        self = withDeleted(element)
-    }
-
-    // MARK: Private
-
-    private func withInserted(_ element: Element) -> BinarySearchTree<Element> {
+    public func inserting(_ element: Element) -> BinarySearchTree<Element> {
         guard case let .node(left, value, right) = self else {
             return .node(left: .empty, value: element, right: .empty)
         }
 
         if element < value {
-            return .node(left: left.withInserted(element), value: value, right: right)
+            return .node(left: left.inserting(element), value: value, right: right)
         } else if element > value {
-            return .node(left: left, value: value, right: right.withInserted(element))
+            return .node(left: left, value: value, right: right.inserting(element))
         } else {
             return self
         }
     }
 
-    private func withDeleted(_ element: Element) -> BinarySearchTree<Element> {
+    public mutating func delete(_ element: Element) {
+        self = deleting(element)
+    }
+
+    public func deleting(_ element: Element) -> BinarySearchTree<Element> {
         guard case let .node(left, value, right) = self else {
             return .empty
         }
 
         if element < value {
-            return .node(left: left.withDeleted(element), value: value, right: right)
+            return .node(left: left.deleting(element), value: value, right: right)
         } else if element > value {
-            return .node(left: left, value: value, right: right.withDeleted(element))
+            return .node(left: left, value: value, right: right.deleting(element))
         } else {
             switch (left, right) {
             case (.empty, .empty):
@@ -62,8 +58,8 @@ public enum BinarySearchTree<Element: Comparable>: BinarySearchTreeProtocol {
             case (_, .empty):
                 return left
             default:
-                guard let successor = right.min() else { fatalError("Unreachable switch case") }
-                return .node(left: left, value: successor, right: right.withDeleted(successor))
+                guard let successor = right.min() else { fatalError("Unreachable--the right side cannot be empty.") }
+                return .node(left: left, value: successor, right: right.deleting(successor))
             }
         }
     }

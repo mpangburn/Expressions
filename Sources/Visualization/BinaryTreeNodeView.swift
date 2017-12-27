@@ -10,8 +10,7 @@ import UIKit
 
 
 public class BinaryTreeNodeView: UIView {
-
-    public var visualAttributes: NodeVisualAttributes? { didSet { setNeedsDisplay() } }
+    public var visualAttributes: NodeVisualAttributes?
     public var childNodeViews: [BinaryTreeNodeView] = []
     public var childLineViews: [LineView] = []
     public var nextLabelText = ""

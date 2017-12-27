@@ -11,8 +11,10 @@ import UIKit
 
 public struct EvaluatableExpressionViewFactory {
 
-    private init() { }
+    private init() {}
 
+    /// Returns a tuple of 1) a UIView containing properly positioned node views making up the tree,
+    /// and 2) the root node view for use in accessing the structure of these subviews.
     public static func makeView<T>(of expression: T) -> (superview: UIView, rootNodeView: BinaryTreeNodeView) where T: EvaluatableExpressionProtocol {
         let positionedTree = expression.positioned()
         let superview = UIView(frame: positionedTree.bounds())
@@ -38,30 +40,27 @@ public struct EvaluatableExpressionViewFactory {
 
                 let leftLineSize = CGSize(width: currentNodeView.frame.midX - leftNodeView.frame.midX,
                                           height: leftNodeView.frame.midY - currentNodeView.frame.midY)
-
                 let leftLineOrigin = CGPoint(x: leftNodeView.frame.midX, y: currentNodeView.frame.midY)
                 let leftLineView = LineView(frame: CGRect(origin: leftLineOrigin, size: leftLineSize))
-                leftLineView.backgroundColor = .clear
                 leftLineView.slantDirection = .right
-                leftLineView.color = leftNodeView.visualAttributes!.connectingLineColor
-                leftLineView.width = leftNodeView.visualAttributes!.childLineWidth
-                currentNodeView.childLineViews.append(leftLineView)
-                view.addSubview(leftLineView)
 
                 let rightLineSize = CGSize(width: rightNodeView.frame.midX - currentNodeView.frame.midX,
                                            height: rightNodeView.frame.midY - currentNodeView.frame.midY)
-
                 let rightLineOrigin = CGPoint(x: currentNodeView.frame.midX, y: currentNodeView.frame.midY)
                 let rightLineView = LineView(frame: CGRect(origin: rightLineOrigin, size: rightLineSize))
-                rightLineView.backgroundColor = .clear
                 rightLineView.slantDirection = .left
-                rightLineView.color = rightNodeView.visualAttributes!.connectingLineColor
-                rightLineView.width = rightNodeView.visualAttributes!.childLineWidth
-                currentNodeView.childLineViews.append(rightLineView)
-                view.addSubview(rightLineView)
+
+                for (lineView, nodeView) in zip([leftLineView, rightLineView], [leftNodeView, rightNodeView]) {
+                    lineView.backgroundColor = .clear
+                    guard let attributes = nodeView.visualAttributes else { fatalError("Child node view improperly configured") }
+                    lineView.color = attributes.connectingLineColor
+                    lineView.width = attributes.childLineWidth
+                    currentNodeView.childLineViews.append(lineView)
+                    view.addSubview(lineView)
+                }
             }
 
-            view.addSubview(currentNodeView) // needs to happen last so lines go under
+            view.addSubview(currentNodeView) // add node view last to go on top of line views
         }
 
         return rootNodeView
@@ -69,9 +68,9 @@ public struct EvaluatableExpressionViewFactory {
 
     private static func nodeView<T>(of positionedTree: PositionedBinaryTree<T>) -> BinaryTreeNodeView where T: EvaluatableExpressionProtocol {
         guard let attributes = positionedTree.visualAttributes else { return BinaryTreeNodeView(frame: .zero) }
-        let cgPtPosition = positionedTree.cgPointPosition
-        let visualX = cgPtPosition.x + attributes.size.width / 2 * NodeVisualAttributes.spacingScaleFactor.horizontal
-        let visualY = cgPtPosition.y + attributes.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical
+        let cgPointPosition = positionedTree.cgPointPosition
+        let visualX = cgPointPosition.x + attributes.size.width / 2 * NodeVisualAttributes.spacingScaleFactor.horizontal
+        let visualY = cgPointPosition.y + attributes.size.height / 2 * NodeVisualAttributes.spacingScaleFactor.vertical
         let center = CGPoint(x: visualX, y: visualY)
         let treeNodeView = BinaryTreeNodeView(frame: CGRect(center: center, size: attributes.size))
         treeNodeView.visualAttributes = attributes

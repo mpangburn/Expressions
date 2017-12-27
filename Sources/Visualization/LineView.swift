@@ -11,13 +11,13 @@ import UIKit
 
 /// A view containing a line drawn diagonally across its bounds.
 public class LineView: UIView {
-    enum SlantDirection { case left, right }
+    public enum SlantDirection {
+        case left, right
+    }
 
-    var slantDirection: SlantDirection = .left
-
-    var color: UIColor = .black
-
-    var width: CGFloat = 1
+    public var slantDirection: SlantDirection = .left { didSet { setNeedsDisplay() } }
+    public var color: UIColor = .black { didSet { setNeedsDisplay() } }
+    public var width: CGFloat = 1 { didSet { setNeedsDisplay() } }
 
     override public func draw(_ bounds: CGRect) {
         let start: CGPoint

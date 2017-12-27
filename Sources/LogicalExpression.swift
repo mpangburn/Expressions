@@ -9,18 +9,21 @@
 import Foundation
 
 
+/// An expression of boolean logic.
+public typealias LogicalExpression = _LogicalExpression<LogicalBinaryOperator>
+
 /// An expression of boolean logic modeled as a binary tree.
-public enum LogicalExpression: LogicalExpressionProtocol {
+/// Use the typealias LogicalExpression rather than working with this type directly.
+public enum _LogicalExpression<Operator: LogicalBinaryOperatorProtocol>: LogicalExpressionProtocol {
     public typealias Operand = Bool
-    public typealias Operator = LogicalBinaryOperator
 
     case operand(Operand)
-    indirect case expression(left: LogicalExpression, operator: Operator, right: LogicalExpression)
+    indirect case expression(left: _LogicalExpression, operator: Operator, right: _LogicalExpression)
 }
 
 // MARK: - Required conformance to tree protocols
 
-extension LogicalExpression {
+extension _LogicalExpression {
     public typealias Leaf = Operand
     public typealias Node = Operator
 
@@ -33,12 +36,12 @@ extension LogicalExpression {
         }
     }
 
-    public var left: LogicalExpression? {
+    public var left: _LogicalExpression<Operator>? {
         guard case let .expression(left, _, _) = self else { return nil }
         return left
     }
 
-    public var right: LogicalExpression? {
+    public var right: _LogicalExpression<Operator>? {
         guard case let .expression(_, _, right) = self else { return nil }
         return right
     }
@@ -46,19 +49,19 @@ extension LogicalExpression {
 
 // MARK: - Required conformance to expression protocols
 
-extension LogicalExpression {
-    public static func makeExpression(operand: Operand) -> LogicalExpression {
+extension _LogicalExpression {
+    public static func makeExpression(operand: Operand) -> _LogicalExpression<Operator> {
         return .operand(operand)
     }
 
-    public static func makeExpression(left: LogicalExpression, operator: Operator, right: LogicalExpression) -> LogicalExpression {
+    public static func makeExpression(left: _LogicalExpression<Operator>, operator: Operator, right: _LogicalExpression<Operator>) -> _LogicalExpression<Operator> {
         return .expression(left: left, operator: `operator`, right: right)
     }
 }
 
 // MARK: - Visual attributes
 
-extension LogicalExpression {
+extension _LogicalExpression {
     public var visualAttributes: NodeVisualAttributes? {
         let size = CGSize(width: 36, height: 36)
         let color: UIColor

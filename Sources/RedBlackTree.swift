@@ -10,7 +10,6 @@ import UIKit
 
 
 /// A self-balancing binary search tree following traditional red-black tree rules.
-/// c.f. https://airspeedvelocity.net/2015/07/22/a-persistent-tree-using-indirect-enums-in-swift/
 public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleTypeTreeProtocol {
     public enum Color { case red, black }
     
@@ -24,16 +23,10 @@ public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleT
     }
 
     public mutating func insert(_ element: Element) {
-        self = withInserted(element)
+        self = inserting(element)
     }
 
-    // MARK: Private
-
-    private init(value: Element, color: Color = .black, left: RedBlackTree<Element> = .empty, right: RedBlackTree<Element> = .empty) {
-        self = .node(color: color, left: left, value: value, right: right)
-    }
-
-    private func withInserted(_ element: Element) -> RedBlackTree<Element> {
+    public func inserting(_ element: Element) -> RedBlackTree<Element> {
         guard case let .node(_, left, value, right) = insertHelper(element) else {
             fatalError("A tree can never be empty after an insertion.")
         }
@@ -41,15 +34,17 @@ public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleT
         return .node(color: .black, left: left, value: value, right: right)
     }
 
+    // MARK: Private
+
     private func insertHelper(_ element: Element) -> RedBlackTree<Element> {
         guard case let .node(color, left, value, right) = self else {
-            return RedBlackTree(value: element, color: .red)
+            return .node(color: .red, left: .empty, value: element, right: .empty)
         }
 
         if element < value {
-            return RedBlackTree(value: value, color: color, left: left.insertHelper(element), right: right).rebalanced()
+            return RedBlackTree.node(color: color, left: left.insertHelper(element), value: value, right: right).rebalanced()
         } else if element > value {
-            return RedBlackTree(value: value, color: color, left: left, right: right.insertHelper(element)).rebalanced()
+            return RedBlackTree.node(color: color, left: left, value: value, right: right.insertHelper(element)).rebalanced()
         } else {
             return self
         }

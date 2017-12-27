@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A binary operator that operates on equatable types.
-protocol EquatableOperatorProtocol: BinaryOperatorProtocol where Operand: Equatable, Result == Bool {
+public protocol EquatableOperatorProtocol: BinaryOperatorProtocol where Operand: Equatable, Result == Bool {
     /// The equality testing operator (==).
     static var equal: Self { get }
 
@@ -18,13 +18,13 @@ protocol EquatableOperatorProtocol: BinaryOperatorProtocol where Operand: Equata
     static var notEqual: Self { get }
 
     /// The value equality testing operator (~=).
-    static var valueEquals: Self { get }
+    static var valueEqual: Self { get }
 }
 
 // MARK: - Default implementations
 
 extension EquatableOperatorProtocol {
-    static var equal: Self { return Self(identifier: "==", apply: ==, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var notEqual: Self { return Self(identifier: "!=", apply: !=, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var valueEquals: Self { return Self(identifier: "~=", apply: ~=, precedence: .comparison, associativity: .none, isCommutative: true) }
+    public static var equal: Self { return .init(identifier: "==", apply: ==, precedence: .comparison, associativity: .none, isCommutative: true) }
+    public static var notEqual: Self { return .init(identifier: "!=", apply: !=, precedence: .comparison, associativity: .none, isCommutative: true) }
+    public static var valueEqual: Self { return .init(identifier: "~=", apply: ~=, precedence: .comparison, associativity: .none, isCommutative: true) }
 }

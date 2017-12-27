@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A binary operator that operates on comparable types.
-protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable {
+public protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable {
     /// The 'less than' testing operator (<).
     static var lessThan: Self { get }
 
@@ -27,8 +27,8 @@ protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: C
 // MARK: - Default implementations
 
 extension ComparativeOperatorProtocol {
-    static var lessThan: Self { return Self(identifier: "<", apply: <, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var lessThanOrEqual: Self { return Self(identifier: "<=", apply: <=, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var greaterThan: Self { return Self(identifier: ">", apply: >, precedence: .comparison, associativity: .none, isCommutative: false) }
-    static var greaterThanOrEqual: Self { return Self(identifier: ">=", apply: >=, precedence: .comparison, associativity: .none, isCommutative: false) }
+    public static var lessThan: Self { return .init(identifier: "<", apply: <, precedence: .comparison, associativity: .none, isCommutative: false) }
+    public static var lessThanOrEqual: Self { return .init(identifier: "<=", apply: <=, precedence: .comparison, associativity: .none, isCommutative: false) }
+    public static var greaterThan: Self { return .init(identifier: ">", apply: >, precedence: .comparison, associativity: .none, isCommutative: false) }
+    public static var greaterThanOrEqual: Self { return .init(identifier: ">=", apply: >=, precedence: .comparison, associativity: .none, isCommutative: false) }
 }

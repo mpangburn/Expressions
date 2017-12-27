@@ -16,20 +16,20 @@ public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Num
 
 extension ArithmeticExpressionProtocol {
     public init(integerLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
+        self = .makeExpression(operand: operand)
     }
 }
 
 extension ArithmeticExpressionProtocol where Self: ExpressibleByFloatLiteral {
     public init(floatLiteral operand: Operand) {
-        self = Self.makeExpression(operand: operand)
+        self = .makeExpression(operand: operand)
     }
 }
 
 extension ArithmeticExpressionProtocol {
     public init?<T>(exactly source: T) where T: BinaryInteger {
         guard let operand = Operand(exactly: source) else { return nil }
-        self = Self.makeExpression(operand: operand)
+        self = .makeExpression(operand: operand)
     }
 
     /// Evaluates the expression by applying its operators to its operands.

@@ -15,13 +15,13 @@ class PositionedBinaryTree<Tree: CustomPlaygroundQuickLookableBinaryTreeProtocol
     let tree: Tree
 
     /// The logical x-coordinate of the tree in space once positioned.
-    var x: Int
+    private(set) var x: Int
 
     /// The logical y-coordinate of the tree in space once positioned.
-    var y: Int
+    private(set) var y: Int
 
     /// The positioned children of the wrapped tree.
-    var children: [PositionedBinaryTree<Tree>]
+    private(set) var children: [PositionedBinaryTree<Tree>]
 
     private init(tree: Tree, depth: Int) {
         self.tree = tree

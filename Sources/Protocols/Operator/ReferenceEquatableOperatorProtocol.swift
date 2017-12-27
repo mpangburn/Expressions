@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A binary operator that operates on reference equatable types.
-protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operand: AnyObject, Result == Bool {
+public protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operand: AnyObject, Result == Bool {
     /// The identity-testing equality operator (===).
     static var identical: Self { get }
 
@@ -21,6 +21,6 @@ protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operan
 // MARK: - Default implementations
 
 extension ReferenceEquatableOperatorProtocol {
-    static var identical: Self { return Self(identifier: "===", apply: ===, precedence: .comparison, associativity: .none, isCommutative: true) }
-    static var notIdentical: Self { return Self(identifier: "!==", apply: !==, precedence: .comparison, associativity: .none, isCommutative: true) }
+    public static var identical: Self { return .init(identifier: "===", apply: ===, precedence: .comparison, associativity: .none, isCommutative: true) }
+    public static var notIdentical: Self { return .init(identifier: "!==", apply: !==, precedence: .comparison, associativity: .none, isCommutative: true) }
 }
