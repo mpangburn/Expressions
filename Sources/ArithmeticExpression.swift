@@ -10,43 +10,38 @@ import Foundation
 
 
 /// An arithmetic expression whose operands are of an integer type.
-public typealias ArithmeticExpression<T: FixedWidthIntegerOperandProtocol> = _ArithmeticExpression<FixedWidthIntegerBinaryOperator<T>>
+public typealias ArithmeticExpression<T: FixedWidthIntegerOperandProtocol> = _ArithmeticExpression<BinaryIntegerUnaryOperator<T>, FixedWidthIntegerBinaryOperator<T>>
 
 /// An arithmetic expression modeled as a binary tree.
 /// Use the typealias ArithmeticExpression rather than working with this type directly.
 /// For floating point operands, see FloatingPointExpression.
-public enum _ArithmeticExpression<Operator: NumericBinaryOperatorProtocol>: ArithmeticExpressionProtocol {
-    public typealias Operand = Operator.Operand
+public enum _ArithmeticExpression<UnaryOperator: NumericUnaryOperatorProtocol, BinaryOperator: NumericBinaryOperatorProtocol>: ArithmeticExpressionProtocol where UnaryOperator.Operand == BinaryOperator.Operand {
+    public typealias Operand = UnaryOperator.Operand
 
     case operand(Operand)
-    indirect case expression(left: _ArithmeticExpression<Operator>, operator: Operator, right: _ArithmeticExpression<Operator>)
+    indirect case unaryExpression(operator: UnaryOperator, operand: _ArithmeticExpression<UnaryOperator, BinaryOperator>)
+    indirect case binaryExpression(left: _ArithmeticExpression<UnaryOperator, BinaryOperator>, operator: BinaryOperator, right: _ArithmeticExpression<UnaryOperator, BinaryOperator>)
 }
-
-// Once we have conditional conformance, FloatingPointArithmeticExpression can become restricted typealias for _ArithmeticExpression.
-/* extension _ArithmeticExpression: ExpressibleByFloatingPointLiteral where Operand: FloatingPointOperandProtocol { } */
 
 // MARK: - Required conformance to tree protocols
 
 extension _ArithmeticExpression {
     public typealias Leaf = Operand
-    public typealias Node = Operator
+    public typealias Node = OperatorNodeKind<UnaryOperator, BinaryOperator>
 
-    public var neverEmptyNodeKind: NeverEmptyTreeNode<Operand, Operator> {
+    public var left: _ArithmeticExpression<UnaryOperator, BinaryOperator>? {
         switch self {
-        case let .operand(operand):
-            return .leaf(operand)
-        case let .expression(_, `operator`, _):
-            return .node(`operator`)
+        case .operand:
+            return nil
+        case let .unaryExpression(_, operand):
+            return operand
+        case let .binaryExpression(left, _, _):
+            return left
         }
     }
 
-    public var left: _ArithmeticExpression<Operator>? {
-        guard case let .expression(left, _, _) = self else { return nil }
-        return left
-    }
-
-    public var right: _ArithmeticExpression<Operator>? {
-        guard case let .expression(_, _, right) = self else { return nil }
+    public var right: _ArithmeticExpression<UnaryOperator, BinaryOperator>? {
+        guard case let .binaryExpression(_, _, right) = self else { return nil }
         return right
     }
 }
@@ -54,11 +49,26 @@ extension _ArithmeticExpression {
 // MARK: - Required conformance to expression protocols
 
 extension _ArithmeticExpression {
-    public static func makeExpression(operand: Operand) -> _ArithmeticExpression<Operator> {
+    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
+        switch self {
+        case let .operand(operand):
+            return .operand(operand)
+        case let .unaryExpression(`operator`, _):
+            return .unaryOperator(`operator`)
+        case let .binaryExpression(_, `operator`, _):
+            return .binaryOperator(`operator`)
+        }
+    }
+
+    public static func makeExpression(operand: Operand) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
         return .operand(operand)
     }
 
-    public static func makeExpression(left: _ArithmeticExpression<Operator>, operator: Operator, right: _ArithmeticExpression<Operator>) -> _ArithmeticExpression<Operator> {
-        return .expression(left: left, operator: `operator`, right: right)
+    public static func makeExpression(unaryOperator: UnaryOperator, operand: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .unaryExpression(operator: unaryOperator, operand: operand)
+    }
+
+    public static func makeExpression(left: _ArithmeticExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .binaryExpression(left: left, operator: binaryOperator, right: right)
     }
 }

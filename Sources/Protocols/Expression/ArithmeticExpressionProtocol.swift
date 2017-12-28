@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A type representing an arithmetic expression.
-public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where Node: NumericBinaryOperatorProtocol { }
+public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where UnaryOperator: NumericUnaryOperatorProtocol, BinaryOperator: NumericBinaryOperatorProtocol { }
 
 // MARK: - Default implementations
 
@@ -43,21 +43,21 @@ extension ArithmeticExpressionProtocol {
 
 extension ArithmeticExpressionProtocol {
     public static func + (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .add, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .add, right: rhs)
     }
 
     public static func - (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .subtract, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .subtract, right: rhs)
     }
 
     public static func * (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .multiply, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .multiply, right: rhs)
     }
 }
 
-extension ArithmeticExpressionProtocol /*: Divisible */ where Node: DivisibleBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol /*: Divisible */ where BinaryOperator: DivisibleBinaryOperatorProtocol {
     public static func / (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .divide, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .divide, right: rhs)
     }
 
     public static func /= (lhs: inout Self, rhs: Self) {
@@ -65,9 +65,9 @@ extension ArithmeticExpressionProtocol /*: Divisible */ where Node: DivisibleBin
     }
 }
 
-extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol where BinaryOperator: BinaryIntegerBinaryOperatorProtocol {
     public static func % (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .remainder, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .remainder, right: rhs)
     }
 
     public static func %= (lhs: inout Self, rhs: Self) {
@@ -75,7 +75,7 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 
     public static func & (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseAND, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseAND, right: rhs)
     }
 
     public static func &= (lhs: inout Self, rhs: Self) {
@@ -83,7 +83,7 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 
     public static func | (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseOR, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseOR, right: rhs)
     }
 
     public static func |= (lhs: inout Self, rhs: Self) {
@@ -91,7 +91,7 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 
     public static func ^ (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseXOR, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseXOR, right: rhs)
     }
 
     public static func ^= (lhs: inout Self, rhs: Self) {
@@ -99,7 +99,7 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 
     public static func << (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseLeftShift, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseLeftShift, right: rhs)
     }
 
     public static func <<= (lhs: inout Self, rhs: Self) {
@@ -107,7 +107,7 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 
     public static func >> (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseRightShift, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseRightShift, right: rhs)
     }
 
     public static func >>= (lhs: inout Self, rhs: Self) {
@@ -115,24 +115,24 @@ extension ArithmeticExpressionProtocol where Node: BinaryIntegerBinaryOperatorPr
     }
 }
 
-extension ArithmeticExpressionProtocol where Node: FixedWidthIntegerBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol where BinaryOperator: FixedWidthIntegerBinaryOperatorProtocol {
     public static func &+ (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .addIgnoringOverflow, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .addIgnoringOverflow, right: rhs)
     }
 
     public static func &- (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .subtractIgnoringOverflow, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .subtractIgnoringOverflow, right: rhs)
     }
 
     public static func &* (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .multiplyIgnoringOverflow, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .multiplyIgnoringOverflow, right: rhs)
     }
 
     public static func &<< (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseLeftMaskingShift, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseLeftMaskingShift, right: rhs)
     }
 
     public static func &>> (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .bitwiseRightMaskingShift, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .bitwiseRightMaskingShift, right: rhs)
     }
 }

@@ -36,12 +36,26 @@ public class BinaryTreeNodeView: UIView {
     }
 
     public func bringInChildNodes() {
-        guard let leftNodeView = childNodeViews.first, let rightNodeView = childNodeViews.last, let leftLineView = childLineViews.first, let rightLineView = childLineViews.last else { return }
-        label.alpha = 0
-        leftNodeView.frame = frame
-        rightNodeView.frame = frame
-        leftLineView.transform = CGAffineTransform(translationX: leftLineView.frame.width / 2, y: -leftLineView.frame.height / 2).scaledBy(x: 0.0001, y: 0.0001)
-        rightLineView.transform = CGAffineTransform(translationX: -rightLineView.frame.width / 2, y: -rightLineView.frame.height / 2).scaledBy(x: 0.0001, y: 0.0001)
+        switch childNodeViews.count {
+        case 0:
+            break
+        case 1:
+            let childNodeView = childNodeViews[0]
+            guard let childLineView = childLineViews.first else { fatalError() }
+            label.alpha = 0
+            childNodeView.frame = frame
+            childLineView.transform = CGAffineTransform(translationX: 0, y: -childNodeView.frame.height / 2).scaledBy(x: 0.0001, y: 0.0001)
+        case 2:
+            guard let leftNodeView = childNodeViews.first, let rightNodeView = childNodeViews.last, let leftLineView = childLineViews.first, let rightLineView = childLineViews.last else { return }
+            label.alpha = 0
+            leftNodeView.frame = frame
+            rightNodeView.frame = frame
+            leftLineView.transform = CGAffineTransform(translationX: leftLineView.frame.width / 2, y: -leftLineView.frame.height / 2).scaledBy(x: 0.0001, y: 0.0001)
+            rightLineView.transform = CGAffineTransform(translationX: -rightLineView.frame.width / 2, y: -rightLineView.frame.height / 2).scaledBy(x: 0.0001, y: 0.0001)
+        default:
+            fatalError("A binary tree node cannot have more than two children.")
+        }
+
     }
 
     public func updateToNextState() {

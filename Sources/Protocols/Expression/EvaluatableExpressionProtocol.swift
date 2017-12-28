@@ -10,17 +10,21 @@ import UIKit
 
 
 /// A type representing an evaluatable expression, e.g. arithmetic or logical.
-public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, CustomStringConvertible where Node: BinaryOperatorProtocol, Leaf == Node.Operand, Result == Node.Result, Result == Leaf {
+public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBinaryTreeProtocol, NeverEmptyTreeProtocol, Evaluatable, CustomStringConvertible where Result == Leaf {
+
     /// The type of the operands used in the expression.
     typealias Operand = Leaf
 
-    /// The type of the operators used in the expression.
-    typealias Operator = Node
+    associatedtype UnaryOperator: UnaryOperatorProtocol where UnaryOperator.Operand == Operand, UnaryOperator.Result == Operand
+
+    associatedtype BinaryOperator: BinaryOperatorProtocol where BinaryOperator.Operand == Operand, BinaryOperator.Result == Operand
 
     /// Returns an expression consisting of the single operand.
     /// - Parameter operand: The operand used to create the expression.
     /// - Returns: An expression consisting of the single operand.
     static func makeExpression(operand: Operand) -> Self
+
+    static func makeExpression(unaryOperator: UnaryOperator, operand: Self) -> Self
 
     /// Returns an expression consisting of the left expression and the right expression combined by the operator.
     /// - Parameters:
@@ -28,7 +32,9 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
     ///     - operator: The operator combining the two sides of the expression.
     ///     - right: The right side of the expression.
     /// - Returns: An expression consisting of the left expression and the right expression combined by the operator.
-    static func makeExpression(left: Self, operator: Operator, right: Self) -> Self
+    static func makeExpression(left: Self, binaryOperator: BinaryOperator, right: Self) -> Self
+
+    var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> { get }
 
     /// The text and color of an evaluated node, for use in displaying in the animated evaluation of the expression.
     /// Defaults to the `visualAttributes.text` and `visualAttributes.color` properties of an operand created
@@ -43,11 +49,33 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
 // MARK: - Default implementations
 
 extension EvaluatableExpressionProtocol {
+    public typealias Node = OperatorNodeKind<UnaryOperator, BinaryOperator>
+
+    public var neverEmptyNodeKind: NeverEmptyTreeNode<Leaf, Node> {
+        switch expressionNodeKind {
+        case let .operand(operand):
+            return .leaf(operand)
+        case let .unaryOperator(`operator`):
+            return .node(.unary(`operator`))
+        case let .binaryOperator(`operator`):
+            return .node(.binary(`operator`))
+        }
+    }
+
     public func evaluate() -> Operand {
-        switch neverEmptyNodeKind {
-        case let .leaf(operand):
+        switch expressionNodeKind {
+        case let .operand(operand):
             return operand
-        case let .node(`operator`):
+        case let .unaryOperator(`operator`):
+            switch (left, right) {
+            case (.none, .none), (.some, .some):
+                fatalError("A unary operator must have exactly one operand.")
+            case let (.some(expression), .none):
+                return `operator`.apply(expression.evaluate())
+            case let (.none, .some(expression)):
+                return `operator`.apply(expression.evaluate())
+            }
+        case let .binaryOperator(`operator`):
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
             return `operator`.apply(left.evaluate(), right.evaluate())
         }
@@ -82,31 +110,44 @@ extension EvaluatableExpressionProtocol where Self: Equatable {
 // TODO: Consider associativity
 extension EvaluatableExpressionProtocol {
     public var description: String {
-        switch neverEmptyNodeKind {
-        case let .leaf(operand):
+        switch expressionNodeKind {
+        case let .operand(operand):
             return String(describing: operand)
-        case let .node(`operator`):
+        case let .unaryOperator(`operator`):
+            // TODO:
+            switch (left, right) {
+            case (.none, .none), (.some, .some):
+                fatalError("A unary operator must have exactly one operand.")
+            case let (.some(expression), .none):
+                return "\(`operator`)\(expression)"
+            case let (.none, .some(expression)):
+                return "\(`operator`)\(expression)"
+            }
+        case let .binaryOperator(`operator`):
+            // TODO:
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
 
-            let leftString: String
-            if case let .node(leftOperator) = left.neverEmptyNodeKind, leftOperator.precedence < `operator`.precedence {
-                leftString = "(\(left.description))"
-            } else {
-                leftString = left.description
-            }
+//            let leftString: String
+//            if case let .node(leftOperator) = left.neverEmptyNodeKind, leftOperator.precedence < `operator`.precedence {
+//                leftString = "(\(left.description))"
+//            } else {
+//                leftString = left.description
+//            }
+//
+//            let rightString: String
+//            if case let .node(rightOperator) = right.neverEmptyNodeKind, rightOperator.precedence < `operator`.precedence {
+//                rightString = "(\(right.description))"
+//            } else {
+//                rightString = right.description
+//            }
+//
+//            if shouldSpaceDescription {
+//                return "\(leftString) \(`operator`) \(rightString)"
+//            } else {
+//                return "\(leftString)\(`operator`)\(rightString)"
+//            }
 
-            let rightString: String
-            if case let .node(rightOperator) = right.neverEmptyNodeKind, rightOperator.precedence < `operator`.precedence {
-                rightString = "(\(right.description))"
-            } else {
-                rightString = right.description
-            }
-
-            if shouldSpaceDescription {
-                return "\(leftString) \(`operator`) \(rightString)"
-            } else {
-                return "\(leftString)\(`operator`)\(rightString)"
-            }
+            return "FIX ME"
         }
     }
 }

@@ -50,6 +50,15 @@
 		898A988E1FE897BF00594C49 /* LogicalBinaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */; };
 		898A98921FE89E4300594C49 /* LogicalExpressionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */; };
 		89B323C11FEDB93400710AAD /* EvaluatableExpressionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B323C01FEDB93400710AAD /* EvaluatableExpressionViewFactory.swift */; };
+		89CDE0791FF37C0400F53AB3 /* UnaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0781FF37C0400F53AB3 /* UnaryOperatorProtocol.swift */; };
+		89CDE07B1FF37C8000F53AB3 /* LogicalUnaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE07A1FF37C8000F53AB3 /* LogicalUnaryOperatorProtocol.swift */; };
+		89CDE07D1FF3898700F53AB3 /* ExpressionNodeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE07C1FF3898700F53AB3 /* ExpressionNodeKind.swift */; };
+		89CDE07F1FF46CD900F53AB3 /* OperatorNodeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE07E1FF46CD800F53AB3 /* OperatorNodeKind.swift */; };
+		89CDE0811FF47E1000F53AB3 /* LogicalUnaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0801FF47E1000F53AB3 /* LogicalUnaryOperator.swift */; };
+		89CDE0831FF47FCF00F53AB3 /* BinaryIntegerUnaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0821FF47FCF00F53AB3 /* BinaryIntegerUnaryOperatorProtocol.swift */; };
+		89CDE0851FF5880F00F53AB3 /* NumericUnaryOperatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0841FF5880F00F53AB3 /* NumericUnaryOperatorProtocol.swift */; };
+		89CDE0871FF58B3500F53AB3 /* BinaryIntegerUnaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0861FF58B3500F53AB3 /* BinaryIntegerUnaryOperator.swift */; };
+		89CDE0891FF58E8D00F53AB3 /* NumericUnaryOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE0881FF58E8D00F53AB3 /* NumericUnaryOperator.swift */; };
 		89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */; };
 		89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */; };
 		89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7D2671FE5D1F300160A4B /* UIColor.swift */; };
@@ -104,6 +113,15 @@
 		898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalBinaryOperator.swift; sourceTree = "<group>"; };
 		898A98911FE89E4300594C49 /* LogicalExpressionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExpressionProtocol.swift; sourceTree = "<group>"; };
 		89B323C01FEDB93400710AAD /* EvaluatableExpressionViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluatableExpressionViewFactory.swift; sourceTree = "<group>"; };
+		89CDE0781FF37C0400F53AB3 /* UnaryOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnaryOperatorProtocol.swift; sourceTree = "<group>"; };
+		89CDE07A1FF37C8000F53AB3 /* LogicalUnaryOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalUnaryOperatorProtocol.swift; sourceTree = "<group>"; };
+		89CDE07C1FF3898700F53AB3 /* ExpressionNodeKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionNodeKind.swift; sourceTree = "<group>"; };
+		89CDE07E1FF46CD800F53AB3 /* OperatorNodeKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorNodeKind.swift; sourceTree = "<group>"; };
+		89CDE0801FF47E1000F53AB3 /* LogicalUnaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalUnaryOperator.swift; sourceTree = "<group>"; };
+		89CDE0821FF47FCF00F53AB3 /* BinaryIntegerUnaryOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryIntegerUnaryOperatorProtocol.swift; sourceTree = "<group>"; };
+		89CDE0841FF5880F00F53AB3 /* NumericUnaryOperatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericUnaryOperatorProtocol.swift; sourceTree = "<group>"; };
+		89CDE0861FF58B3500F53AB3 /* BinaryIntegerUnaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryIntegerUnaryOperator.swift; sourceTree = "<group>"; };
+		89CDE0881FF58E8D00F53AB3 /* NumericUnaryOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericUnaryOperator.swift; sourceTree = "<group>"; };
 		89F5D5021FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverEmptyTreeProtocol.swift; sourceTree = "<group>"; };
 		89F7D25F1FE5CD0700160A4B /* PositionedBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedBinaryTree.swift; sourceTree = "<group>"; };
 		89F7D2671FE5D1F300160A4B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -161,6 +179,8 @@
 				893BF6A51FEDDF7500C626F0 /* NeverEmptyTreeNode.swift */,
 				896801A41FE72C1A00BAAC2C /* RedBlackTree.swift */,
 				893133E21FE5BF3700FE926E /* TreeNode.swift */,
+				89CDE07C1FF3898700F53AB3 /* ExpressionNodeKind.swift */,
+				89CDE07E1FF46CD800F53AB3 /* OperatorNodeKind.swift */,
 				893133E51FE5BF3700FE926E /* Extensions */,
 				89DAED561FF3445800BE78A0 /* Operators */,
 				893133EA1FE5BF3700FE926E /* Protocols */,
@@ -204,6 +224,10 @@
 				893133F91FE5BF3700FE926E /* OperandProtocol.swift */,
 				893133ED1FE5BF3700FE926E /* OperatorProtocol.swift */,
 				898A98851FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift */,
+				89CDE0781FF37C0400F53AB3 /* UnaryOperatorProtocol.swift */,
+				89CDE07A1FF37C8000F53AB3 /* LogicalUnaryOperatorProtocol.swift */,
+				89CDE0821FF47FCF00F53AB3 /* BinaryIntegerUnaryOperatorProtocol.swift */,
+				89CDE0841FF5880F00F53AB3 /* NumericUnaryOperatorProtocol.swift */,
 			);
 			path = Operator;
 			sourceTree = "<group>";
@@ -238,6 +262,9 @@
 				893134191FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift */,
 				8931341B1FE5C0A000FE926E /* FloatingPointBinaryOperator.swift */,
 				898A988D1FE897BF00594C49 /* LogicalBinaryOperator.swift */,
+				89CDE0801FF47E1000F53AB3 /* LogicalUnaryOperator.swift */,
+				89CDE0861FF58B3500F53AB3 /* BinaryIntegerUnaryOperator.swift */,
+				89CDE0881FF58E8D00F53AB3 /* NumericUnaryOperator.swift */,
 			);
 			path = Operators;
 			sourceTree = "<group>";
@@ -358,11 +385,14 @@
 				8931341A1FE5C08F00FE926E /* FixedWidthIntegerBinaryOperator.swift in Sources */,
 				893BF6A61FEDDF7500C626F0 /* NeverEmptyTreeNode.swift in Sources */,
 				89B323C11FEDB93400710AAD /* EvaluatableExpressionViewFactory.swift in Sources */,
+				89CDE07D1FF3898700F53AB3 /* ExpressionNodeKind.swift in Sources */,
 				89F7D2601FE5CD0700160A4B /* PositionedBinaryTree.swift in Sources */,
+				89CDE07B1FF37C8000F53AB3 /* LogicalUnaryOperatorProtocol.swift in Sources */,
 				89F7D26B1FE5D1F300160A4B /* UIColor.swift in Sources */,
 				893133FC1FE5BF3700FE926E /* ArithmeticExpression.swift in Sources */,
 				8983E9461FE9B51D005618C8 /* SingleTypeBinaryTreeProtocol+VisualAttributes.swift in Sources */,
 				8931340C1FE5BF3700FE926E /* TreeProtocol.swift in Sources */,
+				89CDE07F1FF46CD900F53AB3 /* OperatorNodeKind.swift in Sources */,
 				898A98881FE890EE00594C49 /* ComparativeOperatorProtocol.swift in Sources */,
 				898A98861FE88BBA00594C49 /* ReferenceEquatableOperatorProtocol.swift in Sources */,
 				896801A51FE72C1A00BAAC2C /* RedBlackTree.swift in Sources */,
@@ -371,6 +401,7 @@
 				8931340D1FE5BF3700FE926E /* Divisible.swift in Sources */,
 				898A98921FE89E4300594C49 /* LogicalExpressionProtocol.swift in Sources */,
 				893134031FE5BF3700FE926E /* BinaryOperatorProtocol.swift in Sources */,
+				89CDE0871FF58B3500F53AB3 /* BinaryIntegerUnaryOperator.swift in Sources */,
 				89F5D5031FE7453E00812AC2 /* NeverEmptyTreeProtocol.swift in Sources */,
 				8983E9441FE9AA6A005618C8 /* BinarySearchTree.swift in Sources */,
 				89F7D26C1FE5D1F300160A4B /* String.swift in Sources */,
@@ -381,6 +412,7 @@
 				8968019D1FE71C0300BAAC2C /* NodeVisualAttributes.swift in Sources */,
 				891DE57C1FECBA2100DEB654 /* LineView.swift in Sources */,
 				893133FF1FE5BF3700FE926E /* BinaryOperatorPrecedence.swift in Sources */,
+				89CDE0791FF37C0400F53AB3 /* UnaryOperatorProtocol.swift in Sources */,
 				8931340A1FE5BF3700FE926E /* ArithmeticExpressionProtocol.swift in Sources */,
 				896801991FE7172200BAAC2C /* SingleTypeTreeProtocol.swift in Sources */,
 				8987ED391FEA126300963A1F /* BinaryTreeNodeView.swift in Sources */,
@@ -388,14 +420,18 @@
 				893133FA1FE5BF3700FE926E /* TreeNode.swift in Sources */,
 				893134051FE5BF3700FE926E /* NumericBinaryOperatorProtocol.swift in Sources */,
 				8968019F1FE71C5500BAAC2C /* CustomPlaygroundQuickLookableBinaryTreeProtocol.swift in Sources */,
+				89CDE0811FF47E1000F53AB3 /* LogicalUnaryOperator.swift in Sources */,
 				89F7D26E1FE5D1F300160A4B /* CGContext.swift in Sources */,
 				893134091FE5BF3700FE926E /* BinaryTreeProtocol.swift in Sources */,
 				893133FD1FE5BF3700FE926E /* Numeric.swift in Sources */,
 				893134061FE5BF3700FE926E /* FloatingPointBinaryOperatorProtocol.swift in Sources */,
+				89CDE0831FF47FCF00F53AB3 /* BinaryIntegerUnaryOperatorProtocol.swift in Sources */,
 				893134001FE5BF3700FE926E /* BinaryOperatorAssociativity.swift in Sources */,
+				89CDE0891FF58E8D00F53AB3 /* NumericUnaryOperator.swift in Sources */,
 				898A988A1FE8956200594C49 /* EvaluatableExpressionProtocol.swift in Sources */,
 				898A988E1FE897BF00594C49 /* LogicalBinaryOperator.swift in Sources */,
 				893134081FE5BF3700FE926E /* Evaluatable.swift in Sources */,
+				89CDE0851FF5880F00F53AB3 /* NumericUnaryOperatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

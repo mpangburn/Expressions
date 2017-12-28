@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A type representing a logical expression.
-public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where Node: LogicalBinaryOperatorProtocol { }
+public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where UnaryOperator: LogicalUnaryOperatorProtocol, BinaryOperator: LogicalBinaryOperatorProtocol { }
 
 // MARK: - Default implementations
 
@@ -29,11 +29,15 @@ extension LogicalExpressionProtocol {
 // MARK: - Operators
 
 extension LogicalExpressionProtocol {
+    public static prefix func ! (expression: Self) -> Self {
+        return makeExpression(unaryOperator: .logicalNOT, operand: expression)
+    }
+
     public static func && (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .logicalAND, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .logicalAND, right: rhs)
     }
 
     public static func || (lhs: Self, rhs: Self) -> Self {
-        return makeExpression(left: lhs, operator: .logicalOR, right: rhs)
+        return makeExpression(left: lhs, binaryOperator: .logicalOR, right: rhs)
     }
 }
