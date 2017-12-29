@@ -29,7 +29,7 @@ let expression: ArithmeticExpression<Int> = 2*(1+3)-8/4
 
 and in doing so create the full tree representing this expression, which in turn can be visualized in an Xcode Playground via QuickLook:
 
-<img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression.png?raw=true" width="380">
+<img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression.png?raw=true" width="248">
 
 And, to step it up another notch, we can animate the evaluation of this expression by calling `animateEvaluation(of:)` in a Playground page. We can observe this animation in the Playground's Live View:
 
