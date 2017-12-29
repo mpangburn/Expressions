@@ -12,10 +12,10 @@ import Foundation
 /// A tree whose leaf nodes and non-leaf nodes can hold values of different types.
 public protocol TreeProtocol {
     /// The type contained by the tree's leaf nodes.
-    associatedtype Leaf: Equatable
+    associatedtype Leaf
 
     /// The type contained by the tree's non-leaf nodes.
-    associatedtype Node: Equatable
+    associatedtype Node
 
     /// The kind of a tree node--empty, a leaf node, or a non-leaf node.
     /// In either node case, the associated value contains the node's data.
@@ -31,7 +31,8 @@ public protocol TreeProtocol {
 extension TreeProtocol {
     /// A boolean value indicating whether the tree is empty.
     public var isEmpty: Bool {
-        return nodeKind == .empty
+        if case .empty = nodeKind { return true }
+        return false
     }
 
     /// The number of nodes in the tree.
@@ -83,11 +84,5 @@ extension TreeProtocol {
             process(nodeKind)
             queue += nextNode.children
         }
-    }
-}
-
-extension TreeProtocol where Self: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.nodeKind == rhs.nodeKind && lhs.children == rhs.children
     }
 }

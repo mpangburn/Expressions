@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 /// A self-balancing binary search tree following traditional red-black tree rules.
@@ -88,26 +88,5 @@ extension RedBlackTree {
     public var right: RedBlackTree<Element>? {
         guard case let .node(_, _, _, right) = self, !right.isEmpty else { return nil }
         return right
-    }
-}
-
-// MARK: - Visual attributes
-
-extension RedBlackTree: CustomPlaygroundQuickLookableBinaryTreeProtocol {
-    public var visualAttributes: NodeVisualAttributes? {
-        guard case let .node(color, _, value, _) = self else { return nil }
-        let uiColor: UIColor
-        switch color {
-        case .red:
-            uiColor = .red
-        case .black:
-            uiColor = .black
-        }
-
-        let size = NodeVisualAttributes.Default.size
-        let text = String(describing: value)
-        let textAttributes = NodeVisualAttributes.Default.textAttributes
-
-        return NodeVisualAttributes(size: size, color: uiColor, text: text, textAttributes: textAttributes, connectingLineColor: uiColor)
     }
 }

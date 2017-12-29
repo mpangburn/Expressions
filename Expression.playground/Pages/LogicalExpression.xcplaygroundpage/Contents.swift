@@ -15,4 +15,3 @@ let expression: LogicalExpression = !(true || false) && false || !true
  And, of course, the evaluation of these expressions can be animated in the Playground's live view.
 */
 animateEvaluation(of: expression)
-

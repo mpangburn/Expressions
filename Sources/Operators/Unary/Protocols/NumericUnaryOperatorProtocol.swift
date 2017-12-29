@@ -9,19 +9,19 @@
 import Foundation
 
 
-/// A unary operator for performing arithmetic on numeric types.
-public protocol NumericUnaryOperatorProtocol: UnaryOperatorProtocol where Operand: Numeric, Result == Operand {
-    /// The unary plus operator (+).
-    static var unaryPlus: Self { get }
-}
+/// A unary operator for performing operations on Numeric types.
+public protocol NumericUnaryOperatorProtocol: UnaryOperatorProtocol where Operand: Numeric, Result == Operand { }
 
-// MARK: Default implementations
+// MARK: - Operators
 
 extension NumericUnaryOperatorProtocol {
     public static var unaryPlus: Self { return .init(identifier: "+", apply: +) }
 }
 
 extension NumericUnaryOperatorProtocol where Operand: SignedNumeric {
-    /// The unary minus operator (-).
     public static var unaryMinus: Self { return .init(identifier: "-", apply: -) }
+}
+
+extension NumericUnaryOperatorProtocol where Operand: BinaryInteger {
+    public static var bitwiseNOT: Self { return .init(identifier: "~", apply: ~) }
 }

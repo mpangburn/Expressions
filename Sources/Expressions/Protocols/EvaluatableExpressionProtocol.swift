@@ -15,8 +15,10 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
     /// The type of the operands used in the expression.
     typealias Operand = Leaf
 
+    /// The type of the unary operators used in the expression.
     associatedtype UnaryOperator: UnaryOperatorProtocol where UnaryOperator.Operand == Operand, UnaryOperator.Result == Operand
 
+    /// The type of the binary operators used in the expression.
     associatedtype BinaryOperator: BinaryOperatorProtocol where BinaryOperator.Operand == Operand, BinaryOperator.Result == Operand
 
     /// Returns an expression consisting of the single operand.
@@ -99,16 +101,9 @@ extension EvaluatableExpressionProtocol {
 
 extension EvaluatableExpressionProtocol where Self: Equatable {
     /// Tests the expressions for effective equality.
-    /// To test equality of underlying tree structures, use the instance method `deepEquals(_:)`.
+    /// Does not compare the underlying tree structures for equality.
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.description == rhs.description
-    }
-
-    /// Tests the underlying tree structures of the two expressions for equality.
-    /// - Parameter other: The expression with which to test for equality.
-    /// - Returns: A boolean value representing whether the two expressions are deeply equal.
-    public func deepEquals(_ other: Self) -> Bool {
-        return neverEmptyNodeKind == other.neverEmptyNodeKind && children == other.children
     }
 }
 
