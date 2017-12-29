@@ -36,6 +36,12 @@ Furthermore, we can animate the evaluation of this expression by calling `animat
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
+```swift
+let expression: LogicalExpression = !(true || false) && false || !true
+```
+
+<img src="https://github.com/mpangburn/Expressions/blob/master/Images/LogicalExpression%20Evaluation.gif?raw=true" width="248">
+
 As a simple demonstration of the power of protocol-oriented programming, I've also implemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can be visualized with QuickLook.
 
 ## Getting Started
