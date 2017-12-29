@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 /// The visual attributes of a node to be used in rendering the image of a tree.

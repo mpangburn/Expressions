@@ -12,13 +12,12 @@ public func animateEvaluation<T>(of expression: T) where T: EvaluatableExpressio
 }
 
 private func animateEvaluation(of nodeView: BinaryTreeNodeView, completion: (() -> Void)? = nil) {
-    guard let leftNodeView = nodeView.childNodeViews.first, let rightNodeView = nodeView.childNodeViews.last else {
+    switch nodeView.childNodeViews.count {
+    case 0:
         completion?()
         return
-    }
-
-    animateEvaluation(of: leftNodeView) {
-        animateEvaluation(of: rightNodeView) {
+    case 1:
+        animateEvaluation(of: nodeView.childNodeViews[0]) {
             UIView.animate(withDuration: animationDuration,
                            animations: nodeView.bringInChildNodes,
                            completion: { _ in
@@ -26,5 +25,20 @@ private func animateEvaluation(of nodeView: BinaryTreeNodeView, completion: (() 
                             completion?()
             })
         }
+    case 2:
+        let leftNodeView = nodeView.childNodeViews[0]
+        let rightNodeView = nodeView.childNodeViews[1]
+        animateEvaluation(of: leftNodeView) {
+            animateEvaluation(of: rightNodeView) {
+                UIView.animate(withDuration: animationDuration,
+                               animations: nodeView.bringInChildNodes,
+                               completion: { _ in
+                                nodeView.updateToNextState()
+                                completion?()
+                })
+            }
+        }
+    default:
+        fatalError("A binary tree node can have no more than two children.")
     }
 }

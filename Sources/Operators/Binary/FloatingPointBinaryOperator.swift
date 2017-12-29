@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// An operator for performing arithmetic on floating point types.
+/// A binary operator for performing arithmetic on floating point types.
 public struct FloatingPointBinaryOperator<T: FloatingPointOperandProtocol>: FloatingPointBinaryOperatorProtocol {
     public typealias Operand = T
     public typealias Result = T

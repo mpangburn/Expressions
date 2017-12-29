@@ -9,7 +9,9 @@
 import UIKit
 
 
+/// A binary tree that can be visualized through Playground QuickLook.
 public protocol CustomPlaygroundQuickLookableBinaryTreeProtocol: BinaryTreeProtocol, CustomPlaygroundQuickLookable {
+    /// The visual attributes of the node, to be used in rendering the image of the tree.
     var visualAttributes: NodeVisualAttributes? { get }
 }
 
@@ -40,7 +42,6 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
 }
 
 extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
-
     public var customPlaygroundQuickLook: PlaygroundQuickLook {
         return .image(render())
     }
@@ -75,14 +76,13 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
 
         attributes.color.setFill()
         context.fillEllipse(in: CGRect(center: nodePosition, size: attributes.size))
-        attributes.text.draw(centeredAt: nodePosition, attributes: attributes.textAttributes)
+        attributes.text.draw(centeredAt: nodePosition, withAttributes: attributes.textAttributes)
     }
 }
 
 // MARK: - Wide render
 // c.f. https://talk.objc.io/episodes/S01E65-playground-quicklook-for-binary-trees
 extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
-
     /// Renders the image whose width is computed as a function of the tree's height.
     /// This can easily result in trees that appear to be stretched wide,
     /// but has the advantage of being able to distinguish between a left and a right child
@@ -114,7 +114,7 @@ extension CustomPlaygroundQuickLookableBinaryTreeProtocol {
 
         attributes.color.setFill()
         context.fillEllipse(in: CGRect(center: center, size: attributes.size))
-        attributes.text.draw(centeredAt: center, attributes: attributes.textAttributes)
+        attributes.text.draw(centeredAt: center, withAttributes: attributes.textAttributes)
     }
 
     /// Computes the bounds of the image based on the tree's height.

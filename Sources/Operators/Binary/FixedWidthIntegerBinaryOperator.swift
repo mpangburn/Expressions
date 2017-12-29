@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// An operator for performing arithmetic on integer types.
+/// A binary operator for performing arithmetic on integer types.
 public struct FixedWidthIntegerBinaryOperator<T: FixedWidthIntegerOperandProtocol>: FixedWidthIntegerBinaryOperatorProtocol {
     public typealias Operand = T
     public typealias Result = T

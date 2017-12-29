@@ -9,10 +9,8 @@
 import UIKit
 
 
+/// A factory for producing the UIView representation of an evaluatable expression.
 public struct EvaluatableExpressionViewFactory {
-
-    private init() {}
-
     /// Returns a tuple of 1) a UIView containing properly positioned node views making up the tree,
     /// and 2) the root node view for use in accessing the structure of these subviews.
     public static func makeView<T>(of expression: T) -> (superview: UIView, rootNodeView: BinaryTreeNodeView) where T: EvaluatableExpressionProtocol {
@@ -30,7 +28,33 @@ public struct EvaluatableExpressionViewFactory {
         while !nodeQueue.isEmpty /*, !viewQueue.isEmpty */ {
             let currentNode = nodeQueue.removeLast()
             let currentNodeView = viewQueue.removeLast()
-            if let left = currentNode.children.first, let right = currentNode.children.last {
+
+            func setup(childNodeView: BinaryTreeNodeView, lineView: LineView) {
+                guard let attributes = childNodeView.visualAttributes else { fatalError("Child node view improperly configured") }
+                lineView.backgroundColor = .clear
+                lineView.color = attributes.connectingLineColor
+                lineView.width = attributes.childLineWidth
+                currentNodeView.childLineViews.append(lineView)
+                view.addSubview(lineView)
+            }
+
+            switch currentNode.children.count {
+            case 0:
+                break
+            case 1:
+                let singleChild = currentNode.children[0]
+                nodeQueue.insert(singleChild, at: 0)
+                let singleNodeView = nodeView(of: singleChild)
+                currentNodeView.childNodeViews = [singleNodeView]
+                viewQueue.insert(singleNodeView, at: 0)
+                let lineSize = CGSize(width: singleNodeView.frame.width,
+                                      height: singleNodeView.frame.midY - currentNodeView.frame.midY)
+                let lineOrigin = CGPoint(x: currentNodeView.frame.minX, y: currentNodeView.frame.midY)
+                let lineView = LineView(frame: CGRect(origin: lineOrigin, size: lineSize))
+                lineView.direction = .vertical
+                setup(childNodeView: singleNodeView, lineView: lineView)
+            case 2:
+                let (left, right) = (currentNode.children[0], currentNode.children[1])
                 nodeQueue.insert(contentsOf: [left, right], at: 0)
                 let leftNodeView = nodeView(of: left)
                 let rightNodeView = nodeView(of: right)
@@ -42,22 +66,18 @@ public struct EvaluatableExpressionViewFactory {
                                           height: leftNodeView.frame.midY - currentNodeView.frame.midY)
                 let leftLineOrigin = CGPoint(x: leftNodeView.frame.midX, y: currentNodeView.frame.midY)
                 let leftLineView = LineView(frame: CGRect(origin: leftLineOrigin, size: leftLineSize))
-                leftLineView.slantDirection = .right
+                leftLineView.direction = .slantedRight
 
                 let rightLineSize = CGSize(width: rightNodeView.frame.midX - currentNodeView.frame.midX,
                                            height: rightNodeView.frame.midY - currentNodeView.frame.midY)
                 let rightLineOrigin = CGPoint(x: currentNodeView.frame.midX, y: currentNodeView.frame.midY)
                 let rightLineView = LineView(frame: CGRect(origin: rightLineOrigin, size: rightLineSize))
-                rightLineView.slantDirection = .left
+                rightLineView.direction = .slantedLeft
 
-                for (lineView, nodeView) in zip([leftLineView, rightLineView], [leftNodeView, rightNodeView]) {
-                    lineView.backgroundColor = .clear
-                    guard let attributes = nodeView.visualAttributes else { fatalError("Child node view improperly configured") }
-                    lineView.color = attributes.connectingLineColor
-                    lineView.width = attributes.childLineWidth
-                    currentNodeView.childLineViews.append(lineView)
-                    view.addSubview(lineView)
-                }
+                setup(childNodeView: leftNodeView, lineView: leftLineView)
+                setup(childNodeView: rightNodeView, lineView: rightLineView)
+            default:
+                fatalError("A binary tree can have no more than two children.")
             }
 
             view.addSubview(currentNodeView) // add node view last to go on top of line views
@@ -81,4 +101,6 @@ public struct EvaluatableExpressionViewFactory {
         treeNodeView.backgroundColor = attributes.color
         return treeNodeView
     }
+
+    private init() { }
 }
