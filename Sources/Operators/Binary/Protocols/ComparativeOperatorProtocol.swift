@@ -10,21 +10,9 @@ import Foundation
 
 
 /// A binary operator that operates on comparable types.
-public protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable {
-    /// The 'less than' testing operator (<).
-    static var lessThan: Self { get }
+public protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable { }
 
-    /// The 'less than or equal' testing operator (<=).
-    static var lessThanOrEqual: Self { get }
-
-    /// The 'greater than' testing operator (>).
-    static var greaterThan: Self { get }
-
-    /// The 'greater than or equal' testing operator (>=).
-    static var greaterThanOrEqual: Self { get }
-}
-
-// MARK: - Default implementations
+// MARK: - Operators
 
 extension ComparativeOperatorProtocol {
     public static var lessThan: Self { return .init(identifier: "<", apply: <, precedence: .comparison, associativity: .none, isCommutative: false) }

@@ -36,7 +36,7 @@ Furthermore, we can animate the evaluation of this expression by calling `animat
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
-As a simple demonstration of the power of protocol-oriented programming, I've alsoimplemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can also be visualized with QuickLook.
+As a simple demonstration of the power of protocol-oriented programming, I've also implemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can be visualized with QuickLook.
 
 ## Getting Started
 While a brief outline of the project's contents is provided in the section above, this is a Playground-based project and ultimately better demonstrated than explained:

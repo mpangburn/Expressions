@@ -89,7 +89,3 @@ extension BinarySearchTree {
         return right
     }
 }
-
-// MARK: - Visual attributes
-
-extension BinarySearchTree: CustomPlaygroundQuickLookableBinaryTreeProtocol { }

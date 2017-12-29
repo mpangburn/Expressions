@@ -59,7 +59,7 @@ extension ArithmeticExpressionProtocol {
     }
 }
 
-extension ArithmeticExpressionProtocol /*: Divisible */ where BinaryOperator: DivisibleBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol /*: Divisible */ where BinaryOperator.Operand: Divisible {
     public static func / (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, binaryOperator: .divide, right: rhs)
     }
@@ -75,13 +75,13 @@ extension ArithmeticExpressionProtocol where UnaryOperator.Operand: SignedNumeri
     }
 }
 
-extension ArithmeticExpressionProtocol where UnaryOperator: BinaryIntegerUnaryOperatorProtocol {
+extension ArithmeticExpressionProtocol where UnaryOperator.Operand: BinaryInteger {
     public static prefix func ~ (expression: Self) -> Self {
         return makeExpression(unaryOperator: .bitwiseNOT, expression: expression)
     }
 }
 
-extension ArithmeticExpressionProtocol where BinaryOperator: BinaryIntegerBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol where BinaryOperator.Operand: BinaryInteger {
     public static func % (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, binaryOperator: .remainder, right: rhs)
     }
@@ -131,7 +131,7 @@ extension ArithmeticExpressionProtocol where BinaryOperator: BinaryIntegerBinary
     }
 }
 
-extension ArithmeticExpressionProtocol where BinaryOperator: FixedWidthIntegerBinaryOperatorProtocol {
+extension ArithmeticExpressionProtocol where BinaryOperator.Operand: FixedWidthInteger {
     public static func &+ (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, binaryOperator: .addIgnoringOverflow, right: rhs)
     }

@@ -10,15 +10,9 @@ import Foundation
 
 
 /// A binary operator that operates on reference equatable types.
-public protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operand: AnyObject, Result == Bool {
-    /// The identity-testing equality operator (===).
-    static var identical: Self { get }
+public protocol ReferenceEquatableOperatorProtocol: BinaryOperatorProtocol where Operand: AnyObject, Result == Bool { }
 
-    /// The identity-testing inequality operator (!==).
-    static var notIdentical: Self { get }
-}
-
-// MARK: - Default implementations
+// MARK: - Operators
 
 extension ReferenceEquatableOperatorProtocol {
     public static var identical: Self { return .init(identifier: "===", apply: ===, precedence: .comparison, associativity: .none, isCommutative: true) }

@@ -10,12 +10,9 @@ import Foundation
 
 
 /// A unary operator that applies boolean logic.
-public protocol LogicalUnaryOperatorProtocol: UnaryOperatorProtocol where Operand == Bool, Result == Bool {
-    /// The logical NOT operator (!).
-    static var logicalNOT: Self { get }
-}
+public protocol LogicalUnaryOperatorProtocol: UnaryOperatorProtocol where Operand == Bool, Result == Bool { }
 
-// MARK: - Default implementations
+// MARK: - Operators
 
 extension LogicalUnaryOperatorProtocol {
     public static var logicalNOT: Self { return .init(identifier: "!", apply: !) }

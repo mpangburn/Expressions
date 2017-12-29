@@ -15,21 +15,6 @@ public enum OperatorNodeKind<UnaryOperator: UnaryOperatorProtocol, BinaryOperato
     case binary(BinaryOperator)
 }
 
-extension OperatorNodeKind: Equatable {
-    public static func == <A, B> (lhs: OperatorNodeKind<A, B>, rhs: OperatorNodeKind<A, B>) -> Bool {
-        switch (lhs, rhs) {
-        case let (.unary(leftOperator), .unary(rightOperator)):
-            return leftOperator == rightOperator
-        case let (.binary(leftOperator), .binary(rightOperator)):
-            return leftOperator == rightOperator
-        case (.unary, _):
-            return false
-        case (.binary, _):
-            return false
-        }
-    }
-}
-
 extension OperatorNodeKind: CustomStringConvertible {
     public var description: String {
         switch self {

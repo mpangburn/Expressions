@@ -10,15 +10,9 @@ import Foundation
 
 
 /// A binary operator that applies boolean logic.
-public protocol LogicalBinaryOperatorProtocol: BinaryOperatorProtocol where Operand == Bool, Result == Bool {
-    /// The logical AND operator (&&).
-    static var logicalAND: Self { get }
+public protocol LogicalBinaryOperatorProtocol: BinaryOperatorProtocol where Operand == Bool, Result == Bool { }
 
-    /// The logical OR operator (||).
-    static var logicalOR: Self { get }
-}
-
-// MARK: - Default implementations
+// MARK: - Operators
 
 extension LogicalBinaryOperatorProtocol {
     // Since the type of && and || as operators in Swift is actually `(Bool, @autoclosure () throws -> Bool) throws -> Bool`

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import CoreGraphics
+import Foundation
 
 
 /// A type that can be evaluated.

@@ -9,9 +9,5 @@
 import Foundation
 
 
-// These typealiases parallel the Operand constraints for the Numeric Operator protocols.
+// This typealias parallels the Operand constraints for the Numeric Operator protocols
 public typealias NumericOperandProtocol = Numeric & Comparable & _ExpressibleByBuiltinIntegerLiteral
-public typealias DivisibleOperandProtocol = NumericOperandProtocol & Divisible
-public typealias BinaryIntegerOperandProtocol = DivisibleOperandProtocol & BinaryInteger
-public typealias FixedWidthIntegerOperandProtocol = BinaryIntegerOperandProtocol & FixedWidthInteger
-public typealias FloatingPointOperandProtocol = DivisibleOperandProtocol & FloatingPoint & _ExpressibleByBuiltinFloatLiteral
