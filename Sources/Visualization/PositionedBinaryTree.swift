@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 
 /// A wrapper around a binary tree to store its logical x- and y-coordinates for positioning in space.

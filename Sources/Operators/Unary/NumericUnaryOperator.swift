@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// A unary operator for performing arithmetic on numeric types.
 public struct NumericUnaryOperator<T: Numeric>: NumericUnaryOperatorProtocol {
     public typealias Operand = T
     public typealias Result = T

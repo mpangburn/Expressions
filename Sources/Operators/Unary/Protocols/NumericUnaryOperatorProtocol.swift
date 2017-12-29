@@ -9,4 +9,5 @@
 import Foundation
 
 
+/// A unary operator for performing arithmetic on numeric types.
 public protocol NumericUnaryOperatorProtocol: UnaryOperatorProtocol where Operand: Numeric, Result == Operand { }

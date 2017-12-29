@@ -9,7 +9,9 @@
 import Foundation
 
 
+/// A unary operator that applies boolean logic.
 public protocol LogicalUnaryOperatorProtocol: UnaryOperatorProtocol where Operand == Bool, Result == Bool {
+    /// The logical NOT operator (!).
     static var logicalNOT: Self { get }
 }
 

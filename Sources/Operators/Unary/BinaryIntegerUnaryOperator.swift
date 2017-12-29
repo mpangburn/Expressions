@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// A unary operator for performing arithmetic on binary integer types.
 public struct BinaryIntegerUnaryOperator<T: BinaryInteger>: BinaryIntegerUnaryOperatorProtocol {
     public typealias Operand = T
     public typealias Result = T

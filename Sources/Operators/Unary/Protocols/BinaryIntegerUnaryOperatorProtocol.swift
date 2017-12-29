@@ -9,7 +9,9 @@
 import Foundation
 
 
+/// A unary operator for performing arithmetic on binary integer types.
 public protocol BinaryIntegerUnaryOperatorProtocol: NumericUnaryOperatorProtocol where Operand: BinaryInteger {
+    /// The bitwise NOT operator (~).
     static var bitwiseNOT: Self { get }
 }
 

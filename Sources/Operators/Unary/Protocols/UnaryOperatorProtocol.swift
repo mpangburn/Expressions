@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// An operator that performs an operation on a single operand.
 public protocol UnaryOperatorProtocol: OperatorProtocol {
     init(identifier: String, apply: @escaping (Operand) -> Result)
 

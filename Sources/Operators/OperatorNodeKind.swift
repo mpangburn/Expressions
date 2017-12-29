@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// The kind of an operator node--either a unary or a binary operator.
 public enum OperatorNodeKind<UnaryOperator: UnaryOperatorProtocol, BinaryOperator: BinaryOperatorProtocol> {
     case unary(UnaryOperator)
     case binary(BinaryOperator)

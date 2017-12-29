@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// A unary operator for performing boolean logic.
 public struct LogicalUnaryOperator: LogicalUnaryOperatorProtocol {
     public typealias Operand = Bool
     public typealias Result = Bool
