@@ -36,7 +36,7 @@ extension TreeProtocol {
 
     /// The number of nodes in the tree.
     public var count: Int {
-        return 1 + children.map({ $0.count }).reduce(0, +)
+        return 1 + children.map { $0.count }.reduce(0, +)
     }
 
     /// The zero-based height of the tree, i.e. the length of the longest path from this node to a leaf.
@@ -45,7 +45,7 @@ extension TreeProtocol {
         case .empty, .leaf:
             return 0
         case .node:
-            return 1 + (children.map({ $0.height }).max() ?? 0)
+            return 1 + (children.map { $0.height }.max() ?? 0)
         }
     }
 }

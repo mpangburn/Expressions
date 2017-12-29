@@ -10,11 +10,9 @@
 */
 import Expression
 
-let expression: LogicalExpression = (true || false) && false || true
+let expression: LogicalExpression = !(true || false) && false || !true
 /*:
  And, of course, the evaluation of these expressions can be animated in the Playground's live view.
 */
 animateEvaluation(of: expression)
-/*:
- A future update to this project involving unary operators will enable the use of the `!` operator in these expressions.
-*/
+

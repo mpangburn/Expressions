@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 extension SingleTypeBinaryTreeProtocol where Self: CustomPlaygroundQuickLookableBinaryTreeProtocol {

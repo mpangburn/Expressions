@@ -10,7 +10,7 @@ import CoreGraphics
 
 
 extension String {
-    func draw(centeredAt center: CGPoint, attributes: [NSAttributedStringKey: Any]) {
+    func draw(centeredAt center: CGPoint, withAttributes attributes: [NSAttributedStringKey: Any]) {
         let size = (self as NSString).size(withAttributes: attributes)
         let bounds = CGRect(center: center, size: size)
         (self as NSString).draw(in: bounds, withAttributes: attributes)

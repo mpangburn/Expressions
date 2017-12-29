@@ -14,10 +14,9 @@ Arithmetic and logical expressions elegantly modeled and visualized using protoc
 
 ## Features
 - [x] Model arithmetic and logical expressions using binary trees.
-- [x] Write expressions in code in the same manner as they would be written for evaluation, i.e. making full use of literals and binary operators.
+- [x] Write expressions in code in the same manner as they would be written for evaluation, i.e. making full use of literals and both unary and binary operators.
 - [x] Visualize expressions by rendering image representations, which can be easily seen using the Xcode Playground QuickLook feature.
 - [x] Animate the evaluation of expressions using `UIView`s, and observe these animations using the Xcode Playground Live View feature.
-- [ ] Support unary operators in expressions.
 - [x] Demonstrate the power of protocol-oriented programming by creating other simple tree structures, such as binary search trees, which gain QuickLook visualization for free.
 
 ## Contents
@@ -31,13 +30,13 @@ and in doing so create the full tree representing this expression, which in turn
 
 <img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression.png?raw=true" width="248">
 
-And, to step it up another notch, we can animate the evaluation of this expression by calling `animateEvaluation(of:)` in a Playground page. We can observe this animation in the Playground's Live View:
+Furthermore, we can animate the evaluation of this expression by calling `animateEvaluation(of:)` in a Playground page. We can observe this animation in the Playground's Live View:
 
 <img src="https://github.com/mpangburn/Expressions/blob/master/Images/ArithmeticExpression%20Evaluation.gif?raw=true" width="248">
 
 In addition to arithmetic expressions, logical expressions can be similarly created, viewed, and animated.
 
-Furthermore, as a simple demonstration of the power of protocol-oriented programming, I've implemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can also be visualized with QuickLook.
+As a simple demonstration of the power of protocol-oriented programming, I've alsoimplemented a couple of other tree structures, including a traditional binary search tree and a red-black tree, which can also be visualized with QuickLook.
 
 ## Getting Started
 While a brief outline of the project's contents is provided in the section above, this is a Playground-based project and ultimately better demonstrated than explained:
