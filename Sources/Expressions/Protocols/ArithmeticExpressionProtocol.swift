@@ -42,6 +42,10 @@ extension ArithmeticExpressionProtocol {
 // MARK: - Operators
 
 extension ArithmeticExpressionProtocol {
+    public static prefix func + (expression: Self) -> Self {
+        return makeExpression(unaryOperator: .unaryPlus, expression: expression)
+    }
+
     public static func + (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, binaryOperator: .add, right: rhs)
     }
@@ -65,9 +69,15 @@ extension ArithmeticExpressionProtocol /*: Divisible */ where BinaryOperator: Di
     }
 }
 
+extension ArithmeticExpressionProtocol where UnaryOperator.Operand: SignedNumeric {
+    public static prefix func - (expression: Self) -> Self {
+        return makeExpression(unaryOperator: .unaryMinus, expression: expression)
+    }
+}
+
 extension ArithmeticExpressionProtocol where UnaryOperator: BinaryIntegerUnaryOperatorProtocol {
-    public static prefix func ~ (operand: Self) -> Self {
-        return makeExpression(unaryOperator: .bitwiseNOT, expression: operand)
+    public static prefix func ~ (expression: Self) -> Self {
+        return makeExpression(unaryOperator: .bitwiseNOT, expression: expression)
     }
 }
 
