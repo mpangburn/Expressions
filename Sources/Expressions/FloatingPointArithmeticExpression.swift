@@ -27,6 +27,33 @@ public enum _FloatingPointArithmeticExpression<UnaryOperator: NumericUnaryOperat
     indirect case binaryExpression(left: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>, operator: BinaryOperator, right: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>)
 }
 
+// MARK: Required conformance to expression protocols
+
+extension _FloatingPointArithmeticExpression {
+    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
+        switch self {
+        case let .operand(operand):
+            return .operand(operand)
+        case let .unaryExpression(`operator`, _):
+            return .unaryOperator(`operator`)
+        case let .binaryExpression(_, `operator`, _):
+            return .binaryOperator(`operator`)
+        }
+    }
+
+    public static func makeExpression(operand: Operand) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .operand(operand)
+    }
+
+    public static func makeExpression(unaryOperator: UnaryOperator, expression: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .unaryExpression(operator: unaryOperator, operand: expression)
+    }
+
+    public static func makeExpression(left: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .binaryExpression(left: left, operator: binaryOperator, right: right)
+    }
+}
+
 // MARK: - Required conformance to tree protocols
 
 extension _FloatingPointArithmeticExpression {
@@ -47,33 +74,6 @@ extension _FloatingPointArithmeticExpression {
     public var right: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>? {
         guard case let .binaryExpression(_, _, right) = self else { return nil }
         return right
-    }
-}
-
-// MARK: Required conformance to expression protocols
-
-extension _FloatingPointArithmeticExpression {
-    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
-        switch self {
-        case let .operand(operand):
-            return .operand(operand)
-        case let .unaryExpression(`operator`, _):
-            return .unaryOperator(`operator`)
-        case let .binaryExpression(_, `operator`, _):
-            return .binaryOperator(`operator`)
-        }
-    }
-
-    public static func makeExpression(operand: Operand) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .operand(operand)
-    }
-
-    public static func makeExpression(unaryOperator: UnaryOperator, operand: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .unaryExpression(operator: unaryOperator, operand: operand)
-    }
-
-    public static func makeExpression(left: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator>) -> _FloatingPointArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .binaryExpression(left: left, operator: binaryOperator, right: right)
     }
 }
 

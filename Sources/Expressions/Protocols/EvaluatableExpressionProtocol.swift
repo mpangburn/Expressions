@@ -24,12 +24,17 @@ public protocol EvaluatableExpressionProtocol: CustomPlaygroundQuickLookableBina
     /// - Returns: An expression consisting of the single operand.
     static func makeExpression(operand: Operand) -> Self
 
-    static func makeExpression(unaryOperator: UnaryOperator, operand: Self) -> Self
+    /// Returns an expression consisting of a unary operator applied to an expression.
+    /// - Parameters:
+    ///     - unaryOperator: The operator to apply to the expression.
+    ///     - expression: The expression to which to apply the operator.
+    /// - Returns: An expression consisting of a unary operator applied to an expression.
+    static func makeExpression(unaryOperator: UnaryOperator, expression: Self) -> Self
 
     /// Returns an expression consisting of the left expression and the right expression combined by the operator.
     /// - Parameters:
     ///     - left: The left side of the expression.
-    ///     - operator: The operator combining the two sides of the expression.
+    ///     - binaryOperator: The operator combining the two sides of the expression.
     ///     - right: The right side of the expression.
     /// - Returns: An expression consisting of the left expression and the right expression combined by the operator.
     static func makeExpression(left: Self, binaryOperator: BinaryOperator, right: Self) -> Self
@@ -114,40 +119,43 @@ extension EvaluatableExpressionProtocol {
         case let .operand(operand):
             return String(describing: operand)
         case let .unaryOperator(`operator`):
-            // TODO:
+            let subexpression: Self
             switch (left, right) {
             case (.none, .none), (.some, .some):
                 fatalError("A unary operator must have exactly one operand.")
             case let (.some(expression), .none):
-                return "\(`operator`)\(expression)"
+                subexpression = expression
             case let (.none, .some(expression)):
-                return "\(`operator`)\(expression)"
+                subexpression = expression
+            }
+
+            if case .binaryOperator = subexpression.expressionNodeKind {
+                return "\(`operator`)(\(subexpression))"
+            } else {
+                return "\(`operator`)\(subexpression)"
             }
         case let .binaryOperator(`operator`):
-            // TODO:
             guard let left = left, let right = right else { fatalError("A binary operator must have two operands.") }
+            
+            let leftString: String
+            if case let .binaryOperator(leftOperator) = left.expressionNodeKind, leftOperator.precedence < `operator`.precedence {
+                leftString = "(\(left.description))"
+            } else {
+                leftString = left.description
+            }
 
-//            let leftString: String
-//            if case let .node(leftOperator) = left.neverEmptyNodeKind, leftOperator.precedence < `operator`.precedence {
-//                leftString = "(\(left.description))"
-//            } else {
-//                leftString = left.description
-//            }
-//
-//            let rightString: String
-//            if case let .node(rightOperator) = right.neverEmptyNodeKind, rightOperator.precedence < `operator`.precedence {
-//                rightString = "(\(right.description))"
-//            } else {
-//                rightString = right.description
-//            }
-//
-//            if shouldSpaceDescription {
-//                return "\(leftString) \(`operator`) \(rightString)"
-//            } else {
-//                return "\(leftString)\(`operator`)\(rightString)"
-//            }
+            let rightString: String
+            if case let .binaryOperator(rightOperator) = right.expressionNodeKind, rightOperator.precedence < `operator`.precedence {
+                rightString = "(\(right.description))"
+            } else {
+                rightString = right.description
+            }
 
-            return "FIX ME"
+            if shouldSpaceDescription {
+                return "\(leftString) \(`operator`) \(rightString)"
+            } else {
+                return "\(leftString)\(`operator`)\(rightString)"
+            }
         }
     }
 }

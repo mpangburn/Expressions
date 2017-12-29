@@ -30,7 +30,7 @@ extension LogicalExpressionProtocol {
 
 extension LogicalExpressionProtocol {
     public static prefix func ! (expression: Self) -> Self {
-        return makeExpression(unaryOperator: .logicalNOT, operand: expression)
+        return makeExpression(unaryOperator: .logicalNOT, expression: expression)
     }
 
     public static func && (lhs: Self, rhs: Self) -> Self {

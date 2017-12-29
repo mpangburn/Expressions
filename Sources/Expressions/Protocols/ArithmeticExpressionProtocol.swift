@@ -65,6 +65,12 @@ extension ArithmeticExpressionProtocol /*: Divisible */ where BinaryOperator: Di
     }
 }
 
+extension ArithmeticExpressionProtocol where UnaryOperator: BinaryIntegerUnaryOperatorProtocol {
+    public static prefix func ~ (operand: Self) -> Self {
+        return makeExpression(unaryOperator: .bitwiseNOT, expression: operand)
+    }
+}
+
 extension ArithmeticExpressionProtocol where BinaryOperator: BinaryIntegerBinaryOperatorProtocol {
     public static func % (lhs: Self, rhs: Self) -> Self {
         return makeExpression(left: lhs, binaryOperator: .remainder, right: rhs)

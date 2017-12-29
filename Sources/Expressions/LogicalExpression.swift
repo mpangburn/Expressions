@@ -22,6 +22,33 @@ public enum _LogicalExpression<UnaryOperator: LogicalUnaryOperatorProtocol, Bina
     indirect case binaryExpression(left: _LogicalExpression, operator: BinaryOperator, right: _LogicalExpression)
 }
 
+// MARK: - Required conformance to expression protocols
+
+extension _LogicalExpression {
+    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
+        switch self {
+        case let .operand(operand):
+            return .operand(operand)
+        case let .unaryExpression(`operator`, _):
+            return .unaryOperator(`operator`)
+        case let .binaryExpression(_, `operator`, _):
+            return .binaryOperator(`operator`)
+        }
+    }
+
+    public static func makeExpression(operand: Operand) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
+        return .operand(operand)
+    }
+
+    public static func makeExpression(unaryOperator: UnaryOperator, expression: _LogicalExpression<UnaryOperator, BinaryOperator>) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
+        return .unaryExpression(operator: unaryOperator, operand: expression)
+    }
+
+    public static func makeExpression(left: _LogicalExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _LogicalExpression<UnaryOperator, BinaryOperator>) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
+        return .binaryExpression(left: left, operator: binaryOperator, right: right)
+    }
+}
+
 // MARK: - Required conformance to tree protocols
 
 extension _LogicalExpression {
@@ -42,33 +69,6 @@ extension _LogicalExpression {
     public var right: _LogicalExpression<UnaryOperator, BinaryOperator>? {
         guard case let .binaryExpression(_, _, right) = self else { return nil }
         return right
-    }
-}
-
-// MARK: - Required conformance to expression protocols
-
-extension _LogicalExpression {
-    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
-        switch self {
-        case let .operand(operand):
-            return .operand(operand)
-        case let .unaryExpression(`operator`, _):
-            return .unaryOperator(`operator`)
-        case let .binaryExpression(_, `operator`, _):
-            return .binaryOperator(`operator`)
-        }
-    }
-
-    public static func makeExpression(operand: Operand) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
-        return .operand(operand)
-    }
-
-    public static func makeExpression(unaryOperator: UnaryOperator, operand: _LogicalExpression<UnaryOperator, BinaryOperator>) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
-        return .unaryExpression(operator: unaryOperator, operand: operand)
-    }
-
-    public static func makeExpression(left: _LogicalExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _LogicalExpression<UnaryOperator, BinaryOperator>) -> _LogicalExpression<UnaryOperator, BinaryOperator> {
-        return .binaryExpression(left: left, operator: binaryOperator, right: right)
     }
 }
 

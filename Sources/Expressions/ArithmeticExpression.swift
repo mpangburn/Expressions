@@ -23,6 +23,33 @@ public enum _ArithmeticExpression<UnaryOperator: NumericUnaryOperatorProtocol, B
     indirect case binaryExpression(left: _ArithmeticExpression<UnaryOperator, BinaryOperator>, operator: BinaryOperator, right: _ArithmeticExpression<UnaryOperator, BinaryOperator>)
 }
 
+// MARK: - Required conformance to expression protocols
+
+extension _ArithmeticExpression {
+    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
+        switch self {
+        case let .operand(operand):
+            return .operand(operand)
+        case let .unaryExpression(`operator`, _):
+            return .unaryOperator(`operator`)
+        case let .binaryExpression(_, `operator`, _):
+            return .binaryOperator(`operator`)
+        }
+    }
+
+    public static func makeExpression(operand: Operand) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .operand(operand)
+    }
+
+    public static func makeExpression(unaryOperator: UnaryOperator, expression: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .unaryExpression(operator: unaryOperator, operand: expression)
+    }
+
+    public static func makeExpression(left: _ArithmeticExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
+        return .binaryExpression(left: left, operator: binaryOperator, right: right)
+    }
+}
+
 // MARK: - Required conformance to tree protocols
 
 extension _ArithmeticExpression {
@@ -43,32 +70,5 @@ extension _ArithmeticExpression {
     public var right: _ArithmeticExpression<UnaryOperator, BinaryOperator>? {
         guard case let .binaryExpression(_, _, right) = self else { return nil }
         return right
-    }
-}
-
-// MARK: - Required conformance to expression protocols
-
-extension _ArithmeticExpression {
-    public var expressionNodeKind: ExpressionNodeKind<UnaryOperator, BinaryOperator> {
-        switch self {
-        case let .operand(operand):
-            return .operand(operand)
-        case let .unaryExpression(`operator`, _):
-            return .unaryOperator(`operator`)
-        case let .binaryExpression(_, `operator`, _):
-            return .binaryOperator(`operator`)
-        }
-    }
-
-    public static func makeExpression(operand: Operand) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .operand(operand)
-    }
-
-    public static func makeExpression(unaryOperator: UnaryOperator, operand: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .unaryExpression(operator: unaryOperator, operand: operand)
-    }
-
-    public static func makeExpression(left: _ArithmeticExpression<UnaryOperator, BinaryOperator>, binaryOperator: BinaryOperator, right: _ArithmeticExpression<UnaryOperator, BinaryOperator>) -> _ArithmeticExpression<UnaryOperator, BinaryOperator> {
-        return .binaryExpression(left: left, operator: binaryOperator, right: right)
     }
 }
