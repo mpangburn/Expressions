@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary operator that operates on comparable types.
 public protocol ComparativeOperatorProtocol: EquatableOperatorProtocol where Operand: Comparable { }
 

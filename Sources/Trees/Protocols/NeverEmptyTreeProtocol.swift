@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A tree that cannot be empty.
 public protocol NeverEmptyTreeProtocol: TreeProtocol {
     /// The kind of a tree node--either a leaf node or a non-leaf node.

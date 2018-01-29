@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A type representing a logical expression.
 public protocol LogicalExpressionProtocol: EvaluatableExpressionProtocol, ExpressibleByBooleanLiteral where UnaryOperator: LogicalUnaryOperatorProtocol, BinaryOperator: LogicalBinaryOperatorProtocol { }
 

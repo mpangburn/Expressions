@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A self-balancing binary search tree following traditional red-black tree rules.
 public enum RedBlackTree<Element: Comparable>: BinarySearchTreeProtocol, SingleTypeTreeProtocol {
     public enum Color { case red, black }

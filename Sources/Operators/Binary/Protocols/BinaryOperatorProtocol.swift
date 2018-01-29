@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// An operator that performs an operation on exactly two operands.
 public protocol BinaryOperatorProtocol: OperatorProtocol {
     init(identifier: String, apply: @escaping (Operand, Operand) -> Result, precedence: BinaryOperatorPrecedence,

@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import CoreGraphics
-
-
 /// Declares the division operator and its mutating counterpart.
 public protocol Divisible: Numeric {
     static func / (lhs: Self, rhs: Self) -> Self

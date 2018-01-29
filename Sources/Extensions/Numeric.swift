@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 extension Numeric {
     // Would expect these to have default implementations
     public static func += (lhs: inout Self, rhs: Self) {

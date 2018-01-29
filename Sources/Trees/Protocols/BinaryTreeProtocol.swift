@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A tree with at most two children.
 public protocol BinaryTreeProtocol: TreeProtocol {
     /// The node's left child.

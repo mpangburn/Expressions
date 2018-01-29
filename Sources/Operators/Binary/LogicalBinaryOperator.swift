@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary operator for performing boolean logic.
 public struct LogicalBinaryOperator: LogicalBinaryOperatorProtocol {
     public typealias Operand = Bool
