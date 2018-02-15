@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// The kind of a tree node--either a leaf node or a non-leaf node.
 /// The enum case's associated value contains the node's data.
 public enum NeverEmptyTreeNode<A, B> {

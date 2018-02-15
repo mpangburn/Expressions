@@ -6,8 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
 
 /// A binary operator that applies boolean logic.
 public protocol LogicalBinaryOperatorProtocol: BinaryOperatorProtocol where Operand == Bool, Result == Bool { }

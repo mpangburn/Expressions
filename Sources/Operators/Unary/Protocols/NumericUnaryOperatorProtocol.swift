@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A unary operator for performing operations on Numeric types.
 public protocol NumericUnaryOperatorProtocol: UnaryOperatorProtocol where Operand: Numeric, Result == Operand { }
 

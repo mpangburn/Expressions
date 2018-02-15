@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 // Once we have conditional conformance, FloatingPointArithmeticExpression need no longer exist!
 /* extension ArithmeticExpression: ExpressibleByFloatLiteral where Operand: FloatingPoint & _ExpressibleByBuiltinFloatLiteral { } */
 

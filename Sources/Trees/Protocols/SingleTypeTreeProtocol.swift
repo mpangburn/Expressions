@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A tree whose leaf and non-leaf nodes contain values of the same type.
 public protocol SingleTypeTreeProtocol: TreeProtocol where Leaf == Node {
     /// The single type of element contained by the tree.

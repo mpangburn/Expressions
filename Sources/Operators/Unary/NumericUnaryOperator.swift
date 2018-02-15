@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A unary operator for performing arithmetic on numeric types.
 public struct NumericUnaryOperator<T: Numeric>: NumericUnaryOperatorProtocol {
     public typealias Operand = T

@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A type representing an arithmetic expression.
 public protocol ArithmeticExpressionProtocol: EvaluatableExpressionProtocol, Numeric where UnaryOperator: NumericUnaryOperatorProtocol, BinaryOperator: NumericBinaryOperatorProtocol { }
 

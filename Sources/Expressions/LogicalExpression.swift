@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// An expression of boolean logic.
 //public typealias LogicalExpression = LogicalExpression<LogicalUnaryOperator, LogicalBinaryOperator>
 

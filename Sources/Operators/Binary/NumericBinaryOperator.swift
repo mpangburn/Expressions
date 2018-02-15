@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary operator for performing operations on Numeric types.
 public struct NumericBinaryOperator<T: NumericOperandProtocol>: NumericBinaryOperatorProtocol {
     public typealias Operand = T

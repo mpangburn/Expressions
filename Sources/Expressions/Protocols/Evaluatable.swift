@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A type that can be evaluated.
 public protocol Evaluatable {
     /// The result of the evaluation.

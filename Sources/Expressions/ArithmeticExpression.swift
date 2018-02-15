@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// An arithmetic expression modeled as a binary tree.
 /// For floating point operands, see FloatingPointArithmeticExpression.
 public enum ArithmeticExpression<T: NumericOperandProtocol>: ArithmeticExpressionProtocol {

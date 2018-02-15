@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary tree that subscribes to the following set of rules:
 /// - Any node to a node's left is "less than" that node.
 /// - Any node to a node's right is "greater than" that node.

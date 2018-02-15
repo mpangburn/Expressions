@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A unary operator for performing boolean logic.
 public struct LogicalUnaryOperator: LogicalUnaryOperatorProtocol {
     public typealias Operand = Bool

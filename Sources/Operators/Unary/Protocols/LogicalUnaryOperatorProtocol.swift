@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A unary operator that applies boolean logic.
 public protocol LogicalUnaryOperatorProtocol: UnaryOperatorProtocol where Operand == Bool, Result == Bool { }
 

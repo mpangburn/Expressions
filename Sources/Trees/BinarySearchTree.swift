@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A traditional non-self-balancing binary search tree.
 public enum BinarySearchTree<Element: Comparable>: BinarySearchTreeProtocol {
     case empty

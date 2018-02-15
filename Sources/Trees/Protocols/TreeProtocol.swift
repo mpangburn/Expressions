@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A tree whose leaf nodes and non-leaf nodes can hold values of different types.
 public protocol TreeProtocol {
     /// The type contained by the tree's leaf nodes.

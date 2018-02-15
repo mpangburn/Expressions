@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// Contains the possible values for a binary operator's precedence,
 /// which is used to determine the order of operations when combined with other operators.
 /// c.f. https://developer.apple.com/documentation/swift/operator_declarations

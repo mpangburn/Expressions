@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary tree whose leaf and non-leaf nodes contain values of the same type.
 public protocol SingleTypeBinaryTreeProtocol: SingleTypeTreeProtocol, BinaryTreeProtocol { }
 

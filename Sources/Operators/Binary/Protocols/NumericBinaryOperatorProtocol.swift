@@ -6,9 +6,6 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
-
-
 /// A binary operator that operates on numeric types.
 public protocol NumericBinaryOperatorProtocol: BinaryOperatorProtocol where Operand: Numeric & _ExpressibleByBuiltinIntegerLiteral, Result == Operand { }
 
